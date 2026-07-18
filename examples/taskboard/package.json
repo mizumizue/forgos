@@ -1,0 +1,14 @@
+{
+  "name": "taskboard-example",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "pnpm -r --filter @taskboard/domain --filter @taskboard/api test",
+    "test:all": "pnpm -r test",
+    "typecheck": "pnpm -r --filter @taskboard/domain --filter @taskboard/api --filter @taskboard/web typecheck",
+    "lint": "pnpm -r --filter @taskboard/domain --filter @taskboard/api --filter @taskboard/web lint"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

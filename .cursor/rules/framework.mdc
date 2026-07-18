@@ -1,0 +1,13 @@
+---
+description: L1 編集禁止とモード開始・秘密情報のガードレール
+alwaysApply: true
+---
+
+# AI Dev Framework — 常時ルール
+
+1. 作業開始時はモードを明示する（Explore / Build / Spec-only / Verify / Maintain-FW）。
+2. `specs/L1/` は編集しない。変更は Maintain-FW で提案のみ。
+3. 通常の `apps/` / `infra/` 実装は stable 以上の決め事に紐づける。探索は `sandbox/`。
+4. 秘密情報をログ・コミット・仕様・出力に出さない。
+5. `input/` の原文は git に載せず、抽出結果だけを specs/pbl/adr へ。
+6. Build では TDD。単体が緑になるまで完了と言わない。

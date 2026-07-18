@@ -1,0 +1,40 @@
+# External inputs (customer docs, raw requirements) — never commit contents
+input/**
+!input/.gitkeep
+!input/README.md
+
+# Dependencies & build
+node_modules/
+dist/
+**/dist/
+.next/
+.turbo/
+*.tsbuildinfo
+coverage/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# Scratch / local agent outputs
+.scratch/
+
+# Examples local data
+examples/**/prisma/*.db
+examples/**/prisma/*.db-journal
+
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/crash.log
+**/*.tfvars
+!**/terraform.tfvars.example

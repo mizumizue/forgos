@@ -1,0 +1,56 @@
+name: examples-taskboard
+
+on:
+  push:
+    paths:
+      - "examples/taskboard/**"
+      - ".github/workflows/examples-taskboard.yml"
+  pull_request:
+    paths:
+      - "examples/taskboard/**"
+      - ".github/workflows/examples-taskboard.yml"
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/taskboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: examples/taskboard/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+typecheck:
+      - run: pnpm typecheck
+      - name: Lint (tsc)
+        run: pnpm lint
+      - name: Unit + API tests
+        run: pnpm test
+
+  e2e:
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    needs: unit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/taskboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: examples/taskboard/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @taskboard/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @taskboard/web test:e2e
