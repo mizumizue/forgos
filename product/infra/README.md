@@ -7,8 +7,8 @@
 検証の入口（先出し）:
 
 ```bash
-terraform -chdir=infra init -backend=false
-terraform -chdir=infra validate
+terraform -chdir=product/infra init -backend=false
+terraform -chdir=product/infra validate
 ```
 
 `main.tf` は空に近い有効 HCL スタブ。モジュール追加は stable 以上のインフラ決め事に紐づける。

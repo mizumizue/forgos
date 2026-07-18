@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.1.0
+version: 0.1.1
 editable_by_agent: false
 ---
 
@@ -15,7 +15,7 @@ editable_by_agent: false
 
 ## E2. 実装の紐づけ
 
-通常実装（`apps/` / `infra/` の feature）は **stable 以上** の決め事に紐づける。sandbox は探索専用。
+通常実装（`product/apps/` / `product/infra/` の feature）は **stable 以上** の決め事に紐づける。`product/sandbox/` は探索専用。
 
 ## E3. Verify 可能性
 

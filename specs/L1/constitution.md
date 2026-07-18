@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.1.0
+version: 0.1.1
 editable_by_agent: false
 ---
 
@@ -13,7 +13,8 @@ Agent は本ディレクトリを **Maintain-FW フロー経由以外で編集�
 
 1. 本リポジトリは **リポジトリ規約** と **AI 工程 OS（Cursor 第一）** を一体にしたスターターである。
 2. コア規約は特定アプリスタックに依存しない。参考実装は `examples/` に置く。
-3. インフラはアプリと同体系・別ドメインとして扱い、`specs/L3/infrastructure/` と `infra/` に隔離する。
+3. プロダクト実装（`apps` / `infra` / `sandbox`）は `product/` 配下に置き、リポジトリルートは工程・知識用とする。
+4. インフラはアプリと同体系・別ドメインとして扱い、`specs/L3/infrastructure/` と `product/infra/` に隔離する。
 
 ## 2. 正本の順位
 

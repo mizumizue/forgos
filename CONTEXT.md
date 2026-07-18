@@ -23,7 +23,7 @@ Explore / Build / Spec-only / Maintain-FW / Verify。作業の公式入口。ス
 draft / stable / confirmed。実装可否を決める。
 
 **Sandbox**:
-探索用コード置き場。通常 feature に紐づけない。
+探索用コード置き場（`product/sandbox/`）。通常 feature に紐づけない。
 
 **L1**:
 FW 憲法と工学最低ライン。Agent 編集不可。

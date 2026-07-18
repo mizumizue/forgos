@@ -1,13 +1,13 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.1.0
+version: 0.1.1
 editable_by_agent: false
 ---
 
 # Extract ゲート
 
-Explore / Build 内で、sandbox や対話から仕様へ昇格するときの人間ゲート。自動昇格しない。
+Explore / Build 内で、`product/sandbox/` や対話から仕様へ昇格するときの人間ゲート。自動昇格しない。
 
 ## 完了条件
 

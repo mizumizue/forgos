@@ -15,23 +15,25 @@ L1 版: 見よ `specs/L1/VERSION`
 ## ディレクトリ
 
 ```text
-specs/L1|L2|L3   仕様（決め事が正本）
-adr/             意思決定の経緯
-pbl/             PBI / Epic（ハブ）
-apps/            プロダクトアプリ（空）
-infra/           プロダクト IaC（スタブ）
-sandbox/         Explore 用
-examples/        参考実装
-input/           外部原文（git 外）
-.cursor/skills   モード誘導
-docs/            ガイド
+specs/L1|L2|L3     仕様（決め事が正本）
+adr/               意思決定の経緯
+pbl/               PBI / Epic（ハブ）
+product/apps/      プロダクトアプリ（空）
+product/infra/     プロダクト IaC（スタブ）
+product/sandbox/   Explore 用
+examples/          参考実装
+input/             外部原文（git 外）
+.cursor/skills     モード誘導
+docs/              ガイド
 ```
+
+ルートは工程・知識用。プロダクト実装は `product/` 配下。`examples/` 内部の `{apps,infra}` は教材用の自己完結レイアウトであり、テンプレの `product/` とは意図的に別形です。
 
 ## 正本（要約）
 
 | 状態 | 正本 |
 |------|------|
-| Explore | sandbox |
+| Explore | sandbox（`product/sandbox/`） |
 | Extract 後 | **決め事 > ADR > コード** |
 | Spec-only | 仕様（＋ADR/PBI） |
 
