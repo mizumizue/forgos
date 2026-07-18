@@ -3,7 +3,7 @@ description: L1 編集禁止とモード開始・秘密情報のガードレー�
 alwaysApply: true
 ---
 
-# AI Dev Framework — 常時ルール
+# ForgOS — 常時ルール
 
 1. 作業開始時はモードを明示する（Explore / Build / Spec-only / Verify / Maintain-FW）。
 2. `specs/L1/` は編集しない。変更は Maintain-FW で提案のみ。

@@ -1,6 +1,6 @@
 # Agent 向けメモ
 
-このリポジトリは **AI 駆動開発フレームワークのスターター** である（リポジトリ規約 ＋ Cursor 第一の工程 OS）。
+このリポジトリは **ForgOS**（AI 工程 OS スターター）である（リポジトリ規約 ＋ Cursor 第一の工程 OS）。
 
 作業開始前に [CONTEXT.md](./CONTEXT.md) と [specs/L1/constitution.md](./specs/L1/constitution.md) を読む。
 

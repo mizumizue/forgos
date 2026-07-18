@@ -1,8 +1,8 @@
-# AI Dev Framework（スターター）
+# ForgOS — AI 工程 OS
 
 リポジトリ規約と Cursor 第一の **AI 工程 OS** を一体にしたスターターです。スキルの使いこなしではなく、**モード**（Explore / Build / Spec-only / Verify / Maintain-FW）で一定品質のアプリ＋インフラ開発を進めます。
 
-作業名: `ai-dev-framework`（正式名称は未定）  
+正式名称: **ForgOS**（slug: `forgos`）  
 L1 版: 見よ `specs/L1/VERSION`
 
 ## すぐにやること

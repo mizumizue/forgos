@@ -1,7 +1,7 @@
 ---
 status: in-progress
 updated: 2026-07-19
-head: 2350ea4
+head: c05ebdd
 ---
 
 # 実装状況
@@ -10,11 +10,12 @@ head: 2350ea4
 
 ## リポ状態
 
-- パス: このリポジトリ（`ai-dev-framework`）
-- ブランチ: `main`（本変更を含む）
-- リモート: 未設定
+- 名称: **ForgOS**（slug: `forgos`）
+- リモート: https://github.com/mizumizue/forgos （private）
+- ブランチ: `main`
 - 由来草案: 隣接 `my-skills/idea/2026-07-19-ai-dev-framework-draft.md`（Grill 合意 2026-07-19）
-- レイアウト: Grill 合意により `product/{apps,infra,sandbox}`（ADR 0002、L1 0.1.1）
+- レイアウト: `product/{apps,infra,sandbox}`（ADR 0002、L1 0.1.1）
+- 命名: ADR 0003
 
 ## 段階進捗（草案 §13）
 
