@@ -16,6 +16,7 @@ head: c05ebdd
 - 由来草案: 隣接 `my-skills/idea/2026-07-19-ai-dev-framework-draft.md`（Grill 合意 2026-07-19）
 - レイアウト: `product/{apps,infra,sandbox}`（ADR 0002、L1 0.1.1）
 - 命名: ADR 0003
+- Bootstrap: `/bootstrap-product`（ADR 0004）— 未実行。default example → `product/` 展開用
 
 ## 段階進捗（草案 §13）
 

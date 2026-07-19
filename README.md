@@ -19,7 +19,9 @@
 2. Cursor で開き、[AGENTS.md](./AGENTS.md) と [CONTEXT.md](./CONTEXT.md) に目を通す
 3. モードを起動する（例: `/explore`, `/build`）
 
-動く参考実装は [examples/taskboard](./examples/taskboard/) を参照。
+技術スタックに拘りがなければ、先に **`/bootstrap-product`** で default example を `product/` に展開し、リポジトリをプロダクト用に仕立てる（examples / デモは削除される）。
+
+動く参考実装は [examples/taskboard](./examples/taskboard/)（Bootstrap 前の default）。
 
 ## Directory
 

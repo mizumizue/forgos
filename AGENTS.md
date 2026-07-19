@@ -14,6 +14,8 @@
 | 乖離・拡大解釈チェック | Verify | `/verify` |
 | FW 自体のメンテ | Maintain-FW | `/maintain-fw` |
 
+スタック未決で default example からプロダクトリポへ仕立てる場合（モード外）: `/bootstrap-product`（破壊的・ユーザー起動のみ）。
+
 Extract（仕様昇格）は Explore / Build 内の人間ゲート。`specs/L1/extract-gate.md`。
 
 ## 編集制約（要約）
