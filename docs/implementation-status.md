@@ -14,7 +14,7 @@ head: c05ebdd
 - リモート: https://github.com/mizumizue/forgos （private）
 - ブランチ: `main`
 - 由来草案: 隣接 `my-skills/idea/2026-07-19-ai-dev-framework-draft.md`（Grill 合意 2026-07-19）
-- レイアウト: `product/{apps,infra,sandbox}`（ADR 0002、L1 0.1.1）
+- レイアウト: `product/{apps,infra,sandbox}`（ADR 0002、L1 0.2.0）
 - 命名: ADR 0003
 - Bootstrap: `/bootstrap-product`（ADR 0004）— 未実行。default example → `product/` 展開用
 
@@ -22,7 +22,7 @@ head: c05ebdd
 
 | 段階 | 状態 | 入口 |
 |------|------|------|
-| 1 憲法 | 完了 | `specs/L1/`（0.1.1）, `docs/`, `docs/templates/` |
+| 1 憲法 | 完了 | `specs/L1/`（0.2.0）, `docs/`, `docs/templates/` |
 | 2 OS | 完了 | `.cursor/skills/modes/`, `.cursor/rules/`, `/tdd` |
 | 3 Template | 完了 | `product/apps/`, `product/infra/`, `product/sandbox/`, `input/` |
 | 4 Examples | 完了（縦スライス最小） | `examples/taskboard/` |
