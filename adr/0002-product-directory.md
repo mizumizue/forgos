@@ -1,7 +1,8 @@
 ---
 adr: 0002
-status: accepted
+status: superseded
 date: 2026-07-19
+superseded_by: 0011
 ---
 
 # プロダクト実装を `product/` 配下に隔離する
@@ -30,3 +31,7 @@ date: 2026-07-19
 ## 決め事への反映
 
 `specs/L1/constitution.md` / `engineering-baseline.md`（L1 0.1.1）
+
+## Superseded
+
+L1 0.7.2（[ADR 0011](./0011-reverse-import-l1-0.7.2.md)）により、`product/` 配下配置は維持しつつ **内部の `apps` / `infra` 必須と `input/` は撤廃**。正は L1 憲法 §1.3–1.4 と §10（Source は `specs/inbox/`）。

@@ -1,7 +1,8 @@
 ---
 adr: 0005
-status: accepted
+status: superseded
 date: 2026-07-19
+superseded_by: 0011
 ---
 
 # L1 工学最低ラインを 0.2.0 に拡充する（E6–E11）
@@ -30,3 +31,7 @@ L1 の実務制約が薄く、アプリ実装・インフラ構築で Agent が�
 
 - L1: `specs/L1/engineering-baseline.md`（E6–E11）、`VERSION` 0.2.0
 - L2 draft: `specs/L2/decisions/application-engineering.md`, `infrastructure-engineering.md`
+
+## Superseded
+
+L1 **0.7.2**（[ADR 0011](./0011-reverse-import-l1-0.7.2.md)）が工学最低ラインとモード名（Audit 等）の正本。本 ADR の 0.2.0 拡充内容は後継 L1 に吸収済み。

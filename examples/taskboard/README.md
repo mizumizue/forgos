@@ -56,6 +56,6 @@ terraform -chdir=infra init -backend=false
 terraform -chdir=infra validate
 ```
 
-## Verify デモ
+## Audit デモ
 
-`docs/examples-verify-demo.md` を参照。
+`examples/taskboard/AUDIT-DEMO.md` を参照。

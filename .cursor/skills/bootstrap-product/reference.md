@@ -3,7 +3,7 @@
 ## Default example
 
 - 正本: `examples/README.md` が指す default。未記載かつ1本だけならそのディレクトリ。
-- 現行: `examples/taskboard`（React / Hono / Vitest / Playwright / Prisma schema / Terraform 最小）
+- 既定: `examples/taskboard`（React / Hono / Vitest / Playwright / Prisma schema / Terraform 最小）
 
 ## 展開マップ
 
@@ -13,39 +13,39 @@
 |--------|------|
 | `apps/` | `product/apps/` |
 | `packages/` | `product/packages/` |
-| `infra/` | `product/infra/` |
+| `infra/` | `product/infra/`（example に含まれる場合のみ。空スタブは作らない。L1 憲法 §1.3） |
 | `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `tsconfig*.json`, `.npmrc`, `.env.example`, `docker-compose.yml` 等のモノレポ根 | `product/` 直下 |
 | （なし） | `product/sandbox/` は既存のまま残す |
 
-コピー後、ソース側の README で「example / taskboard / 参考実装」と書いている文言はプロダクト向けに直すか削除する。
+コピー後、ソース側の README で「example / 参考実装」と書いている文言はプロダクト向けに直すか削除する。
 
 ## 削除リスト
 
-セットアップ完了時に存在してはならないもの:
+セットアップ完了時に存在してはならないもの（デモ系）:
 
-- `examples/`（ディレクトリ全体）
-- `specs/L3/tasks/`（デモドメイン）
-- `pbl/epics/EPIC-0001-taskboard.md`
-- `pbl/items/PBI-0001-create-task.md`
-- `docs/examples-verify-demo.md`
-- `.github/workflows/examples-taskboard.yml`（または `product/` 向けに書き換え）
+- `examples/` 配下の default example ディレクトリ
+- デモ L3 ドメイン（例: `specs/L3/tasks/`）
+- デモ Epic / PBI（例: EPIC-0001-taskboard / PBI-0001-create-task）
+- `examples/taskboard` 向けのデモ検証メモ（あれば）
+- `.github/workflows/examples-*.yml`（または `product/` 向けに書き換え）
 
 残す:
 
 - `specs/L1/`
 - `specs/L2/`
 - `specs/L3/_template/`
-- `specs/L3/infrastructure/`（プレースホルダ）
-- `docs/modes.md` 等の工程ガイド
+- すでに存在するアプリ関心ドメイン（技術ドメイン名は置かない。L1 憲法 §1.4）
+- `AGENTS.md` / `README.md` 等の工程ガイド
 - `.cursor/skills/`（本スキル含む）
 - `product/sandbox/`
+- `product/` 配下のアプリ実装（`infra/` は必須ではない。L1 憲法 §1.3）
 
 ## 検索チェック（剥がし確認）
 
 `product/` とルート案内から、次が残っていないこと:
 
-- `taskboard`（パッケージ名・パス・文言）
-- `@taskboard/`
+- 旧 example 固有スラッグ（パッケージ名・パス・文言）
+- `@taskboard/` 等の旧パッケージ scope
 - `examples/taskboard`
 - デモ決め事パス `specs/L3/tasks/`
 

@@ -1,8 +1,3 @@
-# External inputs (customer docs, raw requirements) — never commit contents
-input/**
-!input/.gitkeep
-!input/README.md
-
 # Dependencies & build
 node_modules/
 dist/

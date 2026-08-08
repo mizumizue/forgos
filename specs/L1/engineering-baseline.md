@@ -1,13 +1,13 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.2.0
+version: 0.7.2
 editable_by_agent: false
 ---
 
 # L1 工学最低ライン
 
-業務ドメイン規則はここに入れない。違反は Verify およびセッション完了判定で指摘する。
+業務ドメイン規則はここに入れない。違反は Audit およびセッション完了判定で指摘する。
 詳細・例外・スタック固有の運用は `specs/L2/decisions/` に書く。
 
 ## E1. 秘密情報
@@ -16,19 +16,19 @@ editable_by_agent: false
 
 ## E2. 実装の紐づけ
 
-通常実装（`product/apps/` / `product/infra/` の feature）は **stable 以上** の決め事に紐づける。`product/sandbox/` は探索専用。
+通常実装（`product/` 配下。sandbox を除く）は **stable 以上** の決め事に紐づける。`product/sandbox/` は探索専用。紐づけの向きは **仕様 → 実装**（実装パスを仕様に書いて紐づけない。憲法 §2.3–2.4）。
 
-## E3. Verify 可能性
+## E3. Audit 可能性
 
-仕様↔実装の乖離と、仕様の拡大解釈を指摘できるようにする。実装は決め事から追跡可能であること。
+仕様↔実装の乖離と、仕様の拡大解釈を指摘できるようにする。実装は決め事から追跡可能であること。追跡は決め事のパス／ID と issue・PBI・ADR・`specs/inbox`（Source）で行う。**仕様ファイルから実装パスを張って追跡しない**。
 
-## E4. Build 完了とテスト
+## E4. Implement 完了とテスト
 
-Build セッション完了には、関連する単体テストが緑であることが必須である。
+Implement セッション完了には、関連する単体テストが緑であることが必須である。
 
 ## E5. L1 不可侵
 
-Agent は L1 を直接編集しない。変更案は Maintain-FW で提示し、人間承認後に版を上げる。
+Agent は L1 を直接編集しない。変更案は Steward で提示し、人間承認後に版を上げる。
 
 ## E6. 入力検証
 

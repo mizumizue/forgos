@@ -10,26 +10,41 @@ epic: EPIC-0001
 
 ## 価値
 
-最小の縦スライスで Build / TDD / Verify のデモを可能にする。
+最小の縦スライスで Implement / TDD / Audit のデモを可能にする。
 
 ## 受入条件
 
-- [x] 空タイトルでは作成できない
-- [x] 有効タイトルで作成でき、一覧に現れる
+- [x] （AC-1）空タイトルでは作成できない
+- [x] （AC-2）有効タイトルで作成でき、一覧に現れる
 
-## 参照決め事
+## マップ
+
+### 対応表（必須）
+
+規範アンカー: `<decision-slug>#D<n>` / `usecases/<slug>` / `AC-<n>`。状態: `covered` | `partial` | `gap`。ADR 0009。
+
+| 規範 | 証拠 | issue | 状態 |
+|------|------|--------|------|
+| task-creation#D1–D4（作成・一覧の決め事） | `examples/taskboard/` 配下の domain / API テスト | — | covered |
+| AC-1 空タイトル拒否 | 同上 | — | covered |
+| AC-2 作成・一覧 | 同上 | — | covered |
+
+### 補助一覧
+
+関連仕様パス:
 
 - `specs/L3/tasks/decisions/task-creation.md`（stable）
-
-## 関連仕様
-
 - `specs/L3/tasks/glossary/terms.md`
 - `specs/L3/tasks/actors/members.md`
 
-## 関連コード / PR
+関連コード / PR:
 
 - `examples/taskboard/`
 
+関連 issue:
+
+- —
+
 ## メモ
 
-examples 同梱のデモ PBI。単体テスト緑。Verify デモ: `docs/examples-verify-demo.md`。人間の仕様意図レビュー待ち。
+examples 同梱のデモ PBI。単体テスト緑。Audit デモ: `examples/taskboard/AUDIT-DEMO.md`。人間の仕様意図レビュー待ち。

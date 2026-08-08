@@ -1,0 +1,14 @@
+---
+description: draft/cut の公開先（詳細は pipeline/map の issue-tracker）
+alwaysApply: true
+---
+
+# トラッカー配置
+
+本リポの正本: `.cursor/skills/pipeline/map/issue-tracker.md`（cut 直前に読む）。
+
+- `/draft` → `specs/inbox/<feature-slug>/spec.md`（L2/L3 に PRD を丸ごと置かない）
+- `/promote` → Audit 後に `specs/` L2/L3（手順: `.cursor/skills/pipeline/promote/`）
+- `/map` → `pbl/`（手順: `.cursor/skills/pipeline/map/`）。issue は原則 PBI から（cut）
+- `/cut` → `issues/backlog/<feature-slug>-<NN>-<slug>.md`、親 PBI を残す、`Status: backlog`
+- イシューは**削除禁止**。`Status:` 更新＋対応ディレクトリへ移動のみ。`Triage:` はフォルダの代わりにしない
