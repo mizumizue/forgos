@@ -2,7 +2,7 @@
 
 実装・検証の過程で判明した、**挙動・品質として保証するもの**の置き場。機能・非機能の両方を含む。製品の決め事（何を作るか）は [`specs/`](../specs/) に置き、ここには置かない。
 
-詳細な経緯: [ADR 0006](../adr/0006-quality-folder.md)。実現点検: [`/assure`](../.cursor/skills/engineering/assure/SKILL.md)（[ADR 0007](../adr/0007-assure-skill.md)／[ADR 0010](../adr/0010-assure-coverage-catalog.md)）。
+詳細は本 README。実現点検: [`/assure`](../.cursor/skills/engineering/assure/SKILL.md)。
 
 ## specs との境界
 
@@ -113,7 +113,7 @@ related_specs: []
 
 ## 点検
 
-`/assure`（モード外）は次を洗う（ADR 0010）:
+`/assure`（モード外）は次を洗う:
 
 1. **Coverage** — 範囲の L2/L3（Dn・usecase）が `active` 保証に載っているか（inbox / L1 / glossary 全文は対象外）
 2. **Discovery を含む実現** — Catalog / 台帳 / Evidence / Run / Orphan（`related_specs` 空の保証も Evidence/Run の対象）

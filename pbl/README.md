@@ -2,7 +2,7 @@
 
 PBI は正本ではない。**hub** — `specs/` と `product/` のマップ（要求・進捗・リンクの集約）。
 
-手順の正本: `.cursor/skills/pipeline/map/SKILL.md` と `/cut`。公開先・ファイル名・トリアージ: `.cursor/skills/pipeline/map/issue-tracker.md`。対応表: [ADR 0009](../adr/0009-pbi-trace-matrix.md)。
+手順の正本: `.cursor/skills/pipeline/map/SKILL.md` と `/cut`。公開先・ファイル名・トリアージ: `.cursor/skills/pipeline/map/issue-tracker.md`。対応表の定義は本 README。
 
 ## 役割分担
 
@@ -51,7 +51,7 @@ idea → exploring → ready → doing → verify → review → done
 
 ## 必須リンク（マップ）
 
-**正は対応表。** フォルダ列挙だけでは不足（ADR 0009）。
+**正は対応表。** フォルダ列挙だけでは不足。
 
 ### 対応表
 

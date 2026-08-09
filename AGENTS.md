@@ -4,7 +4,7 @@
 
 作業開始前に [CONTEXT.md](./CONTEXT.md) と [specs/L1/constitution.md](./specs/L1/constitution.md) を読む。
 
-どのモード／スキルを使うか迷ったら **`/ask-me`**（`.cursor/skills/ask-me/`。ルーター。ADR 0008）。
+どのモード／スキルを使うか迷ったら **`/ask-me`**（`.cursor/skills/ask-me/`。ルーター）。
 
 ## モードで開始する
 
@@ -20,7 +20,7 @@
 
 Promote（仕様昇格）は独立モードではない。`specs/inbox` の PRD を L2/L3 へ取り込むときは `/promote`（Audit 必須・人間ゲート）。ゲート定義は `specs/L1/promote-gate.md`。
 
-**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`。ADR 0007／0010）。
+**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。
 
 スタック未決で default example からプロダクトリポへ仕立てる場合（モード外）: `/bootstrap-product`（破壊的・ユーザー起動のみ）。
 
@@ -72,8 +72,8 @@ hub の説明: `pbl/README.md`
 | `specs/` | 仕様（L1/L2/L3）と `inbox/`（機能 PRD＝Source） |
 | `quality/` | 実装後に保証する挙動・品質（単体／結合／システム。機能・非機能） |
 | `issues/` | 実装イシュー（`backlog` / `active` / `pending_sync` / `completed`） |
-| `adr/` | 意思決定の経緯（**必須ではない**。重要なら推奨→ユーザー確認。`CONTEXT.md`） |
-| `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表・ADR 0009） |
+| `adr/` | 任意の経緯（必須ではない。重要なら推奨→ユーザー確認） |
+| `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表） |
 | `product/` | プロダクト実装（内部構成は任意。`apps` / `infra` 等は必須ではない） |
 | `sandbox/` | 探索用コード |
 | `examples/` | 参考実装（Bootstrap 前の default。コア規約はスタック非依存） |
@@ -85,6 +85,6 @@ hub の説明: `pbl/README.md`
 
 ### Domain（調査時）
 
-- 読む: `CONTEXT.md`、関係する `adr/`、規範は `specs/**/decisions/`、導線は `specs/**/usecases/`
+- 読む: `CONTEXT.md`、規範は `specs/**/decisions/`、導線は `specs/**/usecases/`
 - 欠如しても黙って続行。先回り作成を提案しない
-- 用語は `CONTEXT.md` / `specs/**/glossary/` に合わせる。ADR と矛盾する出力は明示する
+- 用語は `CONTEXT.md` / `specs/**/glossary/` に合わせる

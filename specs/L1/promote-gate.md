@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.7.3
+version: 0.7.4
 editable_by_agent: false
 ---
 
@@ -18,7 +18,7 @@ Spike / Implement 内で、`sandbox/` や対話から仕様へ昇格するとき
 3. **ユースケース**: 利用者導線が書かれ、対象アクター（1つ以上）が明示されている
 4. **決め事**: 守る規範がテスト可能な粒度で書かれている
 5. **成熟度**: draft / stable / confirmed が明示されている
-6. **トレーサビリティ**: 関連 PBI・（あれば）ADR・Source（`specs/inbox/`）へのリンクがある。sandbox / 実装パスは L2/L3 に書かない（学習メモは inbox 補足または issue に残す）
+6. **トレーサビリティ**: 関連 PBI・Source（`specs/inbox/`）へのリンクがある。sandbox / 実装パスは L2/L3 に書かない（学習メモは inbox 補足または issue に残す）
 7. **矛盾チェック**: 既存 L2/L3 決め事との衝突が列挙され、解消方針が決まっている
 
 ## Agent の役割

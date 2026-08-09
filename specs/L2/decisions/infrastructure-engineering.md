@@ -22,4 +22,3 @@ L1 E9–E11 の詳細・例外・ツール固有の運用をここに育てる�
 ## 関連
 
 - L1: `specs/L1/engineering-baseline.md`（E9–E11）
-- ADR: `adr/0005-l1-engineering-baseline-0.2.md`

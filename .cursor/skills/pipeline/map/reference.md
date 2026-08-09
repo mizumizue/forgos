@@ -5,7 +5,7 @@
 ## map — PBI 新規／更新
 
 1. ユーザー価値の一塊を一文で固定する。既存 PBI があればそれを更新し、なければ `pbl/` に同フォルダの `templates/pbi.md` で新規作成する（id は既存最大＋1）。
-2. **対応表を埋める（必須）。** 各関連決め事の Dn・関連ユースケース・受入条件 AC を行にする。列は規範・証拠・issue・状態（`covered` / `partial` / `gap`）。アンカーは `<decision-slug>#D<n>` / `usecases/<slug>` / `AC-<n>`（ADR 0009）。
+2. **対応表を埋める（必須）。** 各関連決め事の Dn・関連ユースケース・受入条件 AC を行にする。列は規範・証拠・issue・状態（`covered` / `partial` / `gap`）。アンカーは `<decision-slug>#D<n>` / `usecases/<slug>` / `AC-<n>`。
 3. **補助一覧を整える。** 表から辿れる仕様パス・コード/PR・issue を重複なく列挙（フォルダ列挙のみは不可）。
 4. `status` を置く（仕様のみなら `specified`。実装完了と混同しない）。
 5. Epic 配下なら Epic の「配下 PBI」にリンクを足す。

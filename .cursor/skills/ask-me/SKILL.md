@@ -18,7 +18,7 @@ disable-model-invocation: true
 
 1. **`/draft`** — 機能 PRD を `specs/inbox/<feature-slug>/spec.md` に書く。L2/L3 に PRD を丸ごと置かない。
 2. **`/promote`** — Audit 後、inbox を L2/L3（glossary / actors / decisions / usecases）へ取り込む。人間ゲート。独立モードではない。
-3. **`/map`** — 仕様から PBI／Epic を `pbl/` に載せる（hub）。マップは規範 ID 対応表必須（ADR 0009）。
+3. **`/map`** — 仕様から PBI／Epic を `pbl/` に載せる（hub）。マップは規範 ID 対応表必須。
 4. **`/cut`** — PBI から issue を `issues/backlog/` に切る。
 5. **`/implement`** — stable 以上の決め事に紐づけて実装。内部で **`/tdd`**（赤→緑）。
 6. **`/audit`** — specs ↔ 実装の Gap / Conform / Baseline。範囲に `quality/` の `status: active` があれば続けて **`/assure`**。
@@ -34,7 +34,7 @@ disable-model-invocation: true
 | やりたいこと | 起動 | メモ |
 |--------------|------|------|
 | あいまい → sandbox で触って学ぶ | `/spike` | 仕様は後。正は一時的に sandbox |
-| 実装せず仕様・PBI・ADR だけ | `/specify` | `specified` までで止めてよい |
+| 実装せず仕様・PBI だけ | `/specify` | `specified` までで止めてよい |
 | 安定仕様に従い実装 | `/implement` | TDD は `/tdd` |
 | 仕様どおりか・やりすぎていないか | `/audit` | 品質実現は `/assure` |
 | FW（L1・スキル・骨組み）を直す | `/steward` | L1 は提案→人間承認 |

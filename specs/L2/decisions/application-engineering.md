@@ -22,4 +22,3 @@ L1 E6–E8 の詳細・例外・スタック固有の運用をここに育てる
 ## 関連
 
 - L1: `specs/L1/engineering-baseline.md`（E6–E8）
-- ADR: `adr/0005-l1-engineering-baseline-0.2.md`

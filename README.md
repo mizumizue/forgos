@@ -8,7 +8,7 @@
 
 - **モード駆動** — Spike / Specify / Implement / Audit / Steward。入り口はスキル名ではなくモード
 - **パイプライン** — `/draft` → `/promote` → `/map` → `/cut` → `/implement` → `/audit`（→ `/assure`）
-- **決め事が正本** — Promote 後は **決め事 > ADR > コード**。PBI はハブにとどめる
+- **決め事が正本** — Promote 後は **決め事 > コード**。PBI はハブにとどめる
 - **Implement は TDD** — 安定以上の仕様に紐づけ、単体が緑になるまで完了としない
 - **Audit / Assure** — 仕様と実装の乖離、および仕様の保証 Coverage・品質実現を指摘する
 
@@ -32,7 +32,7 @@
 |--------|------|------|
 | Spike | あいまい → プロトタイプ（sandbox）。仕様は後 | `/spike` |
 | Implement | 安定以上の仕様に従い実装 ＋ TDD | `/implement`（TDD: `/tdd`） |
-| Specify | 実装せず仕様（と必要なら PBI/ADR）のみ | `/specify` |
+| Specify | 実装せず仕様（と必要なら PBI）のみ | `/specify` |
 | Audit | 仕様↔実装の乖離と拡大解釈の指摘 | `/audit` |
 | Steward | L1・スキル等の FW メンテ | `/steward` |
 
@@ -45,7 +45,7 @@
 ```text
 specs/     仕様（L1 / L2 横断 / L3 アプリ関心 / inbox＝機能 PRD）
 quality/   実装後に保証する挙動・品質（単体／結合／システム）
-adr/       意思決定の経緯
+adr/       任意の経緯（必須ではない）
 pbl/       PBI / Epic（hub。説明は pbl/README.md）
 product/   実装（内部構成は任意）
 sandbox/   探索コード（Spike）
@@ -60,8 +60,8 @@ examples/  参考実装（Bootstrap 前）
 | 状態 | 正本 |
 |------|------|
 | Spike | sandbox（`sandbox/`） |
-| Promote 後 | **決め事 > ADR > コード** |
-| Specify | 仕様（＋必要なら ADR / PBI） |
+| Promote 後 | **決め事 > コード** |
+| Specify | 仕様（＋必要なら PBI） |
 
 ## Docs
 

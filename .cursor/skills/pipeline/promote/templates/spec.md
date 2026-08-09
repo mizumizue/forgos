@@ -19,6 +19,5 @@ maturity: draft # draft | stable | confirmed
 
 - Source:    # `specs/inbox/<feature-slug>/spec.md`
 - PBI:       # または Issue:
-- ADR:
 - 決め事:    # 他仕様のみ
 - 用語:

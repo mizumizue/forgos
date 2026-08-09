@@ -23,7 +23,7 @@ specs/
 
 - 定常のアウトプットは **仕様 → 実装** のみ（L1 憲法 §2.3）。
 - **L2/L3 はソースコードを参照しない**（`product/`・`sandbox/` のパス、実装ファイル名を規範の根拠にしない）。L1 憲法 §2.4。
-- 許可する相互リンク先: 他仕様・ADR・`specs/inbox`（Source）・`issues` / `pbl`。
+- 許可する相互リンク先: 他仕様・`specs/inbox`（Source）・`issues` / `pbl`。
 - 実装↔仕様のトレース（関連コード/PR）は **PBI（hub）/ issue** に置き、L2/L3 本文には載せない。issue は原則 PBI から切る（`pbl/README.md`）。
 
 ## ファイル種別
@@ -35,7 +35,7 @@ specs/
 | 決め事 | `decisions/` | 守る規範（正本） |
 | ユースケース | `usecases/` | 利用者のシステム導線・業務の流れ |
 
-ADR（`adr/`）は「なぜその決め事か」。規範そのものは決め事に書く。**必須ではない** — 重要なら Agent が推奨し、作成はユーザー確認後（`CONTEXT.md`）。
+任意の経緯は `adr/`（必須ではない。重要なら推奨し、作成はユーザー確認後）。規範そのものは決め事に書く。
 
 ## Front matter（必須）
 
@@ -74,4 +74,4 @@ L1 は `editable_by_agent: false` と `version` を持つ。
 - PRD → L2/L3（`/promote`）: Audit 後に glossary / actors / decisions / usecases へ分解して取り込む
 - hub（`/map`）: `pbl/`
 - 実装イシュー（`/cut`）: `issues/`
-- テンプレ: `.cursor/skills/pipeline/promote/templates/spec.md`（ユースケースは同フォルダの `usecase.md`、ADR は `.cursor/skills/modes/steward/templates/adr.md`）
+- テンプレ: `.cursor/skills/pipeline/promote/templates/spec.md`（ユースケースは同フォルダの `usecase.md`）

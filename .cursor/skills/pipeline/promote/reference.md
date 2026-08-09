@@ -14,7 +14,7 @@ Source は次の節構成を持つ機能 PRD とする（`specs/inbox/<feature-s
 | 実装上の決定（Implementation Decisions） | **決め事の主原料**。公開インターフェース・境界・拒否条件 |
 | テスト上の決定（Testing Decisions） | 決め事の検証可能性・主たる公開インターフェースの裏付け |
 | スコープ外（Out of Scope） | 決め事の境界、またはユースケースの対象外 |
-| 補足（Further Notes） | 関連 ADR / issue / Source。**sandbox・実装パスは Source 側に残し、取り込んだ L2/L3 には書かない** |
+| 補足（Further Notes） | 関連 issue / Source。**sandbox・実装パスは Source 側に残し、取り込んだ L2/L3 には書かない** |
 
 プロトタイプ由来の形（インターフェース要約）は、散文より正確なら決め事に要点だけ残す。
 

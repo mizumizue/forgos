@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Map
 
-PBI は **hub** — 正本ではなく `specs/` ↔ `product/` のマップ。issue は原則 hub から `/cut` で切る。マップの正は **対応表**（ADR 0009）。
+PBI は **hub** — 正本ではなく `specs/` ↔ `product/` のマップ。issue は原則 hub から `/cut` で切る。マップの正は **対応表**。
 
 ## ステップ
 
@@ -22,4 +22,3 @@ PBI は **hub** — 正本ではなく `specs/` ↔ `product/` のマップ。is
 - issue 公開先・ファイル名・トリアージ: 同フォルダの `issue-tracker.md`
 - テンプレ: 同フォルダの `templates/pbi.md` / `templates/epic.md`
 - issue 切出し: `/cut`
-- ADR 0009: `adr/0009-pbi-trace-matrix.md`

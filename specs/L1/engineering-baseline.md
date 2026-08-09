@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.7.3
+version: 0.7.4
 editable_by_agent: false
 ---
 
@@ -20,7 +20,7 @@ editable_by_agent: false
 
 ## E3. Audit 可能性
 
-仕様↔実装の乖離と、仕様の拡大解釈を指摘できるようにする。実装は決め事から追跡可能であること。追跡は決め事のパス／ID と issue・PBI・ADR・`specs/inbox`（Source）で行う。**仕様ファイルから実装パスを張って追跡しない**。
+仕様↔実装の乖離と、仕様の拡大解釈を指摘できるようにする。実装は決め事から追跡可能であること。追跡は決め事のパス／ID と issue・PBI・`specs/inbox`（Source）で行う。**仕様ファイルから実装パスを張って追跡しない**。
 
 ## E4. Implement 完了とテスト
 

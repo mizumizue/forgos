@@ -49,4 +49,4 @@
 - `examples/taskboard`
 - デモ決め事パス `specs/L3/tasks/`
 
-許容: `adr/` や本スキル内の「かつて example だった」という経緯記述。
+許容: 本スキル内の「かつて example だった」という経緯記述。

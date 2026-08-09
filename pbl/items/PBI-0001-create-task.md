@@ -21,7 +21,7 @@ epic: EPIC-0001
 
 ### 対応表（必須）
 
-規範アンカー: `<decision-slug>#D<n>` / `usecases/<slug>` / `AC-<n>`。状態: `covered` | `partial` | `gap`。ADR 0009。
+規範アンカー: `<decision-slug>#D<n>` / `usecases/<slug>` / `AC-<n>`。状態: `covered` | `partial` | `gap`。
 
 | 規範 | 証拠 | issue | 状態 |
 |------|------|--------|------|

@@ -39,4 +39,3 @@ actors:
 - 用語:
 - Source:
 - PBI:       # または Issue:
-- ADR:
