@@ -39,10 +39,11 @@ Promote（仕様昇格）は独立モードではない。`specs/source` の PRD
 ### パイプライン（成果物の流れ）
 
 ```text
+                     Specify（ユーザー明示）
+                       ↓
 source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure）
  （Source・試し）   （決め事） （hub） （同一セッション可）
                      ↑_______________________|
-                     Implement ↔ Specify（ユーザー明示）
 ```
 
 Source へ書く起動は `/spec-source`。取り込むのは `/promote`（直後に Source 削除）。旧起動名 `/draft` は使わない。Implement 中の仕様更新はユーザー明示の Specify（Implement ↔ Specify。Source／promote 非経由）。

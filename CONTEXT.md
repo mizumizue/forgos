@@ -8,7 +8,7 @@
 Spike / Specify / Implement / Audit / Steward。作業の公式入口。第一分岐は Spike or Specify。フロー（Pipeline）とは別軸。
 
 **Pipeline**:
-source(+sandbox) → L2/L3 → pbl → issues → product → audit。成果物の流れ。product から L2/L3 へ戻る円は **Implement ↔ Specify**（ユーザー明示。Source／promote 非経由）。`/map` と `/cut` は同一セッション可。Source へ書くスキルは `/spec-source`。試し実装は `sandbox/`。
+source(+sandbox) → L2/L3 → pbl → issues → product → audit。成果物の流れ。戻りは **product → Specify → L2/L3**（ユーザー明示。Source／promote 非経由）。`/map` と `/cut` は同一セッション可。Source へ書くスキルは `/spec-source`。試し実装は `sandbox/`。
 
 **Spike**:
 あいまいな要件を触って減らす。粗い Source ＋ `sandbox/`。`product/` には書かない。

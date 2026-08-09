@@ -7,7 +7,7 @@
 ## Features
 
 - **モード駆動** — 第一分岐は Spike or Specify。Implement / Audit / Steward は続く入口。フロー（Pipeline）とは別軸
-- **パイプライン** — source(+sandbox) → L2/L3 → pbl → issues → product → 点検（map と cut は同一セッション可）。product と L2/L3 の円は Implement ↔ Specify（ユーザー明示）。Source を書く起動は `/spec-source`
+- **パイプライン** — source(+sandbox) → L2/L3 → pbl → issues → product → 点検（map と cut は同一セッション可）。戻りは product → Specify → L2/L3（ユーザー明示）。Source を書く起動は `/spec-source`
 - **置き場** — source↔sandbox、L2/L3↔product/。成熟度（draft / stable / confirmed）は凍結／完了ゲート（`done` は stable 以上）
 - **決め事（What）が正本** — Promote 後は **決め事 > コード**。How は `product/`。PBI はハブにとどめる
 - **Implement は TDD** — 単体が緑になるまで完了としない
@@ -42,7 +42,7 @@ flowchart TD
   src --> promote["Promote `/promote`<br/>人間ゲート"]
   promote --> l23
   l23 --> impl["Implement `/implement`<br/>`product/` + TDD"]
-  impl -->|ユーザー明示| specify
+  impl -->|ユーザー明示で戻る| specify
   impl --> audit["Audit `/audit`"]
   audit -.-> assure["必要なら `/assure`"]
   start --> other{別の目的?}
@@ -74,20 +74,25 @@ flowchart LR
 ### 3. パイプライン（成果物の流れ）
 
 ```mermaid
-flowchart LR
-  d["source<br/>Source"] --- sand["sandbox<br/>試し"]
-  d --> p["L2 / L3<br/>決め事"]
-  p --> m["pbl<br/>hub"]
-  m --> c["issues"]
-  c --> i["product"]
-  i --> a["Audit"]
-  a -.-> s["Assure"]
-  i -.->|Implement ↔ Specify<br/>ユーザー明示| p
+flowchart TB
+  spec["Specify `/specify`<br/>ユーザー明示"]
+  spec --> p
+  subgraph pipe [成果物の流れ]
+    direction LR
+    d["source<br/>Source"] --- sand["sandbox<br/>試し"]
+    d --> p["L2 / L3<br/>決め事"]
+    p --> m["pbl<br/>hub"]
+    m --> c["issues"]
+    c --> i["product"]
+    i --> a["Audit"]
+    a -.-> s["Assure"]
+  end
+  i -->|戻る| spec
 ```
 
 対応する起動（参考）: Source へ書く → `/spec-source`（試しは `sandbox/`）／ 取り込む → `/promote` ／ hub → `/map` ／ 切る → `/cut` ／ 実装 → `/implement` ／ 点検 → `/audit`（→ `/assure`）。
 
-`/map` と `/cut` は同一セッション可。Promote は独立モードではない（Audit 必須・人間ゲート）。Implement 中の仕様更新はユーザー明示の `/specify`（Implement ↔ Specify。Source／promote 非経由）。
+`/map` と `/cut` は同一セッション可。Promote は独立モードではない（Audit 必須・人間ゲート）。Implement 中の仕様更新は **product → Specify → L2/L3**（ユーザー明示。Source／promote 非経由）。
 
 ## 作業モード
 
