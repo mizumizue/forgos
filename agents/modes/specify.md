@@ -1,6 +1,6 @@
 # Specify
 
-コードを書かず、**L2/L3** に決め事・用語・アクター・ユースケース（必要なら PBI）を残す。Source を経由しない入口（`/spec-source` はフロー側・PRD 用）。経緯（`adr/`）は必須ではない（重要なら推奨し、作成はユーザー確認後）。
+コードを書かず、**L2/L3** に決め事・用語・アクター・ユースケース（必要なら PBI）を残す。Source を経由しない入口（`/spec-source` はフロー側・PRD 用）。Implement 中の仕様更新でも入る（ユーザー明示の Implement ↔ Specify。完了後は Implement に戻る。Source／`/promote` は使わない）。経緯（`adr/`）は必須ではない（重要なら推奨し、作成はユーザー確認後）。
 
 ## ステップ
 
@@ -12,7 +12,7 @@
 
 ## セッション完了
 
-仕様記録と成熟度があり、必要なら PBI が `specified`。L2/L3 に書いたら `product/` 実装は成熟度 draft でも可（`done` は stable 以上）。
+仕様記録と成熟度があり、必要なら PBI が `specified`。L2/L3 に書いたら `product/` 実装は成熟度 draft でも可（`done` は stable 以上）。Implement から入った場合は Implement に戻る旨を明示する。
 
 ## リファレンス
 
@@ -21,5 +21,6 @@
 - 経緯テンプレ（任意）: `agents/modes/steward/templates/adr.md`
 - PBI テンプレ: `agents/pipeline/map/templates/pbi.md`
 - モード索引: `AGENTS.md`
+- Implement（同一セッション可）: `agents/modes/implement.md`
 - 機能 PRD を取り込むなら `/promote`（`specs/L1/promote-gate.md`）
 - 粗い Source から試すなら `/spike`（＋ `/spec-source`）

@@ -28,7 +28,7 @@ Promote（仕様昇格）は独立モードではない。`specs/source` の PRD
 
 - 要件が曖昧で触って学びたい → **Spike**（第一分岐）
 - 規範として書ける → **Specify**（第一分岐）
-- L2/L3 があり実装する → Implement（TDD: `/tdd`）。draft でも `product/` 可。`done` は stable 以上
+- L2/L3 があり実装する → Implement（TDD: `/tdd`）。draft でも `product/` 可。`done` は stable 以上。仕様を直すならユーザー明示で Specify に入り戻る（Implement ↔ Specify）
 - 「仕様どおりか」「やりすぎていないか」を点検 → Audit
 - 「仕様が保証に載っているか／保証が実現されているか」を点検 → `/assure`（モード外。Discovery→Specify 直書き＝終わりの型（Source 非経由））
 - どれを起動すべきか迷う → `/ask-me`（ルーター）
@@ -41,9 +41,11 @@ Promote（仕様昇格）は独立モードではない。`specs/source` の PRD
 ```text
 source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure）
  （Source・試し）   （決め事） （hub） （同一セッション可）
+                     ↑_______________________|
+                     Implement ↔ Specify（ユーザー明示）
 ```
 
-Source へ書く起動は `/spec-source`。取り込むのは `/promote`（直後に Source 削除）。旧起動名 `/draft` は使わない。
+Source へ書く起動は `/spec-source`。取り込むのは `/promote`（直後に Source 削除）。旧起動名 `/draft` は使わない。Implement 中の仕様更新はユーザー明示の Specify（Implement ↔ Specify。Source／promote 非経由）。
 
 | 起動 | 正本 |
 |------|------|

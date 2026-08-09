@@ -21,7 +21,7 @@
 
 | やりたいこと | 起動 | メモ |
 |--------------|------|------|
-| L2/L3 に従い `product/` 実装 | `/implement` | TDD は `/tdd`。draft 可。`done` は stable 以上 |
+| L2/L3 に従い `product/` 実装 | `/implement` | TDD は `/tdd`。draft 可。`done` は stable 以上。仕様更新はユーザー明示で `/specify` に入り戻る（Implement ↔ Specify） |
 | 仕様どおりか・やりすぎていないか | `/audit` | 品質実現は `/assure` |
 | FW（L1・スキル・骨組み）を直す | `/steward` | L1 は提案→人間承認 |
 
@@ -33,11 +33,13 @@
 2. **L2/L3**（`/promote`）— Audit 後、Source を取り込む。人間ゲート。取り込み完了直後に Source を削除。ここから `product/` 可。
 3. **pbl**（`/map`）— PBI／Epic を載せる（hub）。マップは規範 ID 対応表必須。
 4. **issues**（`/cut`）— PBI から切る（map と同セッション可）。
-5. **product**（`/implement`）— L2/L3 に紐づけて実装。内部で **`/tdd`**。`done` は stable 以上。
+5. **product**（`/implement`）— L2/L3 に紐づけて実装。内部で **`/tdd`**。`done` は stable 以上。仕様更新が必要なら **ユーザー明示** で `/specify` に入り、決め事を更新してから Implement に戻る（Implement ↔ Specify）。Source／`/promote` は使わない。
 6. **点検**（`/audit` → 必要なら `/assure`）— specs ↔ 実装。active 保証があれば Assure。
 
 ```text
 source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure）
+                     ↑_______________________|
+                     Implement ↔ Specify（ユーザー明示）
 ```
 
 ## モード外スキル
@@ -75,7 +77,7 @@ source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure
 
 1. 要件が曖昧 → `/spike`（必要なら `/spec-source`）
 2. 規範が書ける → `/specify`
-3. 実装する → `/implement`（`/tdd`）
+3. 実装する → `/implement`（`/tdd`）。仕様を直すならユーザー明示で `/specify` に入り戻る
 4. 仕様と実装の点検 → `/audit`
 5. 仕様の保証 Coverage／品質実現 → `/assure`
 6. example からプロダクト化 → `/bootstrap-product`
