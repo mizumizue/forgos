@@ -7,8 +7,6 @@ maturity: stable
 
 # タスク作成の決め事
 
-参照実装: `examples/taskboard/`
-
 ## D1. タイトル必須
 
 Task を作成するとき、タイトルは空であってはならない。前後空白のみも空とみなす。
