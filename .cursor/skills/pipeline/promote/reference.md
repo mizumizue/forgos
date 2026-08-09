@@ -14,7 +14,7 @@ Source は次の節構成を持つ機能 PRD とする（`specs/source/<feature-
 | 実装上の決定（Implementation Decisions） | **決め事の主原料（What）**。公開インターフェース・境界・拒否条件。内部構造・手順は取り込まない |
 | テスト上の決定（Testing Decisions） | 決め事の検証可能性・主たる公開インターフェースの裏付け |
 | スコープ外（Out of Scope） | 決め事の境界、またはユースケースの対象外 |
-| 補足（Further Notes） | 関連 issue / Source。**sandbox・実装パスは Source 側に残し、取り込んだ L2/L3 には書かない** |
+| 補足（Further Notes） | 関連 issue。**sandbox・実装パスは Source／sandbox 側に残し、取り込んだ L2/L3 には書かない。Source 自体は取り込み後に削除** |
 
 プロトタイプ由来の形（インターフェース要約）は、散文より正確なら決め事に要点だけ残す。
 
@@ -102,7 +102,10 @@ Implementation Decisions から、単体テストで検証する **公開イン�
 
 - L1（Steward 以外）
 - 機能 PRD の複製を L2/L3 直下に置くこと（正本の置き場は種別ファイル）
-- Source（`specs/source/.../spec.md`）の削除（任意。残してトレーサビリティに使う）
-- **L2/L3 からのソース参照**（`product/` 実装・`sandbox/` パス、実装ファイル名。L1 憲法 §2.4）
-- **How・内部構造・作業手順（Order）**（モジュール分割、アルゴリズム、手順書。憲法 §2.7）
-- **How・内部構造・作業手順（Order）**（モジュール分割、アルゴリズム、手順書。憲法 §2.7）
+- L2/L3・hub への **Source リンク／旧パス／コミット参照**（取り込み後に Source を削除する。憲法 §2.5・ゲート）
+- **L2/L3 からのソース参照**（`product/` 実装・`sandbox/` パス、実装ファイル名。L1 憲法 §2.5）
+- **How・内部構造・作業手順（Order）**（モジュール分割、アルゴリズム、手順書。憲法 §2.8）
+
+## Source 削除（必須）
+
+ステップ 6 完了直後に当該 `specs/source/<feature-slug>/` を削除する（任意ではない）。`sandbox/` は連動しない。

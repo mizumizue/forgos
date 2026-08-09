@@ -18,9 +18,9 @@
 | 乖離・拡大解釈チェック | Audit | `/audit` | 指摘リストと次アクション（active 保証があれば `/assure`） |
 | FW 自体のメンテ | Steward | `/steward` | L1/スキル等の変更と版の記録 |
 
-Promote（仕様昇格）は独立モードではない。`specs/source` の PRD を L2/L3 へ取り込むときは `/promote`（Audit 必須・人間ゲート）。ゲート定義は `specs/L1/promote-gate.md`。
+Promote（仕様昇格）は独立モードではない。`specs/source` の PRD（仮仕様）を L2/L3 へ取り込むときは `/promote`（Audit 必須・人間ゲート）。取り込み完了直後に Source を削除。ゲート定義は `specs/L1/promote-gate.md`。
 
-**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。Assure の **Promote 候補（Discovery → Specify）** は終わりの型（実装学習を What に結晶化）。
+**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。Assure の **Specify 候補（Discovery → Specify 直書き）** は終わりの型（実装学習を What に結晶化。Source 非経由）。Implement 中の仕様更新はユーザー明示の Specify（Implement↔Specify）。
 
 スタック未決で default example からプロダクトリポへ仕立てる場合（モード外）: `/bootstrap-product`（破壊的・ユーザー起動のみ）。
 
@@ -30,9 +30,9 @@ Promote（仕様昇格）は独立モードではない。`specs/source` の PRD
 - 規範として書ける → **Specify**（第一分岐）
 - L2/L3 があり実装する → Implement（TDD: `/tdd`）。draft でも `product/` 可。`done` は stable 以上
 - 「仕様どおりか」「やりすぎていないか」を点検 → Audit
-- 「仕様が保証に載っているか／保証が実現されているか」を点検 → `/assure`（モード外。Discovery→Specify 候補＝終わりの型）
+- 「仕様が保証に載っているか／保証が実現されているか」を点検 → `/assure`（モード外。Discovery→Specify 直書き＝終わりの型（Source 非経由））
 - どれを起動すべきか迷う → `/ask-me`（ルーター）
-- `specs/source` の PRD を L2/L3 に取り込む → `/promote`（モード外・人間ゲート）
+- `specs/source` の PRD を L2/L3 に取り込む → `/promote`（モード外・人間ゲート・完了後 Source 削除）
 - default example でプロダクト用に仕立てる → `/bootstrap-product`
 - この FW 自体を直す → Steward
 
@@ -43,7 +43,7 @@ source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure
  （Source・試し）   （決め事） （hub） （同一セッション可）
 ```
 
-Source へ書く起動は `/spec-source`。取り込むのは `/promote`。旧起動名 `/draft` は使わない。
+Source へ書く起動は `/spec-source`。取り込むのは `/promote`（直後に Source 削除）。旧起動名 `/draft` は使わない。
 
 | 起動 | 正本 |
 |------|------|
@@ -59,10 +59,11 @@ hub の説明: `pbl/README.md`
 ## 編集制約（要約）
 
 - **L1 は編集しない**（Steward で提案のみ）
-- **決め事は What**（How・内部構造・手順は書かない。憲法 §2.7）。定常の「決め事 > コード」は What の正本
+- **決め事は What**（How・内部構造・手順は書かない。憲法 §2.8）。定常の「決め事 > コード」は What の正本
 - **`product/`** は L2/L3 に紐づける（draft 可）。**`done` は stable 以上**。向きは **仕様 → 実装**。How の正本はここ
 - **`sandbox/`** は Source の試し場（L2/L3 本実装は置かない）
-- **L2/L3 からソースを参照しない**（関連コードは hub＝PBI / issue。L1 憲法 §2.4）
+- **L2/L3 からソースも Source も参照しない**（関連コードは hub＝PBI / issue。L1 憲法 §2.5）
+- 定常の第一ページは **対象決め事＋PBI 対応表**（無ければ決め事＋欠落明示）
 - **issue は原則 PBI から切る**（Issue 先行可。後から PBI に対応だけ載せる）
 - 秘密情報をログ・コミット・仕様に出さない
 - Implement 完了に単体テスト緑が必須
@@ -72,7 +73,7 @@ hub の説明: `pbl/README.md`
 
 | パス | 役割 |
 |------|------|
-| `specs/` | 仕様（L1/L2/L3）と `source/`（機能 PRD＝Source） |
+| `specs/` | 仕様（L1/L2/L3）と `source/`（仮の機能 PRD＝Source。Promote 後削除） |
 | `quality/` | 実装後に保証する挙動・品質（単体／内部結合が FW 保証。システムは任意。機能・非機能） |
 | `issues/` | 実装イシュー（`backlog` / `active` / `pending_sync` / `completed`） |
 | `adr/` | 任意の経緯（必須ではない。重要なら推奨→ユーザー確認） |

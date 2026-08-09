@@ -12,7 +12,7 @@
 | トリアージ | 先頭付近に `Status: ready-for-agent`（または更新後の状態） |
 | L2/L3 | **PRD を丸ごと置かない。** L2/L3 は glossary / actors / decisions / usecases 専用 |
 
-L2/L3 への取り込みは `/promote`（Audit → Promote ゲート）。
+L2/L3 への取り込みは `/promote`（Audit → Promote ゲート）。取り込み完了直後に当該 Source を削除する（由来トレースなし）。
 
 ## 実装イシュー（`/cut`）
 
@@ -95,8 +95,8 @@ issues/
 
 ## スキルが「イシュートラッカーに公開する」と言ったとき
 
-- **仕様（draft）** → `specs/source/<feature-slug>/spec.md`
-- **取り込み（promote）** → `specs/L2|L3/...`（PRD を丸ごと置かない。Audit → ゲート後）
+- **仕様（仮・Source）** → `specs/source/<feature-slug>/spec.md`（Promote 後に削除）
+- **取り込み（promote）** → `specs/L2|L3/...`（PRD を丸ごと置かない。Audit → ゲート後 → Source 削除）
 - **hub（map）** → `pbl/`（PBI/Epic。`specs/` ↔ `product/` マップ）
 - **チケット（cut）** → `issues/backlog/<feature-slug>-<NN>-<slug>.md`（原則は親 PBI から）
 

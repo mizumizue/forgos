@@ -34,7 +34,7 @@ disable-model-invocation: true
 成果物が流れる経路。入口 Spike から乗ることが多い。`/map` と `/cut` は同一セッション可。パイプラインは **置き場** で示す。
 
 1. **Source**（起動 `/spec-source`）— `specs/source/<feature-slug>/spec.md` に書く（Spike と併用可。粒度は粗くてよい）。試し実装は **`sandbox/`**。L2/L3 に PRD を丸ごと置かない。
-2. **L2/L3**（`/promote`）— Audit 後、Source を取り込む。人間ゲート。ここから `product/` 可。
+2. **L2/L3**（`/promote`）— Audit 後、Source を取り込む。人間ゲート。取り込み完了直後に Source を削除。ここから `product/` 可。
 3. **pbl**（`/map`）— PBI／Epic を載せる（hub）。マップは規範 ID 対応表必須。
 4. **issues**（`/cut`）— PBI から切る（map と同セッション可）。
 5. **product**（`/implement`）— L2/L3 に紐づけて実装。内部で **`/tdd`**。`done` は stable 以上。
@@ -52,7 +52,7 @@ source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure
 |------|------|
 | `/tdd` | Implement 中のテストファースト手順 |
 | `/assure` | Coverage（L2/L3→保証）と Discovery（specs 外）の証拠・実行 |
-| `/promote` | source → L2/L3（上記メインフロー） |
+| `/promote` | source → L2/L3（上記メインフロー。完了直後に Source 削除） |
 | `/spec-source` `/map` `/cut` | パイプライン各段 |
 | `/bootstrap-product` | default example でプロダクト用に仕立てる（破壊的・一度きり） |
 

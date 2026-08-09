@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Spec Source
 
-会話コンテキストとコードベースの理解から機能 PRD（Source）を書く。**入口ではなくフロー段**（第一入口は Spike or Specify。Spike から呼ばれることが多い）。インタビューしない — 既知を統合するだけ。公開先は **`specs/source/<feature-slug>/spec.md`**（L2/L3 に丸ごと置かない）。粒度は粗くてよい。L2/L3 への取り込みは `/promote`。試し実装は `sandbox/`（Source 紐づけ）。
+会話コンテキストとコードベースの理解から機能 PRD（Source）を書く。**入口ではなくフロー段**（第一入口は Spike or Specify。Spike から呼ばれることが多い）。インタビューしない — 既知を統合するだけ。公開先は **`specs/source/<feature-slug>/spec.md`**（L2/L3 に丸ごと置かない）。粒度は粗くてよい。L2/L3 への取り込みは `/promote`（完了直後に Source 削除）。試し実装は `sandbox/`（Source 紐づけ）。
 
 旧起動名 `/draft` は使わない（成熟度 draft との衝突を避けるため改名）。
 

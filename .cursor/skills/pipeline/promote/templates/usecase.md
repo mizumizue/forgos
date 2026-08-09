@@ -33,9 +33,8 @@ actors:
 
 ## 関連
 
-（`specs/` から実装ソース・`product/` パスは参照しない。L1 憲法 §2.4）
+（`specs/` から実装ソース・`product/` パス・Source パスは参照しない。L1 憲法 §2.5）
 
 - 決め事:
 - 用語:
-- Source:
 - PBI:       # または Issue:
