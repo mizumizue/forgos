@@ -37,10 +37,9 @@
 6. **点検**（`/audit` → 必要なら `/assure`）— specs ↔ 実装。active 保証があれば Assure。
 
 ```text
-                     Specify（ユーザー明示）
-                       ↓
 source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure）
                      ↑_______________________|
+                     Implement ↔ Specify（ユーザー明示）
 ```
 
 ## モード外スキル
