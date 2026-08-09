@@ -16,7 +16,7 @@ L2/L3 への取り込みは `/promote`（Audit → Promote ゲート）。取り
 
 ## 実装イシュー（`/cut`）
 
-**原則:** issue は **PBI（hub）から切る**。手順は `.cursor/skills/pipeline/cut/SKILL.md`。親 PBI をメタまたは本文に残す。
+**原則:** issue は **PBI（hub）から切る**。手順は `agents/pipeline/cut/playbook.md`。親 PBI をメタまたは本文に残す。
 
 **Issue 先行:** 仕様化前に `issues/` で着手してよい。仕様化後は `/map` の枝 `reconcile` で PBI に対応リンクだけ載せる（`pbl/README.md`）。
 

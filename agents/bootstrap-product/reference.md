@@ -36,7 +36,7 @@
 - `specs/L3/_template/`
 - すでに存在するアプリ関心ドメイン（技術ドメイン名は置かない。L1 憲法 §1.4）
 - `AGENTS.md` / `README.md` 等の工程ガイド
-- `.cursor/skills/`（本スキル含む）
+- `agents/`（手順正本）と各ツール adapter（`.cursor/skills/`、`CLAUDE.md` 等）
 - `sandbox/`
 - `product/` 配下のアプリ実装（`infra/` は必須ではない。L1 憲法 §1.3）
 

@@ -89,7 +89,7 @@ flowchart LR
 
 ## 作業モード
 
-開始時は **モード** を選ぶ。手順の正本は Agent 向けの `AGENTS.md` と `.cursor/skills/modes/`。
+開始時は **モード** を選ぶ。手順の正本は Agent 向けの `AGENTS.md` と `agents/modes/`。
 
 **第一分岐**
 
@@ -118,7 +118,9 @@ pbl/       PBI / Epic（hub。説明は pbl/README.md）
 product/   実装（L2/L3 紐づけ。内部構成は任意）
 sandbox/   Source の試しコード（Spike）
 examples/  参考実装（Bootstrap 前）
-.cursor/   モード・パイプラインスキルとルール
+agents/    工程手順の正本（Mode / Pipeline / policy）
+.cursor/   Cursor adapter（skills / rules）
+CLAUDE.md  Claude Code adapter
 ```
 
 ガイド用の `docs/` 文書は置かない（各 README / rules / skills）。
@@ -139,7 +141,7 @@ examples/  参考実装（Bootstrap 前）
 - [L1 憲法](./specs/L1/constitution.md)
 - 経緯（例）: [ADR-0001](./adr/0001-maturity-locus-and-entry-split.md)
 - Agent 入口: [AGENTS.md](./AGENTS.md)
-- スキル案内（ルーター）: [`.cursor/skills/ask-me/SKILL.md`](./.cursor/skills/ask-me/SKILL.md)（`/ask-me`）
+- スキル案内（ルーター）: [`agents/ask-me.md`](./agents/ask-me.md)（`/ask-me`）
 
 L1 版: [`specs/L1/VERSION`](./specs/L1/VERSION)
 

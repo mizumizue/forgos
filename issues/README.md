@@ -9,4 +9,4 @@
 | `pending_sync/` | `pending_sync` | 同期・人間ゲート等の保留 |
 | `completed/` | `completed` | 完了 |
 
-規約の正本: `.cursor/skills/pipeline/map/issue-tracker.md`
+規約の正本: `agents/pipeline/map/issue-tracker.md`

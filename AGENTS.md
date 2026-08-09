@@ -4,7 +4,7 @@
 
 作業開始前に [CONTEXT.md](./CONTEXT.md) と [specs/L1/constitution.md](./specs/L1/constitution.md) を読む。
 
-どのモード／スキルを使うか迷ったら **`/ask-me`**（`.cursor/skills/ask-me/`。ルーター）。
+どのモード／スキルを使うか迷ったら **`agents/ask-me.md`**（ルーター）。Cursor では `/ask-me`。
 
 ## モードで開始する
 
@@ -20,7 +20,7 @@
 
 Promote（仕様昇格）は独立モードではない。`specs/source` の PRD（仮仕様）を L2/L3 へ取り込むときは `/promote`（Audit 必須・人間ゲート）。取り込み完了直後に Source を削除。ゲート定義は `specs/L1/promote-gate.md`。
 
-**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。Assure の **Specify 候補（Discovery → Specify 直書き）** は終わりの型（実装学習を What に結晶化。Source 非経由）。Implement 中の仕様更新はユーザー明示の Specify（Implement↔Specify）。
+**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（正本 `agents/engineering/assure/`）。Assure の **Specify 候補（Discovery → Specify 直書き）** は終わりの型（実装学習を What に結晶化。Source 非経由）。Implement 中の仕様更新はユーザー明示の Specify（Implement↔Specify）。
 
 スタック未決で default example からプロダクトリポへ仕立てる場合（モード外）: `/bootstrap-product`（破壊的・ユーザー起動のみ）。
 
@@ -47,12 +47,12 @@ Source へ書く起動は `/spec-source`。取り込むのは `/promote`（直�
 
 | 起動 | 正本 |
 |------|------|
-| `/spec-source` | `.cursor/skills/pipeline/spec-source/` → `specs/source/` |
-| `/promote` | `.cursor/skills/pipeline/promote/` |
-| `/map` | `.cursor/skills/pipeline/map/`（issue 規約: `issue-tracker.md`） |
-| `/cut` | `.cursor/skills/pipeline/cut/`（map と同セッション可） |
-| `/assure` | `.cursor/skills/engineering/assure/` → `specs/`（Coverage）+ `quality/`（catalog／実現）+ Discovery→Specify 候補 |
-| `/ask-me` | `.cursor/skills/ask-me/`（ルーター。モード・パイプライン案内） |
+| `/spec-source` | `agents/pipeline/spec-source/` → `specs/source/` |
+| `/promote` | `agents/pipeline/promote/` |
+| `/map` | `agents/pipeline/map/`（issue 規約: `issue-tracker.md`） |
+| `/cut` | `gents/pipeline/cut/`（map と同セッション可） |
+| `/assure` | `agents/engineering/assure/` → `specs/`（Coverage）+ `quality/`（catalog／実現）+ Discovery→Specify 候補 |
+| `/ask-me` | `agents/ask-me.md`（ルーター。モード・パイプライン案内） |
 
 hub の説明: `pbl/README.md`
 
@@ -67,7 +67,7 @@ hub の説明: `pbl/README.md`
 - **issue は原則 PBI から切る**（Issue 先行可。後から PBI に対応だけ載せる）
 - 秘密情報をログ・コミット・仕様に出さない
 - Implement 完了に単体テスト緑が必須
-- **`docs/` にガイドを増やさない** — 領域 README、または rules / skills（framework ルール 9 / L1 憲法 §10）
+- **`docs/` にガイドを増やさない** — 領域 README、または `agents/`（手順正本）／ツール adapter（framework ルール 9 / L1 憲法 §10）
 
 ## ディレクトリ
 
@@ -79,13 +79,14 @@ hub の説明: `pbl/README.md`
 | `adr/` | 任意の経緯（必須ではない。重要なら推奨→ユーザー確認） |
 | `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表） |
 | `product/` | プロダクト実装（L2/L3 紐づけ。内部構成は任意） |
+| `agents/` | 工程手順の正本（Mode / Pipeline / policy）。ツール入口は adapter |
 | `sandbox/` | Source の試しコード（Spike） |
 | `examples/` | 参考実装（Bootstrap 前の default。コア規約はスタック非依存） |
 | `docs/` | **ガイド置き場にしない**（framework ルール 9）。運用記録が必要なら人間が最小限 |
 
 テンプレのプロダクト置き場は `product/` 配下。L3 の第一軸はアプリ関心ドメイン（例: `specs/L3/tasks/`）。技術横断は L2。`examples/` 内部のレイアウトはテンプレ地図と意図的に別形でよい。
 
-詳細: `specs/README.md` / `quality/README.md` / `pbl/README.md`（PBI マップ＝規範 ID 対応表）。モード手順は上記および `.cursor/skills/modes/`。迷いどころは `/ask-me`。
+詳細: `specs/README.md` / `quality/README.md` / `pbl/README.md`（PBI マップ＝規範 ID 対応表）。モード手順は上記および `agents/modes/`。迷いどころは `gentsgentsgents/ask-me.md（Cursor: /ask-me）.md（Cursor: gents/ask-me.md（Cursor: /ask-me））.md（Cursor では gentsgents/ask-me.md（Cursor: /ask-me）.md（Cursor: gents/ask-me.md（Cursor: /ask-me）））`。
 
 ### Domain（調査時）
 

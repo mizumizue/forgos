@@ -2,7 +2,7 @@
 
 実装・検証の過程で判明した、**挙動・品質として保証するもの**の置き場。機能・非機能の両方を含む。製品の決め事（何を作るか）は [`specs/`](../specs/) に置き、ここには置かない。
 
-詳細は本 README。実現点検: [`/assure`](../.cursor/skills/engineering/assure/SKILL.md)。
+詳細は本 README。実現点検: [`/assure`](../agents/engineering/assure/playbook.md)。
 
 ## FW 保証範囲
 
