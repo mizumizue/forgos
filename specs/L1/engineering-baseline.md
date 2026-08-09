@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.8.2
+version: 0.8.3
 editable_by_agent: false
 ---
 

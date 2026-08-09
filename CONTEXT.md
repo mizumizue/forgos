@@ -41,10 +41,10 @@ Source の試し場（`sandbox/`）。L2/L3 紐づけの本実装は置かない
 FW 憲法と工学最低ライン。Agent 編集不可。
 
 **quality**:
-実装後に保証する挙動・品質（機能・非機能）。`quality/`（単体／結合／システム × 要件／基本設計／詳細設計）。製品決め事は `specs/`。
+実装後に保証する挙動・品質（機能・非機能）。`quality/`（単体／内部結合が FW 保証。システムは任意・保証外。段階は要件／基本設計／詳細設計）。製品決め事は `specs/`。
 
 **Assure**:
-Coverage（L2/L3→保証）と Discovery（specs 外の保証）の実現点検。レイヤの合格条件は `quality/<layer>/catalog.md`（単体で読める文面）。モード外。起動は `/assure`。Audit は specs↔実装。
+Coverage（L2/L3→保証）と Discovery（specs 外の保証）の実現点検。既定範囲は単体＋内部結合。レイヤの合格条件は `quality/<layer>/catalog.md`（単体で読める文面）。モード外。起動は `/assure`。Audit は specs↔実装。
 
 **ask-me**:
 モード・パイプライン・モード外スキルのルーター。起動は `/ask-me`。案内のみで代理実行しない。
@@ -63,7 +63,7 @@ default example を `product/` に展開し、プロダクト用リポに仕立�
 - issue は原則 PBI から切る。Issue 先行後は仕様化して PBI に対応だけ載せる
 - Implement は TDD 必須。`product/` は L2/L3（draft 可）に紐づけ可。`done` は stable 以上。人間は仕様意図レビュー
 - `examples/` は参考。コア規約はスタック非依存
-- 結合以降の保証置き場は `quality/README.md`。hub への追記は `pbl/README.md`
+- FW 保証は単体・内部結合まで（`quality/README.md`）。システム／UAT は任意記録。hub への追記は `pbl/README.md`
 - `docs/` にガイド・エージェント文書を増やさない（L1 憲法 §10）
 
 ## Flagged ambiguities

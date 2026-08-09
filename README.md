@@ -112,7 +112,7 @@ flowchart LR
 
 ```text
 specs/     仕様（L1 / L2 横断 / L3 アプリ関心 / source＝機能 PRD）
-quality/   実装後に保証する挙動・品質（単体／結合／システム）
+quality/   実装後に保証する挙動・品質（単体／内部結合が FW 保証。システムは任意）
 adr/       任意の経緯（必須ではない）
 pbl/       PBI / Epic（hub。説明は pbl/README.md）
 product/   実装（L2/L3 紐づけ。内部構成は任意）

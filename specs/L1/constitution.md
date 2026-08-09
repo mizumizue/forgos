@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.8.2
+version: 0.8.3
 editable_by_agent: false
 ---
 
@@ -85,6 +85,8 @@ Spike / Specify / Implement / Audit / Steward。**入口（Mode）とフロー�
 2. `done` 条件と `specified`（仕様のみ完了）を混同しない。定義は `pbl/README.md`。
 3. 必須リンク: 受入条件 or 参照決め事、関連仕様パス、状態。**関連コード/PR は PBI・issue 側に載せる**（`specs/` の L2/L3 本文には載せない。§2.4）。
 
-## 10. 結合以降
+## 10. 品質保証の範囲と内部結合より先
 
-結合〜UAT〜リリースは高速ループの外。保証の置き場は `quality/README.md`。hub への追記は `pbl/README.md`。強く誘導しない。ガイド用の `docs/` 文書は増やさない。
+1. **FW が保証・既定点検する範囲は単体と内部結合まで**（置き場は `quality/README.md`。内部結合のパスは `quality/integration/`）。
+2. システム／UAT／リリースは高速ループの外であり **任意の記録**（`quality/system/` または hub 追記）。FW 保証外。強く誘導しない。
+3. hub への追記は `pbl/README.md`。ガイド用の `docs/` 文書は増やさない。

@@ -72,7 +72,7 @@ hub の説明: `pbl/README.md`
 | パス | 役割 |
 |------|------|
 | `specs/` | 仕様（L1/L2/L3）と `source/`（機能 PRD＝Source） |
-| `quality/` | 実装後に保証する挙動・品質（単体／結合／システム。機能・非機能） |
+| `quality/` | 実装後に保証する挙動・品質（単体／内部結合が FW 保証。システムは任意。機能・非機能） |
 | `issues/` | 実装イシュー（`backlog` / `active` / `pending_sync` / `completed`） |
 | `adr/` | 任意の経緯（必須ではない。重要なら推奨→ユーザー確認） |
 | `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表） |

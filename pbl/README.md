@@ -77,12 +77,13 @@ idea → exploring → ready → doing → verify → review → done
 | 通常 | hub（PBI）を用意 → PBI から `issues/backlog/` へ切る（`/cut`） |
 | Issue 先行 | `issues/` で着手・実装 → `/promote` 等で L2/L3 化 → PBI に対応表ごと載せる |
 
-## 結合以降（任意）
+## 内部結合より先（任意）
 
-保証の正本は [`quality/`](../quality/README.md)。結合以降に進める PBI には次を追記してよい:
+FW 保証の正本は単体・内部結合まで（[`quality/`](../quality/README.md)）。システム／UAT は任意記録。進める PBI には次を追記してよい:
 
-- 結合／システム／UAT の成果物パス（保証は `quality/`）
+- 内部結合／システム／UAT の成果物パス（内部結合の保証は `quality/integration/`。システムは `quality/system/` または本節のみ）
+- （任意）検証環境の要約または `quality/system/` 文書へのリンク（後からの取り込み口）
 - 再 Audit の要否と実施日
 - リリースノートへのリンク（あれば）
 
-Audit 再実行の目安: 結合で仕様解釈が揺れたとき、UAT 指摘で仕様変更が入ったとき、リリース直前（Conform のみでも可）。
+Audit 再実行の目安: 内部結合で仕様解釈が揺れたとき、UAT 指摘で仕様変更が入ったとき、リリース直前（Conform のみでも可）。

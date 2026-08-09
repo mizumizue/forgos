@@ -61,7 +61,7 @@ source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure
 | 正本 | パス |
 |------|------|
 | 仕様 | `specs/`（source / L2 / L3） |
-| 品質保証 | `quality/`（合格条件の読み場: `<layer>/catalog.md`。点検は `/assure`） |
+| 品質保証 | `quality/`（FW 保証は単体・内部結合。合格条件: `<layer>/catalog.md`。点検は `/assure`） |
 | hub | `pbl/`（説明: `pbl/README.md`） |
 | issue | `issues/` |
 | 本実装 | `product/`（L2/L3 紐づけ） |
