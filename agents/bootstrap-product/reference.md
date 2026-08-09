@@ -27,7 +27,6 @@
 - デモ L3 ドメイン（例: `specs/L3/tasks/`）
 - デモ Epic / PBI（例: EPIC-0001-taskboard / PBI-0001-create-task）
 - `examples/taskboard` 向けのデモ検証メモ（あれば）
-- `.github/workflows/examples-*.yml`（または `product/` 向けに書き換え）
 
 残す:
 
