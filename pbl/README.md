@@ -2,7 +2,7 @@
 
 PBI は正本ではない。**hub** — `specs/` と `product/` のマップ（要求・進捗・リンクの集約）。
 
-手順の正本: `.cursor/skills/pipeline/map/SKILL.md` と `/cut`。公開先・ファイル名・トリアージ: `.cursor/skills/pipeline/map/issue-tracker.md`。対応表の定義は本 README。
+手順の正本: `agents/pipeline/map/playbook.md` と `/cut`。公開先・ファイル名・トリアージ: `agents/pipeline/map/issue-tracker.md`。対応表の定義は本 README。
 
 ## 役割分担
 
@@ -68,7 +68,7 @@ idea → exploring → ready → doing → verify → review → done
 
 対応表から辿れる範囲で、関連仕様パス・関連コード/PR・関連 issue を重複なく列挙してよい（表の要約）。
 
-テンプレ: `.cursor/skills/pipeline/map/templates/pbi.md` / `epic.md`
+テンプレ: `agents/pipeline/map/templates/pbi.md` / `epic.md`
 
 ## Issue との境界
 

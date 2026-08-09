@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.8.5
+version: 0.9.0
 editable_by_agent: false
 ---
 
@@ -11,7 +11,7 @@ Agent は本ディレクトリを **Steward フロー経由以外で編集しな
 
 ## 1. プロダクトの形
 
-1. 本リポジトリは **リポジトリ規約** と **AI 工程 OS（Cursor 第一）** を一体にしたスターターである。
+1. 本リポジトリは **リポジトリ規約** と **AI 工程 OS（Cursor 第一）** を一体にしたスターターである。工程手順の正本はツール非依存の `agents/` に置き、IDE／エージェント固有の起動・常時ガードは adapter（例: `.cursor/skills/`・`.cursor/rules/`、`CLAUDE.md`）とする。
 2. コア規約は特定アプリスタックに依存しない。参考実装は `examples/` に置く。
 3. プロダクト実装は **`product/`** 配下に置く。リポジトリルートは工程・知識用とし、Source の試しコードのみ `sandbox/` を例外とする。内部のディレクトリ構成（`apps` / `infra` 等）は必須ではない。
 4. **`sandbox/`** は **Source の試し場** とする。L2/L3 に紐づく実装は `product/` に置く。L3 はアプリ関心ドメインのみとし、技術領域名では切らない。横断の技術・工学規範は L2 に置く。
@@ -68,7 +68,7 @@ Agent は本ディレクトリを **Steward フロー経由以外で編集しな
 
 ## 6. 作業モード（公式 5）
 
-Spike / Specify / Implement / Audit / Steward。**入口（Mode）とフロー（Pipeline）は別軸**。第一の入口分岐は Spike or Specify。Promote（`/promote`）は独立モードにしない。詳細は `AGENTS.md` および `.cursor/skills/modes/`（Implement の TDD は `.cursor/skills/engineering/tdd/`）。
+Spike / Specify / Implement / Audit / Steward。**入口（Mode）とフロー（Pipeline）は別軸**。第一の入口分岐は Spike or Specify。Promote（`/promote`）は独立モードにしない。詳細は `AGENTS.md` および `agents/modes/`（Implement の TDD は `agents/engineering/tdd/`）。Cursor での起動は `.cursor/skills/`（slash）。他ツールは `CLAUDE.md` 等の adapter から同正本を読む。
 
 ## 7. Implement と TDD
 
@@ -93,4 +93,4 @@ Spike / Specify / Implement / Audit / Steward。**入口（Mode）とフロー�
 
 1. **FW が保証・既定点検する範囲は単体と内部結合まで**（置き場は `quality/README.md`。内部結合のパスは `quality/integration/`）。
 2. システム／UAT／リリースは高速ループの外であり **任意の記録**（`quality/system/` または hub 追記）。FW 保証外。強く誘導しない。
-3. hub への追記は `pbl/README.md`。ガイド用の `docs/` 文書は増やさない。
+3. hub への追記は `pbl/README.md`。ガイド用の `docs/` 文書は増やさない。エージェント向け手順の正本は `agents/`。ツール固有の入口は adapter に置く。

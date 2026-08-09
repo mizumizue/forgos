@@ -1,6 +1,6 @@
 # ForgOS
 
-リポジトリ規約と Cursor 第一の AI 工程 OS を一体にしたスターター。表示名 **ForgOS**、slug `forgos`。
+リポジトリ規約と Cursor 第一の AI 工程 OS を一体にしたスターター。表示名 **ForgOS**、slug `forgos`。工程手順の正本は gents/。
 
 ## Language
 
