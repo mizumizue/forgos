@@ -18,7 +18,7 @@ disable-model-invocation: true
    - (d) 各エントリに **保証する内容**（合格条件本文）があり、catalog 単体で読める（要約のみは指摘）
    - (e) 個別文書の H1 が catalog タイトルと一致している
 3. **台帳を作る。** `status` ごとに件数を数え、`active` のうち `related_specs` が空のものを **Discovery** 件数として分ける。完了条件: 台帳がある。`active` が 0 でも Coverage は続行する。
-4. **Coverage を洗う。** 範囲の製品仕様（`specs/` の L2/L3。**inbox・L1・`_template`・glossary 全文は対象外**）について、決め事の各 Dn と usecase が、いずれかの `active` 保証の `related_specs`（または catalog 行）でカバーされているか確認する。欠落をリストする。完了条件: Coverage リスト（空でも明示）。Discovery（`related_specs` 空）は Coverage リストの対象外で、Evidence / Run のみ洗う。hub 対応表は補助。正は `quality` 側の紐づけ。
+4. **Coverage を洗う。** 範囲の製品仕様（`specs/` の L2/L3。**source・L1・`_template`・glossary 全文は対象外**）について、決め事の各 Dn と usecase が、いずれかの `active` 保証の `related_specs`（または catalog 行）でカバーされているか確認する。欠落をリストする。完了条件: Coverage リスト（空でも明示）。Discovery（`related_specs` 空）は Coverage リストの対象外で、Evidence / Run のみ洗う。hub 対応表は補助。正は `quality` 側の紐づけ。
 5. **Evidence（証拠）を洗う。** 各 `active`（Coverage 由来も Discovery も）について、合格条件に対応する証拠があるか確認する。欠落をリストする。完了条件: Evidence リスト（空でも明示）。`active` 0 なら「対象なし」。
 6. **Run（実行確認）をする。** `layer: unit` かつ証拠が自動化テストなら実行して緑を確認する。結合／システムは実施記録があるか、または「未実施」を明示する（強制 E2E は求めない）。完了条件: Run 節がある。
 7. **Orphan（孤児）を洗う。** 範囲のテスト／手順がどの `active` にも紐づかないもの、`retired` なのに参照され続けるもの、catalog とファイルの不一致を指摘する。完了条件: Orphan リスト（空でも明示）。

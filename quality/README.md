@@ -115,7 +115,7 @@ related_specs: []
 
 `/assure`（モード外）は次を洗う:
 
-1. **Coverage** — 範囲の L2/L3（Dn・usecase）が `active` 保証に載っているか（inbox / L1 / glossary 全文は対象外）
+1. **Coverage** — 範囲の L2/L3（Dn・usecase）が `active` 保証に載っているか（source / L1 / glossary 全文は対象外）
 2. **Discovery を含む実現** — Catalog / 台帳 / Evidence / Run / Orphan（`related_specs` 空の保証も Evidence/Run の対象）
 3. **Promote** — Discovery → Specify の候補
 

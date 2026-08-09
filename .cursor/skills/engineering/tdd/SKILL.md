@@ -39,4 +39,4 @@ TDD は赤 → 緑のループである。このスキルは、そのループ�
 
 ## Implement セッション完了
 
-TDD サイクルと単体緑、関連 PBI／issue リンクの更新。Implement 完了に単体緑が必須（L1 / `AGENTS.md`）。
+TDD サイクルと単体緑、関連 PBI／issue リンクの更新。Implement 完了に単体緑が必須（L1 / `AGENTS.md`）。PBI `done` は関連決め事が stable 以上。

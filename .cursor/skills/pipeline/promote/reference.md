@@ -4,7 +4,7 @@
 
 ## PRD の読み方
 
-Source は次の節構成を持つ機能 PRD とする（`specs/inbox/<feature-slug>/spec.md`）。欠落節は「不足」としてゲート／Audit に載せる。中身をインタビューで埋めない。
+Source は次の節構成を持つ機能 PRD とする（`specs/source/<feature-slug>/spec.md`）。欠落節は「不足」としてゲート／Audit に載せる。中身をインタビューで埋めない。
 
 | 節 | 取り込むもの |
 |----|--------------|
@@ -102,5 +102,5 @@ Implementation Decisions から、単体テストで検証する **公開イン�
 
 - L1（Steward 以外）
 - 機能 PRD の複製を L2/L3 直下に置くこと（正本の置き場は種別ファイル）
-- Source（`specs/inbox/.../spec.md`）の削除（任意。残してトレーサビリティに使う）
+- Source（`specs/source/.../spec.md`）の削除（任意。残してトレーサビリティに使う）
 - **L2/L3 からのソース参照**（`product/` 実装・`sandbox/` パス、実装ファイル名。L1 憲法 §2.4）

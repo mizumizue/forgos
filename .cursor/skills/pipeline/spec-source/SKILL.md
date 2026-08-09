@@ -1,12 +1,14 @@
 ---
-name: draft
-description: 会話とコード理解から機能 PRD を作り specs/inbox に置く。Draft、機能仕様化、PRD 作成を求めたときに使う。
+name: spec-source
+description: 会話とコード理解から機能 PRD（Source）を specs/source に置く。Spec-source、Source、PRD 作成を求めたときに使う。
 disable-model-invocation: true
 ---
 
-# Draft
+# Spec Source
 
-会話コンテキストとコードベースの理解から機能 PRD を書く。インタビューしない — 既知を統合するだけ。公開先は **`specs/inbox/<feature-slug>/spec.md`**（L2/L3 に丸ごと置かない）。L2/L3 への取り込みは `/promote`。
+会話コンテキストとコードベースの理解から機能 PRD（Source）を書く。**入口ではなくフロー段**（第一入口は Spike or Specify。Spike から呼ばれることが多い）。インタビューしない — 既知を統合するだけ。公開先は **`specs/source/<feature-slug>/spec.md`**（L2/L3 に丸ごと置かない）。粒度は粗くてよい。L2/L3 への取り込みは `/promote`。試し実装は `sandbox/`（Source 紐づけ）。
+
+旧起動名 `/draft` は使わない（成熟度 draft との衝突を避けるため改名）。
 
 ## ステップ
 
@@ -34,11 +36,11 @@ disable-model-invocation: true
 
 使う語: 公開インターフェース、アプリケーション境界、テスト境界、API。使わない語: 継ぎ目、シーム、seam。
 
-3. **PRD を書く。** 同フォルダの `templates/prd.md` で `specs/inbox/<feature-slug>/spec.md` に公開する。先頭付近に `Status: ready-for-agent`。完了条件: 置き場が inbox で、必須節が揃っている。
+3. **PRD を書く。** 同フォルダの `templates/prd.md` で `specs/source/<feature-slug>/spec.md` に公開する。先頭付近に `Status: ready-for-agent`。完了条件: 置き場が source で、必須節が揃っている。
 
 ## セッション完了
 
-`specs/inbox/<feature-slug>/spec.md` があり、テスト境界が承認済み。
+`specs/source/<feature-slug>/spec.md` があり、テスト境界が承認済み。
 
 ## リファレンス
 

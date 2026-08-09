@@ -1,14 +1,14 @@
 # イシュートラッカー / 公開先（本リポ正本）
 
-本リポの `/draft`・`/cut`・`/map` の公開先・ファイル名・ライフサイクルは本ファイルが正。常時ガードの要約は `.cursor/rules/tracker-paths.mdc`。
+本リポの `/spec-source`・`/cut`・`/map` の公開先・ファイル名・ライフサイクルは本ファイルが正。常時ガードの要約は `.cursor/rules/tracker-paths.mdc`。
 
 `/cut` の直前に読む。
 
-## 機能 PRD（`/draft`）
+## 機能 PRD（`/spec-source`）
 
 | 項目 | 規約 |
 |------|------|
-| 置き場 | `specs/inbox/<feature-slug>/spec.md` |
+| 置き場 | `specs/source/<feature-slug>/spec.md` |
 | トリアージ | 先頭付近に `Status: ready-for-agent`（または更新後の状態） |
 | L2/L3 | **PRD を丸ごと置かない。** L2/L3 は glossary / actors / decisions / usecases 専用 |
 
@@ -95,7 +95,7 @@ issues/
 
 ## スキルが「イシュートラッカーに公開する」と言ったとき
 
-- **仕様（draft）** → `specs/inbox/<feature-slug>/spec.md`
+- **仕様（draft）** → `specs/source/<feature-slug>/spec.md`
 - **取り込み（promote）** → `specs/L2|L3/...`（PRD を丸ごと置かない。Audit → ゲート後）
 - **hub（map）** → `pbl/`（PBI/Epic。`specs/` ↔ `product/` マップ）
 - **チケット（cut）** → `issues/backlog/<feature-slug>-<NN>-<slug>.md`（原則は親 PBI から）

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Cut
 
-計画・仕様・会話を **tracer bullet** の垂直スライスに分解し、`issues/backlog/` へ切る。**原則は PBI（hub）から切る。** 公開先・メタは `.cursor/skills/pipeline/map/issue-tracker.md`。
+計画・仕様・会話を **tracer bullet** の垂直スライスに分解し、`issues/backlog/` へ切る。**原則は PBI（hub）から切る。** `/map` と同一セッションで続けてよい。公開先・メタは `.cursor/skills/pipeline/map/issue-tracker.md`。
 
 ## ステップ
 

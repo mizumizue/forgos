@@ -17,7 +17,7 @@ maturity: draft # draft | stable | confirmed
 
 （`specs/` から実装ソース・`product/` パスは参照しない。L1 憲法 §2.4）
 
-- Source:    # `specs/inbox/<feature-slug>/spec.md`
+- Source:    # `specs/source/<feature-slug>/spec.md`
 - PBI:       # または Issue:
 - 決め事:    # 他仕様のみ
 - 用語:

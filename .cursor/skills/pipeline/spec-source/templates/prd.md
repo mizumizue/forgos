@@ -1,6 +1,6 @@
-# 機能 PRD テンプレ（inbox）
+# 機能 PRD テンプレ（Source）
 
-`specs/inbox/<feature-slug>/spec.md` 用。
+`specs/source/<feature-slug>/spec.md` 用。
 
 ```markdown
 # <Feature 名>

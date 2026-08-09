@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.7.4
+version: 0.8.2
 editable_by_agent: false
 ---
 
@@ -13,16 +13,16 @@ Agent は本ディレクトリを **Steward フロー経由以外で編集しな
 
 1. 本リポジトリは **リポジトリ規約** と **AI 工程 OS（Cursor 第一）** を一体にしたスターターである。
 2. コア規約は特定アプリスタックに依存しない。参考実装は `examples/` に置く。
-3. プロダクト実装は **`product/`** 配下に置く。リポジトリルートは工程・知識用とし、探索コードのみ `sandbox/` を例外とする。内部のディレクトリ構成（`apps` / `infra` 等）は必須ではない。
-4. 探索コードは `sandbox/`（または draft 明示の sandbox）に置く。L3 はアプリ関心ドメインのみとし、技術領域名では切らない。横断の技術・工学規範は L2 に置く。
+3. プロダクト実装は **`product/`** 配下に置く。リポジトリルートは工程・知識用とし、Source の試しコードのみ `sandbox/` を例外とする。内部のディレクトリ構成（`apps` / `infra` 等）は必須ではない。
+4. **`sandbox/`** は **Source の試し場** とする。L2/L3 に紐づく実装は `product/` に置く。L3 はアプリ関心ドメインのみとし、技術領域名では切らない。横断の技術・工学規範は L2 に置く。
 
 ## 2. 正本の順位
 
-1. **Spike** 中: 仮の正は sandbox 実装。仕様は後でよい。
+1. **Spike** 中: 仮の正は sandbox 実装。粗い **Source** を持つ（仮説・問いで可）。L2/L3 は後でよい。
 2. **Promote 後〜定常**: **決め事（仕様）> コード**。PBI は要求・進捗・リンクのハブであり正本にしない。
 3. **アウトプット方向**: 定常では **仕様 → 実装** のみ。実装から仕様を正として逆流させない（Spike の仮の正は Promote までの例外）。
-4. **`specs/` はソースを参照しない**: `specs/` 配下の文書は、実装ソース（`product/` および `sandbox/`）へのパス・ファイル名リンクを置かない。規範の根拠を実装ファイルにしない。許可するのは他仕様・`specs/inbox`（Source）・`issues` / `pbl`（ハブ）。実装↔仕様のトレースは issue / PBI / inbox 側に置き、L2/L3 の規範本文は下を向かない。
-5. **Specify**: 仕様（＋必要なら PBI）のみで完了してよい。
+4. **`specs/` はソースを参照しない**: `specs/` 配下の文書は、実装ソース（`product/` および `sandbox/`）へのパス・ファイル名リンクを置かない。規範の根拠を実装ファイルにしない。許可するのは他仕様・`specs/source`（Source）・`issues` / `pbl`（ハブ）。実装↔仕様のトレースは issue / PBI / Source 側に置き、L2/L3 の規範本文は下を向かない。
+5. **Specify**: 仕様（＋必要なら PBI）のみで完了してよい。L2/L3 への直書き入口（Source を経由しない）。
 6. 任意の経緯置き場 `adr/`。規範の正本ではない。必須ではない。規範は決め事に書く。
 
 ## 3. 仕様レイヤ
@@ -32,36 +32,48 @@ Agent は本ディレクトリを **Steward フロー経由以外で編集しな
 | L1 | FW 絶対原則＋工学最低ライン | 不可（Steward のみ） |
 | L2 | プロダクト横断仕様 | 成熟度ルールに従う |
 | L3 | アプリ関心ドメイン別 | 成熟度ルールに従う |
-| inbox | 機能 PRD（Source）。Promote 前 | `/draft` で作成。L2/L3 に丸ごと置かない |
+| source | 機能 PRD（Source）。Promote 前 | `/spec-source` で作成。L2/L3 に丸ごと置かない |
 
 各レイヤ／ドメイン（L2/L3）は **用語 / アクター / ユースケース / 決め事** の 4 種に分ける。
 
+**置き場の対応:**
+
+| 仕様 | 実装 |
+|------|------|
+| source | `sandbox/` |
+| L2 / L3 | `product/` |
+
 ## 4. 成熟度
 
-| 成熟度 | Agent の仕様編集 | 実装 |
-|--------|------------------|------|
-| draft | 可（提案・抽出） | 探索のみ（通常 feature に紐づけない） |
-| stable | 可（差分明示） | 通常開発可（Implement の前提） |
-| confirmed | 原則不可（変更提案→人間承認、必要なら降格） | 確定仕様に従う実装可 |
+成熟度は **仕様の凍結／完了ゲート** である。コードの置き場（`sandbox/` vs `product/`）はレイヤ（source vs L2/L3）で決める。
+
+| 成熟度 | Agent の仕様編集 | 実装（L2/L3） | 完了（`done`／リリース相当） |
+|--------|------------------|---------------|------------------------------|
+| draft | 可（提案・抽出） | `product/` 可 | 不可 |
+| stable | **原則変更しない。** 例外は差分明示＋人間が「stable のまま」または「draft へ降格」を選ぶ | `product/` 可 | **可** |
+| confirmed | **変更しない。** 新規仕様／実装が競合したら仕様を変えず、矛盾をユーザーに返し仕様検討を求める（降格は人間判断） | `product/` 可 | 可（stable より硬いだけ） |
 
 実装ルール:
 
-- 探索コードは仕様未紐づけ、または draft 明示の **sandbox**
-- 通常 feature 実装は **stable 以上** の決め事にのみ紐づける
+- **Source** に紐づく試しコードは **`sandbox/`**
+- **L2/L3** に紐づく実装は成熟度にかかわらず **`product/`**（draft でも可）
+- PBI `done` およびリリース相当の完了宣言は、関連決め事が **stable 以上**
+- コードのリファクタ（仕様を変えない改修）は成熟度に依存しない
 
 ## 5. Promote ゲート
 
-仕様昇格は **人間との対話による抽出** がゲートである。自動昇格しない。詳細は [promote-gate.md](./promote-gate.md)。
+仕様昇格は **人間との対話による抽出** がゲートである。自動昇格しない。詳細は [promote-gate.md](./promote-gate.md)。Promote は source → L2/L3（`product/` 資格の境界）である。
 
 ## 6. 作業モード（公式 5）
 
-Spike / Specify / Implement / Audit / Steward。Promote（`/promote`）は独立モードにしない。詳細は `AGENTS.md` および `.cursor/skills/modes/`（Implement の TDD は `.cursor/skills/engineering/tdd/`）。
+Spike / Specify / Implement / Audit / Steward。**入口（Mode）とフロー（Pipeline）は別軸**。第一の入口分岐は Spike or Specify。Promote（`/promote`）は独立モードにしない。詳細は `AGENTS.md` および `.cursor/skills/modes/`（Implement の TDD は `.cursor/skills/engineering/tdd/`）。
 
 ## 7. Implement と TDD
 
 1. Implement モードでは **TDD 必須**（red → green → refactor）。
 2. テストなき Implement 完了を認めない。
 3. インフラ変更がある場合は、クラシック TDD ではなく先出し検証（policy / plan / 契約テスト等）を用いる。インフラ自体は必須ではない。
+4. L2/L3（draft 含む）に紐づけて `product/` に書いてよい。`done` 相当の完了宣言は stable 以上（§4）。
 
 ## 8. 人間レビュー
 

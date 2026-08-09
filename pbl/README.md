@@ -43,7 +43,7 @@ idea → exploring → ready → doing → verify → review → done
 
 ## `done` 条件
 
-1. 安定以上の関連決め事を満たす実装がある
+1. 安定以上（stable 以上）の関連決め事を満たす実装がある
 2. 単体テストが緑
 3. Audit（少なくとも Conform＝拡大解釈チェック）を 1 回通す
 4. 人間が仕様意図レビュー済み

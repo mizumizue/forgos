@@ -12,4 +12,4 @@ terraform -chdir=product/infra init -backend=false
 terraform -chdir=product/infra validate
 ```
 
-`main.tf` は空に近い有効 HCL スタブ。モジュール追加は stable 以上のインフラ決め事（L2）に紐づける。
+`main.tf` は空に近い有効 HCL スタブ。モジュール追加は L2 インフラ決め事に紐づける（draft 可。`done` は stable 以上）。
