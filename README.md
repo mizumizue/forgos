@@ -47,7 +47,8 @@ specs/     仕様（L1 / L2 横断 / L3 アプリ関心 / inbox＝機能 PRD）
 quality/   実装後に保証する挙動・品質（単体／結合／システム）
 adr/       意思決定の経緯
 pbl/       PBI / Epic（hub。説明は pbl/README.md）
-product/   実装（内部構成は任意。sandbox あり）
+product/   実装（内部構成は任意）
+sandbox/   探索コード（Spike）
 examples/  参考実装（Bootstrap 前）
 .cursor/   モード・パイプラインスキルとルール
 ```
@@ -58,7 +59,7 @@ examples/  参考実装（Bootstrap 前）
 
 | 状態 | 正本 |
 |------|------|
-| Spike | sandbox（`product/sandbox/`） |
+| Spike | sandbox（`sandbox/`） |
 | Promote 後 | **決め事 > ADR > コード** |
 | Specify | 仕様（＋必要なら ADR / PBI） |
 

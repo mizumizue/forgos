@@ -103,4 +103,4 @@ Implementation Decisions から、単体テストで検証する **公開イン�
 - L1（Steward 以外）
 - 機能 PRD の複製を L2/L3 直下に置くこと（正本の置き場は種別ファイル）
 - Source（`specs/inbox/.../spec.md`）の削除（任意。残してトレーサビリティに使う）
-- **L2/L3 からのソース参照**（`product/` 実装・sandbox パス、実装ファイル名。L1 憲法 §2.4）
+- **L2/L3 からのソース参照**（`product/` 実装・`sandbox/` パス、実装ファイル名。L1 憲法 §2.4）

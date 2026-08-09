@@ -15,7 +15,7 @@
 | `packages/` | `product/packages/` |
 | `infra/` | `product/infra/`（example に含まれる場合のみ。空スタブは作らない。L1 憲法 §1.3） |
 | `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `tsconfig*.json`, `.npmrc`, `.env.example`, `docker-compose.yml` 等のモノレポ根 | `product/` 直下 |
-| （なし） | `product/sandbox/` は既存のまま残す |
+| （なし） | ルートの `sandbox/` は既存のまま残す |
 
 コピー後、ソース側の README で「example / 参考実装」と書いている文言はプロダクト向けに直すか削除する。
 
@@ -37,7 +37,7 @@
 - すでに存在するアプリ関心ドメイン（技術ドメイン名は置かない。L1 憲法 §1.4）
 - `AGENTS.md` / `README.md` 等の工程ガイド
 - `.cursor/skills/`（本スキル含む）
-- `product/sandbox/`
+- `sandbox/`
 - `product/` 配下のアプリ実装（`infra/` は必須ではない。L1 憲法 §1.3）
 
 ## 検索チェック（剥がし確認）

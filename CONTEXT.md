@@ -26,7 +26,7 @@ Spike / Specify / Implement / Audit / Steward。作業の公式入口。
 draft / stable / confirmed。実装可否を決める。
 
 **Sandbox**:
-探索用コード置き場（`product/sandbox/`）。通常 feature に紐づけない。
+探索用コード置き場（`sandbox/`）。通常 feature に紐づけない。
 
 **inbox**:
 機能 PRD（Source）。`specs/inbox/<feature-slug>/spec.md`。

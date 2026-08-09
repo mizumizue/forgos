@@ -1,7 +1,7 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.7.2
+version: 0.7.3
 editable_by_agent: false
 ---
 
@@ -16,7 +16,7 @@ editable_by_agent: false
 
 ## E2. 実装の紐づけ
 
-通常実装（`product/` 配下。sandbox を除く）は **stable 以上** の決め事に紐づける。`product/sandbox/` は探索専用。紐づけの向きは **仕様 → 実装**（実装パスを仕様に書いて紐づけない。憲法 §2.3–2.4）。
+通常実装（`product/` 配下）は **stable 以上** の決め事に紐づける。`sandbox/` は探索専用。紐づけの向きは **仕様 → 実装**（実装パスを仕様に書いて紐づけない。憲法 §2.3–2.4）。
 
 ## E3. Audit 可能性
 

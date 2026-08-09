@@ -59,7 +59,7 @@ disable-model-invocation: true
 | 品質保証 | `quality/`（合格条件の読み場: `<layer>/catalog.md`。点検は `/assure`） |
 | hub | `pbl/`（説明: `pbl/README.md`） |
 | issue | `issues/` |
-| 実装 | `product/`（探索は `product/sandbox/`） |
+| 実装 | `product/`（探索は `sandbox/`） |
 | 参考実装 | `examples/`（Bootstrap 前） |
 | 経緯（任意） | `adr/`（必須ではない。推奨→ユーザー確認） |
 

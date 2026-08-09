@@ -60,7 +60,7 @@ hub の説明: `pbl/README.md`
 - 通常実装は **stable 以上** の決め事に紐づける（**仕様 → 実装**）
 - **L2/L3 からソースを参照しない**（関連コードは hub＝PBI / issue。L1 憲法 §2.4）
 - **issue は原則 PBI から切る**（Issue 先行可。後から PBI に対応だけ載せる）
-- 探索コードは `product/sandbox/`（または draft 明示）
+- 探索コードは `sandbox/`（または draft 明示）
 - 秘密情報をログ・コミット・仕様に出さない
 - Implement 完了に単体テスト緑が必須
 - **`docs/` にガイドを増やさない** — 領域 README、または rules / skills（framework ルール 9 / L1 憲法 §10）
@@ -75,7 +75,7 @@ hub の説明: `pbl/README.md`
 | `adr/` | 意思決定の経緯（**必須ではない**。重要なら推奨→ユーザー確認。`CONTEXT.md`） |
 | `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表・ADR 0009） |
 | `product/` | プロダクト実装（内部構成は任意。`apps` / `infra` 等は必須ではない） |
-| `product/sandbox/` | 探索用コード |
+| `sandbox/` | 探索用コード |
 | `examples/` | 参考実装（Bootstrap 前の default。コア規約はスタック非依存） |
 | `docs/` | **ガイド置き場にしない**（framework ルール 9）。運用記録が必要なら人間が最小限 |
 

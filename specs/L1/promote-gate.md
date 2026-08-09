@@ -1,13 +1,13 @@
 ---
 layer: L1
 maturity: confirmed
-version: 0.7.2
+version: 0.7.3
 editable_by_agent: false
 ---
 
 # Promote ゲート
 
-Spike / Implement 内で、`product/sandbox/` や対話から仕様へ昇格するときの人間ゲート。自動昇格しない。Source は `specs/inbox/<feature-slug>/spec.md`。
+Spike / Implement 内で、`sandbox/` や対話から仕様へ昇格するときの人間ゲート。自動昇格しない。Source は `specs/inbox/<feature-slug>/spec.md`。
 
 ## 完了条件
 
