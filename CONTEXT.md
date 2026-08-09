@@ -20,7 +20,7 @@ L2/L3 に規範を直書きする入口。Source を経由しない。`/spec-sou
 `specs/source` の機能 PRD を L2/L3 へ取り込む人間ゲート。独立モードではない。起動は `/promote`。source → L2/L3 が `product/` 資格の境界。
 
 **決め事（Decision）**:
-守るべき規範の正本。`specs/**/decisions/`。
+守るべき規範の正本（What）。`specs/**/decisions/`。How・手順は書かない。
 
 **ADR**:
 任意の経緯置き場（`adr/`）。規範の正本ではない。必須ではない。
@@ -44,7 +44,7 @@ FW 憲法と工学最低ライン。Agent 編集不可。
 実装後に保証する挙動・品質（機能・非機能）。`quality/`（単体／内部結合が FW 保証。システムは任意・保証外。段階は要件／基本設計／詳細設計）。製品決め事は `specs/`。
 
 **Assure**:
-Coverage（L2/L3→保証）と Discovery（specs 外の保証）の実現点検。既定範囲は単体＋内部結合。レイヤの合格条件は `quality/<layer>/catalog.md`（単体で読める文面）。モード外。起動は `/assure`。Audit は specs↔実装。
+Coverage（L2/L3→保証）と Discovery（specs 外の保証）の実現点検。既定範囲は単体＋内部結合。レイヤの合格条件は `quality/<layer>/catalog.md`（単体で読める文面）。Discovery→Specify 候補は終わりの型。モード外。起動は `/assure`。Audit は specs↔実装。
 
 **ask-me**:
 モード・パイプライン・モード外スキルのルーター。起動は `/ask-me`。案内のみで代理実行しない。
@@ -54,10 +54,10 @@ default example を `product/` に展開し、プロダクト用リポに仕立�
 
 ## Relationships
 
-- 定常の正本: **決め事 > コード**
+- 定常の正本: **決め事（What）> コード**。How の正本は `product/`（憲法 §2.2・§2.7）
 - 定常のアウトプット: **仕様 → 実装**。L2/L3 はソースを参照しない（L1 憲法 §2.3–2.4 / `specs/README.md`）
 - 置き場: source↔sandbox、L2/L3↔product/
-- 検証・品質の保証は `quality/`（`specs` と分離）。`/assure` は Coverage（specs↔保証）と実現を洗う。製品規範への格上げは Specify／決め事へ
+- 検証・品質の保証は `quality/`（`specs` と分離）。`/assure` は Coverage（specs↔保証）と実現を洗う。Discovery の製品 What 格上げは Promote 候補→Specify（終わりの型）
 - 起動先に迷ったら `/ask-me`（第一問は Spike or Specify）
 - PBI は hub（`specs/` ↔ `product/`）。定義は `pbl/README.md`。マップの正は規範 ID 対応表。`done` と `specified` を区別する。関連コード/PR は PBI・issue 側
 - issue は原則 PBI から切る。Issue 先行後は仕様化して PBI に対応だけ載せる

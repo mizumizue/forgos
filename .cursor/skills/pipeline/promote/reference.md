@@ -11,7 +11,7 @@ Source は次の節構成を持つ機能 PRD とする（`specs/source/<feature-
 | 課題（Problem Statement） | 背景。決め事本文には短く残すか、関連リンクに留める |
 | 解決策（Solution） | 用語の種、ユースケース概要の種 |
 | ユーザーストーリー（User Stories） | アクター責務、ユースケースの基本／例外フロー |
-| 実装上の決定（Implementation Decisions） | **決め事の主原料**。公開インターフェース・境界・拒否条件 |
+| 実装上の決定（Implementation Decisions） | **決め事の主原料（What）**。公開インターフェース・境界・拒否条件。内部構造・手順は取り込まない |
 | テスト上の決定（Testing Decisions） | 決め事の検証可能性・主たる公開インターフェースの裏付け |
 | スコープ外（Out of Scope） | 決め事の境界、またはユースケースの対象外 |
 | 補足（Further Notes） | 関連 issue / Source。**sandbox・実装パスは Source 側に残し、取り込んだ L2/L3 には書かない** |
@@ -104,3 +104,5 @@ Implementation Decisions から、単体テストで検証する **公開イン�
 - 機能 PRD の複製を L2/L3 直下に置くこと（正本の置き場は種別ファイル）
 - Source（`specs/source/.../spec.md`）の削除（任意。残してトレーサビリティに使う）
 - **L2/L3 からのソース参照**（`product/` 実装・`sandbox/` パス、実装ファイル名。L1 憲法 §2.4）
+- **How・内部構造・作業手順（Order）**（モジュール分割、アルゴリズム、手順書。憲法 §2.7）
+- **How・内部構造・作業手順（Order）**（モジュール分割、アルゴリズム、手順書。憲法 §2.7）

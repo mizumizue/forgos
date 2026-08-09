@@ -7,7 +7,7 @@ alwaysApply: true
 
 1. 作業開始時はモードを明示する（Spike / Specify / Implement / Audit / Steward）。
 2. `specs/L1/` は編集しない。変更は Steward で提案のみ。
-3. `product/` は L2/L3 に紐づける（draft 可）。`done` は stable 以上。`sandbox/` は Source の試し場。向きは **仕様 → 実装**。
+3. `product/` は L2/L3 に紐づける（draft 可）。`done` は stable 以上。`sandbox/` は Source の試し場。向きは **仕様 → 実装**。決め事は What のみ（How・手順は書かない。憲法 §2.7）。
 4. **L2/L3 からソース（`product/` 実装・`sandbox/` パス）を参照しない**（L1 憲法 §2.4）。関連コードは hub（PBI）/ issue 側。
 5. 秘密情報をログ・コミット・仕様・出力に出さない。
 6. Implement では TDD。単体が緑になるまで完了と言わない。

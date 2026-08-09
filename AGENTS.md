@@ -20,7 +20,7 @@
 
 Promote（仕様昇格）は独立モードではない。`specs/source` の PRD を L2/L3 へ取り込むときは `/promote`（Audit 必須・人間ゲート）。ゲート定義は `specs/L1/promote-gate.md`。
 
-**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。
+**モード外スキル:** Implement の TDD は `/tdd`。Coverage（仕様→保証）と Discovery（specs 外保証）の実現点検は `/assure`（`.cursor/skills/engineering/assure/`）。Assure の **Promote 候補（Discovery → Specify）** は終わりの型（実装学習を What に結晶化）。
 
 スタック未決で default example からプロダクトリポへ仕立てる場合（モード外）: `/bootstrap-product`（破壊的・ユーザー起動のみ）。
 
@@ -30,7 +30,7 @@ Promote（仕様昇格）は独立モードではない。`specs/source` の PRD
 - 規範として書ける → **Specify**（第一分岐）
 - L2/L3 があり実装する → Implement（TDD: `/tdd`）。draft でも `product/` 可。`done` は stable 以上
 - 「仕様どおりか」「やりすぎていないか」を点検 → Audit
-- 「仕様が保証に載っているか／保証が実現されているか」を点検 → `/assure`（モード外）
+- 「仕様が保証に載っているか／保証が実現されているか」を点検 → `/assure`（モード外。Discovery→Specify 候補＝終わりの型）
 - どれを起動すべきか迷う → `/ask-me`（ルーター）
 - `specs/source` の PRD を L2/L3 に取り込む → `/promote`（モード外・人間ゲート）
 - default example でプロダクト用に仕立てる → `/bootstrap-product`
@@ -51,7 +51,7 @@ Source へ書く起動は `/spec-source`。取り込むのは `/promote`。旧�
 | `/promote` | `.cursor/skills/pipeline/promote/` |
 | `/map` | `.cursor/skills/pipeline/map/`（issue 規約: `issue-tracker.md`） |
 | `/cut` | `.cursor/skills/pipeline/cut/`（map と同セッション可） |
-| `/assure` | `.cursor/skills/engineering/assure/` → `specs/`（Coverage）+ `quality/`（catalog／実現） |
+| `/assure` | `.cursor/skills/engineering/assure/` → `specs/`（Coverage）+ `quality/`（catalog／実現）+ Discovery→Specify 候補 |
 | `/ask-me` | `.cursor/skills/ask-me/`（ルーター。モード・パイプライン案内） |
 
 hub の説明: `pbl/README.md`
@@ -59,7 +59,8 @@ hub の説明: `pbl/README.md`
 ## 編集制約（要約）
 
 - **L1 は編集しない**（Steward で提案のみ）
-- **`product/`** は L2/L3 に紐づける（draft 可）。**`done` は stable 以上**。向きは **仕様 → 実装**
+- **決め事は What**（How・内部構造・手順は書かない。憲法 §2.7）。定常の「決め事 > コード」は What の正本
+- **`product/`** は L2/L3 に紐づける（draft 可）。**`done` は stable 以上**。向きは **仕様 → 実装**。How の正本はここ
 - **`sandbox/`** は Source の試し場（L2/L3 本実装は置かない）
 - **L2/L3 からソースを参照しない**（関連コードは hub＝PBI / issue。L1 憲法 §2.4）
 - **issue は原則 PBI から切る**（Issue 先行可。後から PBI に対応だけ載せる）

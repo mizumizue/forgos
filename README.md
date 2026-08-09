@@ -9,7 +9,7 @@
 - **モード駆動** — 第一分岐は Spike or Specify。Implement / Audit / Steward は続く入口。フロー（Pipeline）とは別軸
 - **パイプライン** — source(+sandbox) → L2/L3 → pbl → issues → product → 点検（map と cut は同一セッション可）。Source を書く起動は `/spec-source`
 - **置き場** — source↔sandbox、L2/L3↔product/。成熟度（draft / stable / confirmed）は凍結／完了ゲート（`done` は stable 以上）
-- **決め事が正本** — Promote 後は **決め事 > コード**。PBI はハブにとどめる
+- **決め事（What）が正本** — Promote 後は **決め事 > コード**。How は `product/`。PBI はハブにとどめる
 - **Implement は TDD** — 単体が緑になるまで完了としない
 - **Audit / Assure** — 仕様と実装の乖離、および仕様の保証 Coverage・品質実現を指摘する
 
@@ -128,7 +128,7 @@ examples/  参考実装（Bootstrap 前）
 | 状態 | 正本 |
 |------|------|
 | Spike | Source（粗い）＋ sandbox |
-| Promote 後 | **決め事 > コード**（`product/`） |
+| Promote 後 | **決め事（What）> コード**。How は `product/` |
 | Specify | L2/L3（＋必要なら PBI） |
 
 ## Docs
