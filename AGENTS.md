@@ -82,6 +82,7 @@ hub の説明: `pbl/README.md`
 | `pbl/` | PBI / Epic（**hub**: `specs/` ↔ `product/`。マップ正本は対応表） |
 | `product/` | プロダクト実装（L2/L3 紐づけ。内部構成は任意） |
 | `agents/` | 工程手順の正本（Mode / Pipeline / policy）。ツール入口は adapter |
+| `tools/` | 機械ゲート（不変条件。`python -m tools.check`。Approve しない） |
 | `sandbox/` | Source の試しコード（Spike） |
 | `examples/` | 参考実装（Bootstrap 前の default。コア規約はスタック非依存） |
 | `docs/` | **ガイド置き場にしない**（framework ルール 9）。運用記録が必要なら人間が最小限 |

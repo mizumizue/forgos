@@ -12,6 +12,7 @@
 - **決め事（What）が正本** — Promote 後は **決め事 > コード**。How は `product/`。PBI はハブにとどめる
 - **Implement は TDD** — 単体が緑になるまで完了としない
 - **Audit / Assure** — 仕様と実装の乖離、および仕様の保証 Coverage・品質実現を指摘する
+- **機械ゲート** — 不変条件のみ `python -m tools.check`（Approve は人間のまま）
 
 人間はコードレビューではなく、**仕様意図・整合**をレビューします。
 
@@ -121,6 +122,7 @@ product/   実装（L2/L3 紐づけ。内部構成は任意）
 sandbox/   Source の試しコード（Spike）
 examples/  参考実装（Bootstrap 前）
 agents/    工程手順の正本（Mode / Pipeline / policy）
+tools/     機械ゲート（不変条件チェック。Approve しない）
 .cursor/   Cursor adapter（skills / rules）
 CLAUDE.md  Claude Code adapter
 ```

@@ -17,3 +17,4 @@ alwaysApply: true
 8. ユーザー向けに「継ぎ目」「シーム」を使わない。
 9. `docs/` にガイドを増やさない。**手順正本は `agents/`**。`.cursor/rules` / `.cursor/skills` は adapter。
 10. `adr/` は必須ではない。作成はユーザー確認後。
+11. 機械ゲート（不変条件）は `python -m tools.check`（正本 `tools/check/`）。Approve は自動化しない。

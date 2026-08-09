@@ -22,6 +22,11 @@ Thumbs.db
 # Scratch / local agent outputs
 .scratch/
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
 # Examples local data
 examples/**/prisma/*.db
 examples/**/prisma/*.db-journal
