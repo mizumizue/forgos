@@ -7,7 +7,7 @@
 ## Features
 
 - **モード駆動** — 第一分岐は Spike or Specify。Implement / Audit / Steward は続く入口。フロー（Pipeline）とは別軸
-- **パイプライン** — source → L2/L3 → pbl → issues → product → 点検（map と cut は同一セッション可）。Source を書く起動は `/spec-source`
+- **パイプライン** — source(+sandbox) → L2/L3 → pbl → issues → product → 点検（map と cut は同一セッション可）。Source を書く起動は `/spec-source`
 - **置き場** — source↔sandbox、L2/L3↔product/。成熟度（draft / stable / confirmed）は凍結／完了ゲート（`done` は stable 以上）
 - **決め事が正本** — Promote 後は **決め事 > コード**。PBI はハブにとどめる
 - **Implement は TDD** — 単体が緑になるまで完了としない
@@ -74,7 +74,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  d["source<br/>Source"] --> p["L2 / L3<br/>決め事"]
+  d["source<br/>Source"] --- sand["sandbox<br/>試し"]
+  d --> p["L2 / L3<br/>決め事"]
   p --> m["pbl<br/>hub"]
   m --> c["issues"]
   c --> i["product"]
@@ -82,7 +83,7 @@ flowchart LR
   a -.-> s["Assure"]
 ```
 
-対応する起動（参考）: Source へ書く → `/spec-source` ／ 取り込む → `/promote` ／ hub → `/map` ／ 切る → `/cut` ／ 実装 → `/implement` ／ 点検 → `/audit`（→ `/assure`）。
+対応する起動（参考）: Source へ書く → `/spec-source`（試しは `sandbox/`）／ 取り込む → `/promote` ／ hub → `/map` ／ 切る → `/cut` ／ 実装 → `/implement` ／ 点検 → `/audit`（→ `/assure`）。
 
 `/map` と `/cut` は同一セッション可。Promote は独立モードではない（Audit 必須・人間ゲート）。
 

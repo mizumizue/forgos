@@ -33,7 +33,7 @@ disable-model-invocation: true
 
 成果物が流れる経路。入口 Spike から乗ることが多い。`/map` と `/cut` は同一セッション可。パイプラインは **置き場** で示す。
 
-1. **Source**（起動 `/spec-source`）— `specs/source/<feature-slug>/spec.md` に書く（Spike と併用可。粒度は粗くてよい）。L2/L3 に PRD を丸ごと置かない。
+1. **Source**（起動 `/spec-source`）— `specs/source/<feature-slug>/spec.md` に書く（Spike と併用可。粒度は粗くてよい）。試し実装は **`sandbox/`**。L2/L3 に PRD を丸ごと置かない。
 2. **L2/L3**（`/promote`）— Audit 後、Source を取り込む。人間ゲート。ここから `product/` 可。
 3. **pbl**（`/map`）— PBI／Epic を載せる（hub）。マップは規範 ID 対応表必須。
 4. **issues**（`/cut`）— PBI から切る（map と同セッション可）。
@@ -41,7 +41,7 @@ disable-model-invocation: true
 6. **点検**（`/audit` → 必要なら `/assure`）— specs ↔ 実装。active 保証があれば Assure。
 
 ```text
-source → L2/L3 → pbl → issues → product → audit（→ assure）
+source(+sandbox) → L2/L3 → pbl → issues → product → audit（→ assure）
 ```
 
 ## モード外スキル
