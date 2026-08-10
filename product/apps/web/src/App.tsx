@@ -9,6 +9,7 @@ import {
   listMakeupQueue,
   listParentEnrollments,
   listPendingLateAbsences,
+  listProcessedMakeupQueue,
   listTeacherWeek,
   POLICY_TAGS,
   rejectMakeup,
@@ -29,7 +30,7 @@ type Actor = "teacher" | "parent-suzuki" | "student-self";
 type TeacherSurface = "ledger" | "makeup";
 type ParentSheet = "none" | "absence" | "makeup";
 
-const DEMO_NOW = new Date("2026-08-11T10:00:00");
+const DEMO_NOW = new Date("2026-08-10T17:00:00");
 const CONSULT_URL = "tel:090-0000-0000";
 
 const ACTOR_HOUSEHOLD: Record<Exclude<Actor, "teacher">, string> = {
@@ -91,6 +92,11 @@ export function App() {
 
   const makeupQueue = useMemo(
     () => listMakeupQueue(state, DEMO_NOW),
+    [state],
+  );
+
+  const processedMakeup = useMemo(
+    () => listProcessedMakeupQueue(state),
     [state],
   );
 
@@ -211,6 +217,7 @@ export function App() {
           ) : (
             <MakeupQueueSurface
               queue={makeupQueue}
+              processed={processedMakeup}
               pendingLate={pendingLateAbsences}
               anchorId={makeupAnchor}
               onApprove={(id, overrideReason) => {
@@ -529,6 +536,7 @@ function TeacherLedger({
 
 function MakeupQueueSurface({
   queue,
+  processed,
   pendingLate,
   anchorId,
   onApprove,
@@ -537,6 +545,7 @@ function MakeupQueueSurface({
   onGoLedger,
 }: {
   queue: ReturnType<typeof listMakeupQueue>;
+  processed: ReturnType<typeof listProcessedMakeupQueue>;
   pendingLate: ReturnType<typeof listPendingLateAbsences>;
   anchorId: string | null;
   onApprove: (id: string, overrideReason?: string) => void;
@@ -763,6 +772,29 @@ function MakeupQueueSurface({
         </div>
       )}
 
+      {processed.length > 0 ? (
+        <div className="processed-makeup-block">
+          <h3>処理済み</h3>
+          <div className="makeup-cards">
+            {processed.map((item) => (
+              <article
+                key={item.request.id}
+                className="makeup-card makeup-card--processed"
+              >
+                <header className="makeup-card__head">
+                  <span className="processed-badge">{item.statusLabel}</span>
+                  <h3>{item.studentName}</h3>
+                </header>
+                <p>
+                  {item.sourceSlotName} → {item.targetSlotName}（
+                  {item.targetDate}）
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
       <button type="button" className="ghost-btn ledger-jump" onClick={onGoLedger}>
         レッスン帳で確認
       </button>
@@ -841,6 +873,12 @@ function ParentSurface({
               <p className="session-status">
                 今週:{" "}
                 <strong>{SESSION_STATUS_LABEL[session.status]}</strong>
+                {session.makeupTargetSummary ? (
+                  <span className="makeup-target">
+                    {" "}
+                    → {session.makeupTargetSummary}
+                  </span>
+                ) : null}
                 <span className="open-seats">
                   （空き席 {session.openSeatCount}）
                 </span>

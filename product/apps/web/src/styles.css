@@ -463,7 +463,13 @@ body {
 }
 
 .session-status {
-  margin: 0.25rem 0 0.75rem;
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.92rem;
+}
+
+.makeup-target {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .open-seats {
@@ -569,6 +575,28 @@ body {
 .makeup-card__channel {
   font-size: 0.85rem;
   color: var(--ink-soft);
+}
+
+.processed-makeup-block {
+  margin-top: 1.25rem;
+}
+
+.processed-makeup-block h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+.makeup-card--processed {
+  opacity: 0.92;
+  background: #f3ede4;
+}
+
+.processed-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--wood);
+  color: var(--accent);
 }
 
 @media (max-width: 720px) {

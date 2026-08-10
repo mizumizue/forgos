@@ -2,7 +2,7 @@
 id: PBI-0002
 title: "小規模ピアノ教室の授業枠・出席・振替管理"
 type: feature
-status: verify
+status: review
 feature-slug: lesson-studio-scheduling
 ---
 
@@ -19,6 +19,11 @@ feature-slug: lesson-studio-scheduling
 - [ ] （AC-3）manifest C の例外 4 件が S1/S2 から操作できる（C-late-absence, C-makeup-reject, C-override-makeup, C-all-absent）
 - [ ] （AC-4）manifest D の implement 行 2 件が UI 到達可能（D-runtime-duration, D-contact-channel）
 - [ ] （AC-5）保護者面に他受講生の氏名・出欠は表示されない
+- [ ] （AC-6）cold start（起動直後）で `scope.md` §demo-seeded visibility の全 26 V-ID が画面に見える（manifest 行と束ね可）:
+  - Actor 到達（3）: V-a-teacher（S1/S2）、V-a-parent（S3・鈴木家のみ）、V-a-student（S3・本人のみ）
+  - S1 レッスン帳（9）: V-s1-today-band、V-s1-slot-tue、V-s1-slot-thu、V-s1-slot-sat、V-s1-seat-ring、V-s1-absence-seat、V-s1-duration-badge、V-s1-makeup-link、V-s1-outbound-seat
+  - S2 振替キュー（7）: V-s2-pending-card、V-s2-processed-card、V-s2-level-chips、V-s2-policy-labels、V-s2-late-absence、V-s2-override-entry、V-s2-reject-entry
+  - S3 マイ枠（7）: V-s3-parent-enrollment、V-s3-student-enrollment、V-s3-status-scheduled、V-s3-status-absence-pending、V-s3-status-makeup-done、V-s3-contact-channel、V-s3-privacy-empty-seat
 
 ## マップ
 
@@ -40,6 +45,11 @@ feature-slug: lesson-studio-scheduling
 | manifest C-all-absent | ui | `product/apps/web/src/App.tsx`, `product/packages/domain/src/lessonStudio.test.ts` | `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
 | manifest D-runtime-duration | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
 | manifest D-contact-channel | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-01-parent-enrollment.md` | covered |
+| visibility V-a-parent, V-a-student | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-01-parent-enrollment.md` | covered |
+| visibility V-s3-parent-enrollment, V-s3-student-enrollment, V-s3-status-scheduled, V-s3-status-absence-pending, V-s3-status-makeup-done, V-s3-contact-channel, V-s3-privacy-empty-seat | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-01-parent-enrollment.md` | covered |
+| visibility V-a-teacher | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
+| visibility V-s1-today-band, V-s1-slot-tue, V-s1-slot-thu, V-s1-slot-sat, V-s1-seat-ring, V-s1-absence-seat, V-s1-duration-badge, V-s1-makeup-link, V-s1-outbound-seat | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
+| visibility V-s2-pending-card, V-s2-processed-card, V-s2-level-chips, V-s2-policy-labels, V-s2-late-absence, V-s2-override-entry, V-s2-reject-entry | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
 | scheduling-rules#D1–D13 | domain | `product/packages/domain/src/lessonStudio.test.ts` | `issues/completed/lesson-studio-scheduling-01-parent-enrollment.md`, `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
 | actor-surfaces#D1–D6 | ui | `product/apps/web/src/App.tsx` | `issues/completed/lesson-studio-scheduling-01-parent-enrollment.md`, `issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md` | covered |
 
@@ -50,7 +60,7 @@ feature-slug: lesson-studio-scheduling
 - `specs/L3/lesson-studio/decisions/scheduling-rules.md`
 - `specs/L3/lesson-studio/decisions/actor-surfaces.md`
 - `specs/L3/lesson-studio/usecases/`
-- `quality/fw-validation/runs/20260810-lesson-studio/scope.md`（§implementation manifest）
+- `quality/fw-validation/runs/20260810-lesson-studio/scope.md`（§implementation manifest、§demo-seeded visibility）
 - `quality/fw-validation/runs/20260810-lesson-studio/design-call.md`
 - `quality/fw-validation/runs/20260810-lesson-studio/implement-reachability.md`
 

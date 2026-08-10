@@ -139,6 +139,8 @@ export type ParentSessionView = {
   canRequestMakeup: boolean;
   absenceNoticeId?: string;
   makeupRequestId?: string;
+  /** 振替確定時の振替先（1行表示用） */
+  makeupTargetSummary?: string;
 };
 
 export type ParentEnrollmentView = {
@@ -187,6 +189,15 @@ export type PendingLateAbsenceItem = {
   slotName: string;
   occurrenceDate: string;
   channel: ContactChannel;
+};
+
+export type MakeupProcessedItem = {
+  request: MakeupRequest;
+  studentName: string;
+  sourceSlotName: string;
+  targetSlotName: string;
+  targetDate: string;
+  statusLabel: "確定" | "却下";
 };
 
 export const CAPACITY_BY_TIER: Record<CapacityTier, number> = {

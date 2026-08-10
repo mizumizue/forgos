@@ -46,6 +46,7 @@ disable-model-invocation: true
 - **ドメイン骨格:** 概念 ≥5・WF/状態 ≥2。depth と整合。単一フォーム CRUD＋付帯1本は骨格不足
 - **usability what:** オペに根ざす品質 What を早期化し Promote
 - **検証ホーム／ブランチ:** ForgOS 本体。`validation/<run-id>`。`agents/` に検証要件を書かない
+- **工程間連続性（抜け落ち監視）:** `pipeline-continuity-loop` → `RUN/continuity-check.md`（ペア別 P12–P89）。単一工程の S/U/P では見えない **黙落** を境界で検出。正本 [`../pipeline-continuity-loop/PAIR-RUBRIC.md`](../pipeline-continuity-loop/PAIR-RUBRIC.md)。**工程6・7 直後は P56・P67 必須**。工程9前に `mode=all` で一括再実行可
 
 ループが止まらない範囲で、manifest の `implement` 行を実装まで通す（`deferred` のみ除外）。
 
@@ -69,10 +70,10 @@ disable-model-invocation: true
 | 3 | 仕様深度 | `sector-brief.md`＋システム狙い | `RUN/spec-depth.md` | `skill:spec-depth-loop` | — | `EO` | — | `spec-depth-loop` 完了＝ゲート（D1–D6 全 Yes）。brief 欠落打ち切りなら工程2へ戻す | スキル Stop（改稿上限 3）／戻し上限 1 |
 | 4 | モックデザイン | `sector-brief.md`＋`spec-depth.md` | `RUN/design-call.md` | `skill:mock-design-loop` | — | `EO` | — | `mock-design-loop` 完了＝ゲート（C1–C9 全 Yes・遷移含む） | スキル Stop（改稿上限 3）／戻し上限 1 |
 | 5 | スコープ統合 | brief／depth／design-call＋工程1 scope | `RUN/scope.md`（統合版・**`## implementation manifest`**・**`## demo-seeded visibility`** 含む） | `loop-eng` | `EO` | — | — | [`DEMO-UX.md`](DEMO-UX.md) Scope **S0–S8**（S4a/b・S8h 含む）すべて Yes。S0–S8 は工程2–4成果から辿れること。矛盾・欠落は No | 再起草上限 3 |
-| 6 | Spike（Source） | 統合 scope＋manifest＋工程2–4成果 | `specs/source/<feature-slug>/spec.md`（sandbox 任意） | `skill:spike` | — | `EO` | — | `spike` 完了＋ (1)テーマ (2)要求根拠 (3)table stakes（brief 通例と紐づけ） (4)demo-grade＝manifest `implement` 方針 (5)design call／genre look／遷移 (6)domain skeleton (7) [`DEMO-UX.md`](DEMO-UX.md) Source **U0–U7** すべて Yes — すべて Yes。調査なしの連想骨格はやり直し | Spike やり直し上限 2／Source 改稿上限 3 |
-| 7 | Promote | `specs/source/<feature-slug>/` | L2/L3、Source 削除、`RUN/promote-check.md` | `skill:promote` | — | `EO` | — | `promote` 完了＋ (1)promote-check (2)L2/L3 (3)Source 削除 (4)骨格辿れる (5) [`DEMO-UX.md`](DEMO-UX.md) Promote **P0–P4** — すべて Yes | 点検やり直し上限 2／取り込み上限 2 |
+| 6 | Spike（Source） | 統合 scope＋manifest＋工程2–4成果 | `specs/source/<feature-slug>/spec.md`（sandbox 任意） | `skill:spike` | — | `EO` | — | `spike` 完了＋ (1)テーマ (2)要求根拠 (3)table stakes（brief 通例と紐づけ） (4)demo-grade＝manifest `implement` 方針 (5)design call／genre look／遷移 (6)domain skeleton (7) [`DEMO-UX.md`](DEMO-UX.md) Source **U0–U7** すべて Yes — すべて Yes。調査なしの連想骨格はやり直し。**続けて** `skill:pipeline-continuity-loop`（`pair=5→6`／P56）黙落 0 | Spike やり直し上限 2／Source 改稿上限 3／continuity 上限 2 |
+| 7 | Promote | `specs/source/<feature-slug>/` | L2/L3、Source 削除、`RUN/promote-check.md` | `skill:promote` | — | `EO` | — | `promote` 完了＋ (1)promote-check (2)L2/L3 (3)Source 削除 (4)骨格辿れる (5) [`DEMO-UX.md`](DEMO-UX.md) Promote **P0–P5** — すべて Yes。**続けて** `skill:pipeline-continuity-loop`（`pair=6→7`／P67）黙落 0 | 点検やり直し上限 2／取り込み上限 2／continuity 上限 2 |
 | 8 | map／cut | L2/L3＋manifest＋visibility | `pbl/` PBI、`issues/` issue、対応が辿れる | `skill:map`（同一セッションで `skill:cut`） | — | `EO` | — | map＋cut 完了＋ [`DEMO-UX.md`](DEMO-UX.md) Map/Cut **M1–M7** すべて Yes。cut は manifest 分解で hands-off 承認代替 | map 上限 2／cut 上限 2 |
-| 9 | Implement | issue＋L2/L3＋design-call＋manifest＋visibility | `product/`、`RUN/implement-reachability.md`、`RUN/demo-seeded-check.md`、単体緑 | `skill:implement` | — | `RGR` | — | `implement` 完了＋ (1)単体緑 (2)genre≥3 (3)WF/状態≥2 (4) [`DEMO-UX.md`](DEMO-UX.md) Implement **I1–I12** すべて Yes (5) reachability・demo-seeded-check が行数要件を満たす | 赤緑サイクル上限 8／フルテスト実行上限 2 |
+| 9 | Implement | issue＋L2/L3＋design-call＋manifest＋visibility | `product/`、`RUN/implement-reachability.md`、`RUN/demo-seeded-check.md`、単体緑 | `skill:implement` | — | `RGR` | — | **着手前** `skill:pipeline-continuity-loop`（`mode=all`）黙落 0。`implement` 完了＋ (1)単体緑 (2)genre≥3 (3)WF/状態≥2 (4) [`DEMO-UX.md`](DEMO-UX.md) Implement **I1–I12** すべて Yes (5) reachability・demo-seeded-check が行数要件を満たす。**完了後** `pair=8→9`（P89）黙落 0 | continuity 上限 2／赤緑サイクル上限 8／フルテスト実行上限 2 |
 | 10 | Audit | 決め事＋manifest＋visibility＋`product/` | 指摘リスト；重大は Implement 戻し＋`adr/` | `skill:audit` | — | `EO` | — | `audit` 完了。かつ (A) 重大なし、または (B) Stop 内で Implement 戻し修正済みかつ当該 ADR が `adr/` にあり。(A)(B) の切替は指揮者が自動決定。重大 Gap は [`DEMO-UX.md`](DEMO-UX.md) Audit 節（**manifest 未到達・visibility cold start 未到達は重大**） | Audit 上限 2／戻し修復ラウンド上限 1（自動） |
 | 11 | 実証ログ | 工程1–10 | `RUN/run-log.md`、改善あれば `quality/fw-validation/backlog.md` | `loop-eng` | `EO` | — | — | (1) run-log にテーマ・工程・詰まり・所見 (2) 改善あれば backlog、無ければ「改善なし」明記 — すべて Yes | 追記上限 2 |
 | 12 | ログのみ main へ | 工程11、作業ブランチ | main の `quality/fw-validation/` のみ。ブランチ remote push 済み | `loop-eng` | `EO` | — | — | (1) validation ブランチ push (2) main 変更が `quality/fw-validation/` のみ (3) run-log にブランチ名と反映手順 — すべて Yes | 反映やり直し上限 2 |
@@ -97,6 +98,7 @@ disable-model-invocation: true
 - 前提崩れ時は戻る工程を **自動決定**（Stop 内）しゲートログに1行。ユーザー承認待ちにしない  
 - スキル利用不可時はゲートログに理由1行＋フォールバック型で loop-eng 代用  
 - **cut（hands-off）:** 人間承認の代わりに **manifest への issue 分解完了** をもって承認とする。M1–M5 を満たせないときは工程5へ巻き戻し（Stop 内）
+- **工程間連続性:** 工程6・7 の本体ゲートの **直後**に `pipeline-continuity-loop`（P56・P67）。工程9は **着手前** `mode=all`、**完了後** P89。黙落時は PAIR-RUBRIC の戻し先へ（Stop 内・自動）。continuity は **読み取りのみ** — 上流／下流の修正は対象工程へ戻す
 
 ## 手順（指揮者）
 

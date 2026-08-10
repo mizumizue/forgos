@@ -9,6 +9,8 @@ import {
   listAvailableMakeupTargets,
   listMakeupQueue,
   listParentEnrollments,
+  listPendingLateAbsences,
+  listProcessedMakeupQueue,
   listTeacherWeek,
   openSeatCount,
   reportAbsence,
@@ -17,8 +19,7 @@ import {
   toggleSeatAttendance,
 } from "./lessonStudio.js";
 
-const DEMO_NOW = new Date("2026-08-11T10:00:00");
-const TUESDAY = "2026-08-11";
+const DEMO_NOW = new Date("2026-08-10T17:00:00");
 
 describe("createDemoStudioState", () => {
   it("seeds piano studio slots, students, and mixed session states", () => {
@@ -36,6 +37,7 @@ describe("createDemoStudioState", () => {
       (e) => e.studentId === "stu-hana",
     );
     expect(hana?.thisWeekSession.status).toBe("scheduled");
+    expect(hana?.thisWeekSession.canReportAbsence).toBe(true);
 
     const sota = listParentEnrollments(state, "household-suzuki", DEMO_NOW).find(
       (e) => e.studentId === "stu-sota",
@@ -46,6 +48,19 @@ describe("createDemoStudioState", () => {
       (e) => e.studentId === "stu-ryo",
     );
     expect(ryo?.thisWeekSession.status).toBe("makeup_confirmed");
+    expect(ryo?.thisWeekSession.makeupTargetSummary).toContain("初級A・木曜");
+  });
+
+  it("seeds late absence review queue and processed makeup for demo cold start", () => {
+    const state = createDemoStudioState(DEMO_NOW);
+    const late = listPendingLateAbsences(state);
+    expect(late).toHaveLength(1);
+    expect(late[0].studentName).toBe("鈴木はな");
+    expect(late[0].absence.status).toBe("pending_teacher_review");
+
+    const processed = listProcessedMakeupQueue(state);
+    expect(processed.some((p) => p.request.id === "req-ryo-done")).toBe(true);
+    expect(processed[0].statusLabel).toBe("確定");
   });
 });
 
@@ -74,7 +89,7 @@ describe("RuntimeDurationRule (WF-3 / OP-4)", () => {
 describe("WF-1 absence reporting", () => {
   it("accepts on-time absence and marks makeup eligible", () => {
     const state = createDemoStudioState(DEMO_NOW);
-    const before = new Date("2026-08-10T17:00:00");
+    const before = new Date("2026-08-10T12:00:00");
     const result = reportAbsence(state, {
       occurrenceId: "occ-tue-0811",
       studentId: "stu-hana",
@@ -114,7 +129,7 @@ describe("WF-1 absence reporting", () => {
   it("flags late absence as pending teacher review", () => {
     const state = createDemoStudioState(DEMO_NOW);
     const late = new Date("2026-08-10T19:00:00");
-    expect(isBeforeAbsenceDeadline(TUESDAY, state.policy, late)).toBe(false);
+    expect(isBeforeAbsenceDeadline("2026-08-11", state.policy, late)).toBe(false);
     const result = reportAbsence(state, {
       occurrenceId: "occ-tue-0811",
       studentId: "stu-hana",
@@ -143,7 +158,7 @@ describe("WF-2 makeup request and approval", () => {
       occurrenceId: "occ-tue-0811",
       studentId: "stu-hana",
       channel: "WEB_FORM",
-      now: new Date("2026-08-10T12:00:00"),
+      now: new Date("2026-08-09T12:00:00"),
     });
     expect(reported.ok).toBe(true);
     if (!reported.ok) return;
@@ -151,7 +166,7 @@ describe("WF-2 makeup request and approval", () => {
     const req = requestMakeup(state, {
       absenceNoticeId: reported.notice.id,
       targetOccurrenceId: "occ-thu-0813",
-      now: new Date("2026-08-10T12:30:00"),
+      now: DEMO_NOW,
     });
     expect(req.ok).toBe(true);
     if (!req.ok) return;
@@ -195,7 +210,7 @@ describe("teacher week view (S1)", () => {
     expect(tue).toBeDefined();
     expect(tue!.seats).toHaveLength(2);
     expect(tue!.expectedMinutes).toBe(20);
-    expect(tue!.isToday).toBe(true);
+    expect(tue!.isToday).toBe(false);
     expect(formatTime(tue!.slot.startMinutes)).toBe("16:00");
   });
 });
@@ -203,42 +218,27 @@ describe("teacher week view (S1)", () => {
 describe("late absence review (D4/D8)", () => {
   it("approves pending_teacher_review and enables makeup", () => {
     const state = createDemoStudioState(DEMO_NOW);
-    const late = reportAbsence(state, {
-      occurrenceId: "occ-tue-0811",
-      studentId: "stu-hana",
-      channel: "LINE",
-      now: new Date("2026-08-10T19:00:00"),
-    });
-    expect(late.ok).toBe(true);
-    if (!late.ok) return;
     const reviewed = reviewLateAbsence(
-      late.state,
-      late.notice.id,
+      state,
+      "abs-hana-late-thu",
       true,
       "感染症のため特例",
     );
     expect(reviewed.ok).toBe(true);
     if (!reviewed.ok) return;
-    const notice = reviewed.state.absences.find((a) => a.id === late.notice.id);
+    const notice = reviewed.state.absences.find(
+      (a) => a.id === "abs-hana-late-thu",
+    );
     expect(notice?.status).toBe("absence_confirmed");
     expect(notice?.makeupEligible).toBe(true);
   });
 
-  it("shows pending review status in parent view", () => {
-    let state = createDemoStudioState(DEMO_NOW);
-    const late = reportAbsence(state, {
-      occurrenceId: "occ-tue-0811",
-      studentId: "stu-hana",
-      channel: "PHONE",
-      now: new Date("2026-08-10T19:00:00"),
-    });
-    expect(late.ok).toBe(true);
-    if (!late.ok) return;
-    state = late.state;
+  it("shows scheduled status for hana while late absence is on another occurrence", () => {
+    const state = createDemoStudioState(DEMO_NOW);
     const view = listParentEnrollments(state, "household-suzuki", DEMO_NOW).find(
       (e) => e.studentId === "stu-hana",
     );
-    expect(view?.thisWeekSession.status).toBe("absence_pending_review");
+    expect(view?.thisWeekSession.status).toBe("scheduled");
   });
 });
 

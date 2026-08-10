@@ -1,4 +1,4 @@
-# Scope — run `20260810-lesson-studio`（統合版・工程5）
+# Scope — run `20260810-lesson-studio`（統合版・工程5・overlay v3）
 
 ## テーマ
 
@@ -167,6 +167,41 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 | `persona-parent-suzuki` | 保護者 | 保護者（鈴木家） | `household-suzuki`（児童2名） |
 | `persona-student-nakamura` | 受講生（本人） | 受講生（中村涼） | `household-nakamura` |
 
+## demo-seeded visibility
+
+起動直後（cold start）にユーザーが目にする状態。工程9 の `RUN/demo-seeded-check.md` 分解元。各行は manifest `implement` 行に辿れる。
+
+| V-ID | 起動直後の見え方（1文） | 主表面 | manifest 紐づけ | cold_start |
+|------|-------------------------|--------|-----------------|------------|
+| V-a-teacher | アプリ起動直後、ヘッダ「講師」タブが選べ、タップで S1 レッスン帳に入れる | S1 | A-teacher | Yes |
+| V-a-parent | ヘッダ「保護者（鈴木家）」タブから S3 に入り、鈴木家の在籍情報のみが見える（他世帯の氏名・出欠は出ない） | S3 | A-parent, B-uc-view-enrollment | Yes |
+| V-a-student | ヘッダ「受講生（中村涼）」タブから S3 に入り、本人の在籍枠のみが見える | S3 | A-student, B-uc-view-enrollment | Yes |
+| V-s1-today-band | S1 週ストリップで今日列が木目縦帯ハイライトされ、現在時刻に近いクラス枠が最上段に見える | S1 | A-teacher, B-uc-confirm-attendance | Yes |
+| V-s1-slot-tue | 火曜 16:00「初級A・火曜」（`BEGINNER_A`・`DUO_45`）枠カードが週ストリップに固定表示される | S1 | A-teacher, B-uc-confirm-attendance | Yes |
+| V-s1-slot-thu | 木曜 17:00「初級A・木曜」（`BEGINNER_A`・`TRIO_60`）枠カードが週ストリップに表示される | S1 | A-teacher, B-uc-confirm-attendance | Yes |
+| V-s1-slot-sat | 土曜 10:00「3級準備・土曜」（`GRADE3_PREP`・`TRIO_60`）枠カードが週ストリップに表示される | S1 | A-teacher, B-uc-confirm-attendance | Yes |
+| V-s1-seat-ring | 各枠カード内に定員 2〜3 の座席リングで出席／欠席／未確定が色分け表示される | S1 | B-uc-confirm-attendance | Yes |
+| V-s1-absence-seat | 欠席連絡済の生徒座席が欠席色で S1 当該枠に反映されている | S1 | B-uc-report-absence, B-uc-confirm-attendance | Yes |
+| V-s1-duration-badge | 座席人数に連動し実施時間バッジ（1名20分／2名45分／3名60分）が枠カード右下に表示される | S1 | D-runtime-duration, B-uc-confirm-attendance | Yes |
+| V-s1-makeup-link | 振替申請がある枠カードに「振替 1 件」リンクが表示され S2 該当カードへアンカーできる | S1 | B-uc-process-makeup | Yes |
+| V-s1-outbound-seat | 振替確定済み生徒は当該枠で空席扱い＋outbound 表示になる | S1 | B-uc-process-makeup, B-uc-confirm-attendance | Yes |
+| V-s2-pending-card | S2 振替キュー先頭に申請中カード 1 件が残時間昇順で表示され、期限切れ間近バッジが付く | S2 | B-uc-process-makeup | Yes |
+| V-s2-processed-card | S2 に処理済カード 1 件が表示され、確定済み振替の結果が読み取れる | S2 | B-uc-process-makeup | Yes |
+| V-s2-level-chips | 申請カード展開時に同レベル・定員空きの振替先枠チップ列が表示される | S2 | B-uc-process-makeup | Yes |
+| V-s2-policy-labels | 申請カードに「前日18:00まで」「月1回」「再振替不可」の規約インラインラベルが表示される | S2 | B-uc-process-makeup, B-uc-request-makeup | Yes |
+| V-s2-late-absence | S2 に期限後欠席ブロック（`pending_teacher_review`）が表示され、override 受理／却下ができる | S2 | C-late-absence, B-uc-process-makeup | Yes |
+| V-s2-override-entry | 申請カード最下部に講師のみの「override 受理」入口が確認ダイアログ付きで表示される | S2 | C-override-makeup | Yes |
+| V-s2-reject-entry | 申請カードに「却下」操作が表示され、却下後は保護者 S3 が「振替不可」になる | S2 | C-makeup-reject | Yes |
+| V-s3-parent-enrollment | 保護者 S3 に児童 2 名分の在籍固定枠カード（曜日・時刻・クラス名・レベル帯）が表示される | S3 | B-uc-view-enrollment | Yes |
+| V-s3-student-enrollment | 受講生 S3 に「3級準備・土曜」の在籍固定枠カードが表示される | S3 | B-uc-view-enrollment | Yes |
+| V-s3-status-scheduled | 鈴木家児童の今週回次が「予定」1 行で表示され、「欠席を連絡する」CTA が活性 | S3 | B-uc-view-enrollment, B-uc-report-absence | Yes |
+| V-s3-status-absence-pending | 鈴木家児童の今週回次が「欠席連絡済・振替申請中」1 行で表示され、「振替を希望する」CTA が活性 | S3 | B-uc-view-enrollment, B-uc-request-makeup | Yes |
+| V-s3-status-makeup-done | 中村涼の今週回次が「振替確定」＋新しい日時 1 行で表示される | S3 | B-uc-view-enrollment, B-uc-process-makeup | Yes |
+| V-s3-contact-channel | 欠席連絡シートで `WEB_FORM`／`LINE`／`PHONE` の連絡チャネル選択肢が出る | S3 | D-contact-channel, B-uc-report-absence | Yes |
+| V-s3-privacy-empty-seat | 保護者 S3 の在籍枠に他生徒の氏名は出ず、空き席数のみ共有表示される | S3 | B-uc-view-enrollment | Yes |
+
+**集計:** visibility 行 **26**（A×3 + S1×9 + S2×7 + S3×7）。§demo-seeded の在籍・回次・振替キュー約束と design-call の attention／J1–J4 起動時表示を網羅。
+
 ## attention stack（S5）
 
 | 主表面 | 視線優先（先頭＝現場の主タスク） |
@@ -279,3 +314,5 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 ## 工程5統合メモ
 
 本ファイルは工程2 [`sector-brief.md`](./sector-brief.md)、工程3 [`spec-depth.md`](./spec-depth.md)、工程4 [`design-call.md`](./design-call.md) を統合した **工程5 正本** である。テーマ・ブランチ・feature-slug は工程1を維持。矛盾解消: 月謝は在籍状態のみ、振替確定は S2 集約、保護者面プライバシーは空き席数のみ共有。可変境界の編集 UI は本デモではシード固定とし manifest `deferred` で明示。
+
+**overlay v3（工程5 Stage 5）:** `## demo-seeded visibility` を追加。§demo-seeded の在籍・回次・振替キュー約束および design-call の起動時表示（今日の縦帯・座席リング・申請中＋処理済・期限後欠席ブロック等）を cold start 行（V-ID）に分解し、manifest `implement` 行へ紐づけた。manifest 集計（14 implement／6 deferred）は変更なし。

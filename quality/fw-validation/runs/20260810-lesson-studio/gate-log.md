@@ -76,3 +76,40 @@
 - 実行手段: `loop-eng` 型 `EO`
 - Verifier: validation ブランチ push、main 変更が `quality/fw-validation/` のみ、run-log に手順記載
 - 結果: **Pass（ローカル）** — main `@a24bf54` へ `quality/fw-validation/` のみ反映済み。validation `@abf016d`。remote push は認証未設定のため未実施
+
+---
+
+## overlay v3 再実行（2026-08-10 夜）
+
+**理由:** overlay v3（`DEMO-UX.md` S4a/b・I2a/I9a/I12・`demo-seeded-check.md`）追加。v2 完了時点では `## demo-seeded visibility` 未整備。未コミット product 変更あり（cold start シード調整途中）。
+
+**保持:** 工程1–4（sector-brief／spec-depth／design-call）、工程6–7（L3・promote-check）。**再実行:** 工程5→8→9→10→11→12。
+
+### 工程5 スコープ統合（v3）
+
+- 実行手段: `loop-eng` 型 `EO`
+- Verifier: DEMO-UX Scope S0–S8（S4a/b・S8h 含む）すべて Yes
+- 結果: **Pass** — `scope.md` に `## demo-seeded visibility` 26行（V-a-* / V-s1-* / V-s2-* / V-s3-*）。manifest 14/6 維持
+
+### 工程8 map／cut（v3）
+
+- 実行手段: `skill:map` + `skill:cut`（フォールバック `EO`）
+- Verifier: M1–M7 全 Yes（M7 visibility 分解必須）
+- 結果: **Pass** — PBI AC-6 追加、issue 01/02 に cold start チェックリスト（26 V-ID 分解）
+
+### 工程9 Implement（v3）
+
+- 実行手段: `skill:implement`（フォールバック `RGR`）
+- Verifier: I1–I12 全 Yes、`implement-reachability.md`（cold_start 列）、`demo-seeded-check.md`（26行）
+- 結果: **Pass** — vitest 15 passed、`tools.check` ok。シード調整で cold start 26 行達成
+
+### 工程10 Audit（v3）
+
+- 実行手段: `skill:audit`
+- Verifier: 重大 Gap なし（Pass A または Stop 内修復）
+- 結果: **Pass (A)** — 重大0。manifest 14/14・visibility 26/26 cold start。軽微2（tsc・CTA文言解釈差）
+
+### 工程11–12 実証ログ／main 反映（v3）
+
+- 実行手段: `loop-eng` 型 `EO`
+- 結果: _pending_

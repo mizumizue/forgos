@@ -4,6 +4,7 @@ import type {
   ContactChannel,
   LessonOccurrence,
   MakeupPolicyBundle,
+  MakeupProcessedItem,
   MakeupQueueItem,
   MakeupRequest,
   PendingLateAbsenceItem,
@@ -172,6 +173,14 @@ function sessionDisplayStatus(
   );
   if (inboundMakeup) return "makeup_confirmed";
 
+  const outboundMakeup = state.makeupRequests.find(
+    (r) =>
+      r.studentId === studentId &&
+      r.sourceOccurrenceId === occurrenceId &&
+      (r.status === "approved" || r.status === "completed"),
+  );
+  if (outboundMakeup) return "makeup_confirmed";
+
   const absence = state.absences.find(
     (a) => a.occurrenceId === occurrenceId && a.studentId === studentId,
   );
@@ -243,7 +252,7 @@ export function listAvailableMakeupTargets(
 }
 
 /** demo-seeded 初期状態（ピアノ田中スタジオ） */
-export function createDemoStudioState(now = new Date("2026-08-11T10:00:00")): StudioState {
+export function createDemoStudioState(now = new Date("2026-08-10T17:00:00")): StudioState {
   const demoWeekStart = startOfWeekMonday(todayIso(now));
   const tuesday = addDaysIso(demoWeekStart, 1);
   const thursday = addDaysIso(demoWeekStart, 3);
@@ -324,7 +333,7 @@ export function createDemoStudioState(now = new Date("2026-08-11T10:00:00")): St
     date: tuesday,
     status: "scheduled",
     seats: {
-      "stu-hana": "present",
+      "stu-hana": "unmarked",
       "stu-sota": "absent",
     },
     locked: false,
@@ -350,28 +359,22 @@ export function createDemoStudioState(now = new Date("2026-08-11T10:00:00")): St
     slotId: "slot-sat-grade3",
     date: saturday,
     status: "scheduled",
-    seats: {
-      "stu-ryo": "unmarked",
-    },
+    seats: {},
     locked: false,
     makeupOutboundStudentIds: ["stu-ryo"],
     makeupInboundStudentIds: [],
   };
 
-  const occSatInbound: LessonOccurrence = {
-    id: "occ-sat-0815-inbound",
-    slotId: "slot-sat-grade3",
-    date: saturday,
-    status: "scheduled",
-    seats: {},
-    locked: false,
-    makeupOutboundStudentIds: [],
-    makeupInboundStudentIds: ["stu-ryo"],
+  const absenceHanaLate: AbsenceNotice = {
+    id: "abs-hana-late-thu",
+    occurrenceId: "occ-thu-0813",
+    studentId: "stu-hana",
+    status: "pending_teacher_review",
+    channel: "PHONE",
+    reason: "急用で遅れて連絡",
+    submittedAt: new Date("2026-08-12T19:30:00").toISOString(),
+    makeupEligible: false,
   };
-
-  // Fix: Ryo's makeup confirmed should be on a different Saturday slot occurrence
-  // Actually Ryo is outbound on sat and inbound on same day - let's use thu for inbound makeup for ryo from a prior absence
-  // Simpler: Ryo had absence on previous sat, makeup confirmed to this sat - show outbound on sat original enrollment occurrence
 
   const absenceSota: AbsenceNotice = {
     id: "abs-sota-tue",
@@ -395,44 +398,30 @@ export function createDemoStudioState(now = new Date("2026-08-11T10:00:00")): St
   };
 
   const absenceRyo: AbsenceNotice = {
-    id: "abs-ryo-prev",
-    occurrenceId: "occ-sat-prev",
+    id: "abs-ryo-sat",
+    occurrenceId: "occ-sat-0815",
     studentId: "stu-ryo",
     status: "absence_confirmed",
     channel: "WEB_FORM",
-    submittedAt: new Date("2026-08-01T12:00:00").toISOString(),
+    submittedAt: new Date("2026-08-13T12:00:00").toISOString(),
     makeupEligible: true,
   };
 
   const makeupDone: MakeupRequest = {
     id: "req-ryo-done",
-    absenceNoticeId: "abs-ryo-prev",
+    absenceNoticeId: "abs-ryo-sat",
     studentId: "stu-ryo",
-    sourceOccurrenceId: "occ-sat-prev",
-    targetOccurrenceId: "occ-sat-0815",
+    sourceOccurrenceId: "occ-sat-0815",
+    targetOccurrenceId: "occ-thu-0813",
     status: "approved",
-    submittedAt: new Date("2026-08-02T09:00:00").toISOString(),
-    resolvedAt: new Date("2026-08-02T10:00:00").toISOString(),
+    submittedAt: new Date("2026-08-13T14:00:00").toISOString(),
+    resolvedAt: new Date("2026-08-13T15:00:00").toISOString(),
   };
 
-  const occSatPrev: LessonOccurrence = {
-    id: "occ-sat-prev",
-    slotId: "slot-sat-grade3",
-    date: addDaysIso(saturday, -7),
-    status: "recorded",
-    seats: { "stu-ryo": "absent" },
-    actualMinutes: 0,
-    locked: true,
-    makeupOutboundStudentIds: ["stu-ryo"],
-    makeupInboundStudentIds: [],
-  };
-
-  // Update sat occurrence for ryo makeup inbound
-  const occSatFinal: LessonOccurrence = {
-    ...occSat,
+  const occThuFinal: LessonOccurrence = {
+    ...occThu,
     makeupInboundStudentIds: ["stu-ryo"],
-    seats: { "stu-ryo": "unmarked" },
-    makeupOutboundStudentIds: [],
+    seats: { ...occThu.seats, "stu-ryo": "unmarked" },
   };
 
   occTue.makeupOutboundStudentIds = [];
@@ -449,8 +438,8 @@ export function createDemoStudioState(now = new Date("2026-08-11T10:00:00")): St
     slots,
     students,
     enrollments,
-    occurrences: [occTue, occThu, occSatFinal, occSatPrev],
-    absences: [absenceSota, absenceRyo],
+    occurrences: [occTue, occThuFinal, occSat],
+    absences: [absenceHanaLate, absenceSota, absenceRyo],
     makeupRequests: [makeupPending, makeupDone],
     demoWeekStart,
   };
@@ -820,6 +809,30 @@ export function listParentEnrollments(
         ? state.makeupRequests.find((r) => r.absenceNoticeId === absence.id)
         : undefined;
 
+      const confirmedMakeup =
+        state.makeupRequests.find(
+          (r) =>
+            r.studentId === enrollment.studentId &&
+            (r.sourceOccurrenceId === occurrence.id ||
+              r.targetOccurrenceId === occurrence.id) &&
+            (r.status === "approved" || r.status === "completed"),
+        ) ?? makeup;
+
+      let makeupTargetSummary: string | undefined;
+      if (
+        status === "makeup_confirmed" &&
+        confirmedMakeup &&
+        (confirmedMakeup.status === "approved" ||
+          confirmedMakeup.status === "completed")
+      ) {
+        const targetOcc = occurrenceById(
+          state,
+          confirmedMakeup.targetOccurrenceId,
+        );
+        const targetSlot = slotById(state, targetOcc.slotId);
+        makeupTargetSummary = `${WEEKDAY_LABELS[targetSlot.weekday]} ${formatTime(targetSlot.startMinutes)} · ${targetSlot.name}`;
+      }
+
       const canReportAbsence =
         status === "scheduled" &&
         isBeforeAbsenceDeadline(occurrence.date, state.policy, now);
@@ -840,6 +853,7 @@ export function listParentEnrollments(
         canRequestMakeup,
         absenceNoticeId: absence?.id,
         makeupRequestId: makeup?.id,
+        makeupTargetSummary,
       };
 
       return {
@@ -896,6 +910,31 @@ export function listMakeupQueue(
     .sort((a, b) => a.hoursUntilDeadline - b.hoursUntilDeadline);
 }
 
+export function listProcessedMakeupQueue(state: StudioState): MakeupProcessedItem[] {
+  return state.makeupRequests
+    .filter((r) => r.status === "approved" || r.status === "rejected")
+    .map((request) => {
+      const student = state.students.find((s) => s.id === request.studentId)!;
+      const source = occurrenceById(state, request.sourceOccurrenceId);
+      const target = occurrenceById(state, request.targetOccurrenceId);
+      const sourceSlot = slotById(state, source.slotId);
+      const targetSlot = slotById(state, target.slotId);
+      return {
+        request,
+        studentName: student.displayName,
+        sourceSlotName: sourceSlot.name,
+        targetSlotName: targetSlot.name,
+        targetDate: target.date,
+        statusLabel: request.status === "approved" ? "確定" : "却下",
+      };
+    })
+    .sort((a, b) => {
+      const at = a.request.resolvedAt ?? a.request.submittedAt;
+      const bt = b.request.resolvedAt ?? b.request.submittedAt;
+      return bt.localeCompare(at);
+    });
+}
+
 export function listTeacherWeek(
   state: StudioState,
   weekStart: string,
@@ -913,8 +952,9 @@ export function listTeacherWeek(
         ...new Set([
           ...enrolled,
           ...occurrence.makeupInboundStudentIds,
+          ...occurrence.makeupOutboundStudentIds,
         ]),
-      ].filter((id) => !occurrence.makeupOutboundStudentIds.includes(id));
+      ];
 
       const seats = allStudentIds.map((studentId) => {
         const student = state.students.find((s) => s.id === studentId)!;
@@ -959,6 +999,7 @@ export function levelBandLabel(band: keyof typeof LEVEL_BAND_LABEL): string {
 
 export const POLICY_TAGS = [
   "前日 18:00 まで",
+  "月1回",
   "同レベルのみ",
   "再振替不可",
 ] as const;
@@ -970,7 +1011,7 @@ export const SESSION_STATUS_LABEL: Record<
   scheduled: "予定",
   absence_reported: "欠席連絡済",
   absence_pending_review: "講師確認待ち",
-  makeup_pending: "振替申請中",
+  makeup_pending: "欠席連絡済・振替申請中",
   makeup_confirmed: "振替確定",
   makeup_rejected: "振替不可",
 };
