@@ -1,6 +1,6 @@
 # 実証ログ — 20260810-shop-reservation
 
-**工程:** 7（実証ログのみ。工程8には進まない）  
+**工程:** 7完了 → 8実施（ログのみ main 反映・push）  
 **実行手段:** `loop-eng` 型 `EO`  
 **作業ブランチ:** `validation/20260810-shop-reservation`
 
@@ -38,8 +38,14 @@
   2. Cursor adapter に promote スキルが無い点
 - アプリ軽微（G1–G3 等）: **改善なし（backlog 非掲載）** — 上記方針どおり所見のみ
 
-## 工程8向けメモ（本工程では実施しない）
+## 工程8（ログのみ main 反映・push）
 
 - 作業ブランチ: `validation/20260810-shop-reservation`
-- 本工程で追加したログ: `run-log.md`、および `quality/fw-validation/backlog.md`
-- main 反映・push は工程8の担当
+- validation ブランチ push: `git push -u origin validation/20260810-shop-reservation`（remote: `https://github.com/mizumizue/forgos`、HEAD `4a011d1`）済み
+- main への取り込み手順（ログのみ）:
+  1. `main` を最新化（`git pull origin main`）
+  2. `git checkout validation/20260810-shop-reservation -- quality/fw-validation/`
+  3. 変更が `quality/fw-validation/` のみであることを確認してコミット
+  4. `git push origin main`（force 禁止）
+- main 反映コミット: `2a47efc` — `add fw-validation log for 20260810-shop-reservation`（`quality/fw-validation/` のみ）
+- main push: `origin/main` へ反映済み（`95b730f..2a47efc`）
