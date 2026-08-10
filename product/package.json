@@ -1,0 +1,13 @@
+{
+  "name": "lesson-studio-scheduling",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "pnpm -r --filter @lesson-studio/domain test",
+    "typecheck": "pnpm -r --filter @lesson-studio/domain --filter @lesson-studio/web typecheck",
+    "dev": "pnpm --filter @lesson-studio/web dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
