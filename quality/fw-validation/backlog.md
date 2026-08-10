@@ -28,6 +28,14 @@
 - 提案: 実証ループ工程5の完了報告／Verifier 追記で、「画面必須」かつ設定系決め事がある場合は、各設定項目が対応主表面から操作できる根拠を1行ずつ要求する（ドメイン単体緑だけでは不足）。`agents/` 本体へ検証概念を書き戻さない（オーバーレイ／スキル側）。
 - 優先: 中
 
+### BL-20260810-04 — actor-split 全役と決め事例外フローの Implement 到達検証
+
+- 発見 run: `20260810-lesson-studio`（Audit G-M1〜M3 → Verifier B）
+- 種別: 検証 FW／Implement オーバーレイ
+- 内容: L3 に3役（講師／保護者／受講生本人申立）の actor-split があるのに Implement は保護者のみ到達可能だった。さらに D4 期限後欠席の講師受理（`pending_teacher_review`）と D8 講師 override は domain API のみで S2 UI 未到達。工程9 Verifier は Pass したが工程10 Audit で重大3件。BL-20260810-03（設定項目）とは別軸。
+- 提案: 実証ループ工程9の完了報告／Verifier 追記で、(a) actor-split の各役が demo-seeded で主表面に到達可能か、(b) scheduling-rules 等の例外フロー（講師受理・override 等）ごとに主表面からの操作根拠を1行ずつ要求する（ドメイン単体緑だけでは不足）。`agents/` 本体へ検証概念を書き戻さない（オーバーレイ／スキル側）。
+- 優先: 中
+
 ## 完了
 
 （なし）
