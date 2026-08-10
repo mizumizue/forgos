@@ -37,7 +37,8 @@ disable-model-invocation: true
 
 - **sector brief / spec depth / design call:** 工程2–4の成果が正。工程5の scope はそれらを統合するだけ。調査なしの連想はゲート No
 - **demo-grade:** 調査で **明示見送り** したもの以外は **すべて実装**（manifest の `implement` 行）。本番認証・決済・外部配信・ブランド完璧は非目標。黙って落とす禁止（`deferred` は根拠パス必須）
-- **implementation manifest:** 工程5 `scope.md` の翻訳契約。工程8–10が参照。詳細は [`DEMO-UX.md`](DEMO-UX.md)
+- **implementation manifest:** 工程5 `scope.md` の翻訳契約（中心）。工程8–10が参照。詳細は [`DEMO-UX.md`](DEMO-UX.md)
+- **demo-seeded visibility:** `scope.md` の **起動直後に見える状態**の契約。manifest だけ Pass しても visibility／cold start 未達は工程9不合格。シード調整は本番デモ範囲
 - **通常利用形態 / 画面:** `scope.md` に明示。画面なら主要 UC を画面で完遂
 - **actor-split / demo-seeded / surface budget / attention stack:** [`DEMO-UX.md`](DEMO-UX.md)。いずれも brief／depth／design の帰結
 - **genre look:** design call の一部。通例根拠＋要素3点以上。**attention** と整合
@@ -67,12 +68,12 @@ disable-model-invocation: true
 | 2 | 業種調査 | 工程1のテーマ／システム狙い | `RUN/sector-brief.md`、`RUN/loop-log.md` | `skill:sector-research-loop` | — | `EO` | — | `sector-research-loop` 完了＝ゲート（V1–V6 全 Yes）。打ち切り未達なら本ループ Stop | スキル Stop（改稿上限 3）／指揮巻き戻しは工程1へ上限 1 |
 | 3 | 仕様深度 | `sector-brief.md`＋システム狙い | `RUN/spec-depth.md` | `skill:spec-depth-loop` | — | `EO` | — | `spec-depth-loop` 完了＝ゲート（D1–D6 全 Yes）。brief 欠落打ち切りなら工程2へ戻す | スキル Stop（改稿上限 3）／戻し上限 1 |
 | 4 | モックデザイン | `sector-brief.md`＋`spec-depth.md` | `RUN/design-call.md` | `skill:mock-design-loop` | — | `EO` | — | `mock-design-loop` 完了＝ゲート（C1–C9 全 Yes・遷移含む） | スキル Stop（改稿上限 3）／戻し上限 1 |
-| 5 | スコープ統合 | brief／depth／design-call＋工程1 scope | `RUN/scope.md`（統合版・**`## implementation manifest` 含む**） | `loop-eng` | `EO` | — | — | [`DEMO-UX.md`](DEMO-UX.md) Scope **S0–S8** すべて Yes。S0–S8 は工程2–4成果から辿れること。矛盾・欠落は No | 再起草上限 3 |
+| 5 | スコープ統合 | brief／depth／design-call＋工程1 scope | `RUN/scope.md`（統合版・**`## implementation manifest`**・**`## demo-seeded visibility`** 含む） | `loop-eng` | `EO` | — | — | [`DEMO-UX.md`](DEMO-UX.md) Scope **S0–S8**（S4a/b・S8h 含む）すべて Yes。S0–S8 は工程2–4成果から辿れること。矛盾・欠落は No | 再起草上限 3 |
 | 6 | Spike（Source） | 統合 scope＋manifest＋工程2–4成果 | `specs/source/<feature-slug>/spec.md`（sandbox 任意） | `skill:spike` | — | `EO` | — | `spike` 完了＋ (1)テーマ (2)要求根拠 (3)table stakes（brief 通例と紐づけ） (4)demo-grade＝manifest `implement` 方針 (5)design call／genre look／遷移 (6)domain skeleton (7) [`DEMO-UX.md`](DEMO-UX.md) Source **U0–U7** すべて Yes — すべて Yes。調査なしの連想骨格はやり直し | Spike やり直し上限 2／Source 改稿上限 3 |
 | 7 | Promote | `specs/source/<feature-slug>/` | L2/L3、Source 削除、`RUN/promote-check.md` | `skill:promote` | — | `EO` | — | `promote` 完了＋ (1)promote-check (2)L2/L3 (3)Source 削除 (4)骨格辿れる (5) [`DEMO-UX.md`](DEMO-UX.md) Promote **P0–P4** — すべて Yes | 点検やり直し上限 2／取り込み上限 2 |
-| 8 | map／cut | L2/L3＋manifest | `pbl/` PBI、`issues/` issue、対応が辿れる | `skill:map`（同一セッションで `skill:cut`） | — | `EO` | — | map＋cut 完了＋ [`DEMO-UX.md`](DEMO-UX.md) Map/Cut **M1–M6** すべて Yes。cut は manifest 分解で hands-off 承認代替 | map 上限 2／cut 上限 2 |
-| 9 | Implement | issue＋L2/L3＋design-call＋manifest | `product/`、`RUN/implement-reachability.md`、単体緑 | `skill:implement` | — | `RGR` | — | `implement` 完了＋ (1)単体緑 (2)genre≥3 (3)WF/状態≥2 (4) [`DEMO-UX.md`](DEMO-UX.md) Implement **I1–I11** すべて Yes (5) `implement-reachability.md` が manifest `implement` 行をすべて埋めている | 赤緑サイクル上限 8／フルテスト実行上限 2 |
-| 10 | Audit | 決め事＋manifest＋`product/` | 指摘リスト；重大は Implement 戻し＋`adr/` | `skill:audit` | — | `EO` | — | `audit` 完了。かつ (A) 重大なし、または (B) Stop 内で Implement 戻し修正済みかつ当該 ADR が `adr/` にあり。(A)(B) の切替は指揮者が自動決定。重大 Gap は [`DEMO-UX.md`](DEMO-UX.md) Audit 節（**manifest `implement` 未到達は重大**） | Audit 上限 2／戻し修復ラウンド上限 1（自動） |
+| 8 | map／cut | L2/L3＋manifest＋visibility | `pbl/` PBI、`issues/` issue、対応が辿れる | `skill:map`（同一セッションで `skill:cut`） | — | `EO` | — | map＋cut 完了＋ [`DEMO-UX.md`](DEMO-UX.md) Map/Cut **M1–M7** すべて Yes。cut は manifest 分解で hands-off 承認代替 | map 上限 2／cut 上限 2 |
+| 9 | Implement | issue＋L2/L3＋design-call＋manifest＋visibility | `product/`、`RUN/implement-reachability.md`、`RUN/demo-seeded-check.md`、単体緑 | `skill:implement` | — | `RGR` | — | `implement` 完了＋ (1)単体緑 (2)genre≥3 (3)WF/状態≥2 (4) [`DEMO-UX.md`](DEMO-UX.md) Implement **I1–I12** すべて Yes (5) reachability・demo-seeded-check が行数要件を満たす | 赤緑サイクル上限 8／フルテスト実行上限 2 |
+| 10 | Audit | 決め事＋manifest＋visibility＋`product/` | 指摘リスト；重大は Implement 戻し＋`adr/` | `skill:audit` | — | `EO` | — | `audit` 完了。かつ (A) 重大なし、または (B) Stop 内で Implement 戻し修正済みかつ当該 ADR が `adr/` にあり。(A)(B) の切替は指揮者が自動決定。重大 Gap は [`DEMO-UX.md`](DEMO-UX.md) Audit 節（**manifest 未到達・visibility cold start 未到達は重大**） | Audit 上限 2／戻し修復ラウンド上限 1（自動） |
 | 11 | 実証ログ | 工程1–10 | `RUN/run-log.md`、改善あれば `quality/fw-validation/backlog.md` | `loop-eng` | `EO` | — | — | (1) run-log にテーマ・工程・詰まり・所見 (2) 改善あれば backlog、無ければ「改善なし」明記 — すべて Yes | 追記上限 2 |
 | 12 | ログのみ main へ | 工程11、作業ブランチ | main の `quality/fw-validation/` のみ。ブランチ remote push 済み | `loop-eng` | `EO` | — | — | (1) validation ブランチ push (2) main 変更が `quality/fw-validation/` のみ (3) run-log にブランチ名と反映手順 — すべて Yes | 反映やり直し上限 2 |
 
