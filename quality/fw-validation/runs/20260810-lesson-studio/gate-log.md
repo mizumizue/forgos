@@ -75,4 +75,4 @@
 
 - 実行手段: `loop-eng` 型 `EO`
 - Verifier: validation ブランチ push、main 変更が `quality/fw-validation/` のみ、run-log に手順記載
-- 結果: **Pass（ローカル）** — main へ `quality/fw-validation/` のみ反映予定。remote push は認証次第
+- 結果: **Pass（ローカル）** — main `@a24bf54` へ `quality/fw-validation/` のみ反映済み。validation `@abf016d`。remote push は認証未設定のため未実施
