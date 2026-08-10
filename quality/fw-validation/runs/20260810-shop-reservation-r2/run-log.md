@@ -55,15 +55,15 @@
 
 ## 工程8（ログのみ main 反映・push）
 
-- 作業ブランチ: alidation/20260810-shop-reservation-r2
-- validation ブランチ push: git push -u origin validation/20260810-shop-reservation-r2（remote: https://github.com/mizumizue/forgos、HEAD ee514f2）済み
+- 作業ブランチ: `validation/20260810-shop-reservation-r2`
+- validation ブランチ push: `git push -u origin validation/20260810-shop-reservation-r2`（remote: `https://github.com/mizumizue/forgos`、HEAD `ee514f2`）済み
 - main への取り込み手順（ログのみ）:
-  1. main worktree（C:/Users/k_miz/Projects/forgos）で git pull origin main
-  2. git checkout validation/20260810-shop-reservation-r2 -- quality/fw-validation/
-  3. 変更が quality/fw-validation/ のみであることを確認してコミット
-  4. git push origin main（force 禁止）
-- main 反映コミット: 92d9fd0 — dd fw-validation log for 20260810-shop-reservation-r2（quality/fw-validation/ のみ）
-- main push: origin/main へ反映済み（eb21318..92d9fd0）
+  1. main worktree（`C:/Users/k_miz/Projects/forgos`）で `git pull origin main`
+  2. `git checkout validation/20260810-shop-reservation-r2 -- quality/fw-validation/`
+  3. 変更が `quality/fw-validation/` のみであることを確認してコミット
+  4. `git push origin main`（force 禁止）
+- main 反映コミット: `92d9fd0` — `add fw-validation log for 20260810-shop-reservation-r2`（`quality/fw-validation/` のみ）
+- main push: `origin/main` へ反映済み（`eb21318..92d9fd0`）
 ## Verifier 自己点検（工程7）
 
 1. `run-log.md` にテーマ・通った工程・詰まり・所見がある: **Yes**
