@@ -1,0 +1,13 @@
+{
+  "name": "shop-reservation",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "pnpm -r --filter @shop-reservation/domain test",
+    "typecheck": "pnpm -r --filter @shop-reservation/domain --filter @shop-reservation/web typecheck",
+    "dev": "pnpm --filter @shop-reservation/web dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

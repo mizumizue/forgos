@@ -1,0 +1,163 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.5;
+  color: #1f2933;
+  background: #f5f7fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.75rem;
+}
+
+.layout {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d9e2ec;
+  padding: 1rem 1.25rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  padding: 0.4rem 0.55rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.slot {
+  border: 1px solid #bcccdc;
+  padding: 0.75rem;
+  background: #f0f4f8;
+}
+
+.slot.full {
+  opacity: 0.55;
+}
+
+.slot button {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid #829ab1;
+  background: #e0e8f0;
+  font-size: 0.85rem;
+}
+
+.status-received {
+  background: #fff3cd;
+  border-color: #e0a800;
+}
+
+.status-confirmed {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.status-arrived {
+  background: #cce5ff;
+  border-color: #0d6efd;
+}
+
+.status-completed {
+  background: #e2e3e5;
+  border-color: #6c757d;
+}
+
+.status-cancelled,
+.status-rejected {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+.status-on_hold {
+  background: #e2d4f0;
+  border-color: #6f42c1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #d9e2ec;
+  text-align: left;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.msg {
+  margin: 0.5rem 0;
+}
+
+.msg.error {
+  color: #9b1c1c;
+}
+
+.msg.ok {
+  color: #0f5132;
+}
+
+.resource-chip {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0.15rem 0.4rem;
+  background: #e6f0ff;
+  border: 1px solid #9fb3c8;
+}
