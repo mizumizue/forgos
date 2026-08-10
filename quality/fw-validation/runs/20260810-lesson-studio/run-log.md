@@ -55,5 +55,5 @@ git checkout validation/20260810-lesson-studio -- quality/fw-validation/
 git commit -m "chore(fw-validation): update run log 20260810-lesson-studio (re-run stage 3+)"
 ```
 
-**main 反映:** ローカル実施（下記ステータス参照）  
-**remote push:** 認証未設定時は未実施
+**main 反映:** ローカル完了（`main` @ `a24bf54`）  
+**remote push:** 認証未設定のため未実施
