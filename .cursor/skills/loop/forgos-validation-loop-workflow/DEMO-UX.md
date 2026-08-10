@@ -20,6 +20,13 @@ ForgOS 本体には書かない。検証オーバーレイの **調査分析／�
 テーマ語の連想や汎用 CRUD では仕様が甘い。業務アプリでは調査→仕様深度→design call を先に行い、その帰結として scope／Source／実装を進める。  
 人間に確認せず **AI が調べて決める**。薄い作文はゲート不合格。
 
+## demo-grade（方針）
+
+- **原則（実装の網羅）:** 工程2–4の採用事項・L3 の決め事／UC／design call のジャーニーは **すべて実装対象**。調査で **明示的に見送り／スコープ外** と記録したものだけ実装しない。
+- **非目標（本番以外）:** 認証本番・決済本番・外部配信本番・ブランド最終仕上げ・マルチテナント等は不要。これらを理由に **調査で採用した機能** を落とすのは No。
+- **黙って落とす禁止:** 未実装が許されるのは manifest で `deferred` と根拠パス（`scope.md` スコープ外／spec-depth 見送り／L3 out-of-scope 等）がある場合のみ。根拠なしの未実装は工程9不合格。
+- **翻訳の正本:** 工程5 `scope.md` の `## implementation manifest`（工程8–9・Audit が参照する契約）。
+
 ## sector brief（工程2）
 
 業務・業界・顧客対応・社内オペなどがテーマに含まれる（または業務アプリと読める）とき必須。非業務と明示できるテーマだけ「非該当＋理由」で免除（その場合も工程2で免除理由を `sector-brief.md` または gate-log に残す）。
@@ -77,8 +84,29 @@ L2/L3 には usability／行為の **What のみ**。見た目 How は design-ca
 | S5 | **attention stack:** 各主表面の視線優先1行以上（主タスクが先頭） |
 | S6 | **品質 What 候補** ≥3（行為・結果の What。ピクセル How 禁止） |
 | S7 | **design call** が工程4成果として辿れる（方針要約で可）。遷移方針が1行以上。汎用「クリーンな管理画面」だけは No |
+| S8 | **`## implementation manifest`** が存在し、下記 A–D の4表が揃う（詳細は同節） |
+| S8a | manifest の **デフォルトは `implement`**。`deferred` は調査で明示見送りした行のみ（根拠パス必須） |
+| S8b | A の actor 行数 ≥ S1 の役数。各行 `implement` |
+| S8c | B に L3 `usecases/*.md` が **1 UC 1 行**（`implement`）。design-call ジャーニー ID と紐づく |
+| S8d | C に spec-depth の主 WF・決め事の **例外分岐・状態** が漏れなく列挙（`implement` が原則） |
+| S8e | D に spec-depth D3 可変境界の **採用行** が漏れなく列挙。講師が変更できる境界は画面到達を `implement` とする（シード固定のみ `deferred`＋理由可） |
+| S8f | sector-brief table stakes の **採用** 行が B／C／D のいずれかに辿れる。採用なのに manifest 無しは No |
+| S8g | `deferred` 行に **見送り根拠パス**（`scope.md` §スコープ外／spec-depth 見送り／L3 out-of-scope 等）が1行以上 |
 
 ドメイン骨格は S0／spec-depth と整合する概念 ≥5・WF/状態 ≥2。
+
+### implementation manifest（S8 正本）
+
+`scope.md` 統合版に置く。工程2–4＋採用 L3 から **機械的に抽出**し、hands-off で確定する。
+
+| 表 | 列（最低限） | 抽出元 | デフォルト status |
+|----|-------------|--------|-------------------|
+| **A Actor 到達** | ID・actor・demo-seeded ペルソナ・主表面・到達方法 | S1／design-call actors | `implement` |
+| **B UC／WF** | ID・L3 UC または WF・ジャーニー ID・完結表面・操作1文 | L3 usecases・spec-depth WF | `implement` |
+| **C 例外フロー** | ID・決め事 ID・状態／分岐・操作する役・主表面 | scheduling-rules 等・spec-depth | `implement` |
+| **D 可変境界** | ID・境界名・変更する役・主表面・操作1文 | spec-depth D3 採用行 | `implement`（シード固定のみ `deferred`可） |
+
+`status` は `implement` または `deferred` のみ。`deferred` には **見送り根拠パス** 列を必須とする。
 
 ## Source（工程6 Spike）
 
@@ -91,6 +119,7 @@ L2/L3 には usability／行為の **What のみ**。見た目 How は design-ca
 | U4 | `## attention stack` |
 | U5 | `## usability what` ≥3。オペに根ざす。入力属性羅列のみ不可 |
 | U6 | `## design call`／genre look — 工程4と整合。要素 ≥3＋attention。**未決禁止**。遷移列が辿れる |
+| U7 | `## implementation manifest` — 工程5 `scope.md` と整合。`implement` 行が Source の UC／骨格に漏れなく落ちている |
 
 table stakes／domain skeleton も brief／depth から採る。連想だけの骨格は再起草。
 
@@ -103,6 +132,22 @@ table stakes／domain skeleton も brief／depth から採る。連想だけの�
 | P2 | actors と主表面分担が残る |
 | P3 | 採用 usability が決め事／UC／対象外へ辿れる |
 | P4 | design call の見た目 How は L2/L3 に上げない。issue／Implement へ辿れる旨を promote-check に1行 |
+| P5 | L3 usecases の件数が manifest B の `implement` 行数と一致（または Promote 前に manifest へ反映済み） |
+
+## Map／Cut（工程8）
+
+hands-off では cut の人間承認は不要。**manifest への分解完了** が承認代わり。分解不能なら工程5へ巻き戻し（Stop 内）。
+
+| ID | 条件 |
+|----|------|
+| M1 | PBI 受入条件が manifest の **`implement` 行をすべて** カバー（1 AC が複数行を束ねてよい） |
+| M2 | L3 `usecases/*.md` 1 件につき、**issue 1 件以上** または PBI AC に明示（`implement` のみ） |
+| M3 | 各 issue に **`Manifest:`** 行で manifest ID を列挙（例 `B-uc-report-absence, C-late-review`） |
+| M4 | manifest A の全 actor が、いずれかの issue AC または PBI AC に「demo-seeded で主表面到達」と書かれている |
+| M5 | manifest C・D の `implement` 行が、issue AC または PBI AC に **すべて** 分解されている |
+| M6 | PBI 対応表に **証拠 tier** 列（`ui`／`domain`／`seed`）。manifest `implement` 行は tier=`ui` を要求（工程9までに満たす旨を AC に書いてよい） |
+
+issue は **垂直スライス**（`agents/pipeline/cut/playbook.md`）。同一表面・同一 actor でまとめられる場合のみ統合可（gate-log に理由1行）。
 
 ## Implement（工程9）
 
@@ -113,16 +158,34 @@ table stakes／domain skeleton も brief／depth から採る。連想だけの�
 | I3 | surface budget ≤3 |
 | I4 | attention stack（主タスクが先頭） |
 | I5 | design call 実行（汎用スキン逃げは No）。対応 ≥3 を完了報告 |
-| I6 | 単体緑・主要 UC・ドメイン条件は工程表どおり |
-| I7 | 主要ジョブの操作パスが `design-call.md` の遷移列と整合（勝手な省略は No） |
+| I6 | 単体緑・manifest `implement` 行のドメイン条件をテストで担保 |
+| I7 | design-call の **ジャーニー ID 全件**について、完了報告に操作手順（5ステップ以内）が1つずつある。勝手な省略は No |
+| I8 | manifest A の **全 actor** が demo-seeded ペルソナで主表面に到達可能（認証なしタブ可） |
+| I9 | manifest B・C の **`implement` 行すべて**について、主表面からの操作パスを `RUN/implement-reachability.md` に1行（domain API のみは No） |
+| I10 | manifest D の **`implement` 行すべて**について、同上（設定・可変境界の画面到達） |
+| I11 | PBI 対応表で manifest `implement` 行の証拠 tier が **ui**。domain のみは No |
+
+### implement-reachability.md（工程9 必須出力）
+
+`RUN/implement-reachability.md` に manifest の **`implement` 行をすべて**埋める。
+
+```markdown
+## Manifest 到達証明
+| Manifest ID | status | 操作パス（役→表面→操作→結果） | 証拠（UI: ファイル・手順） |
+|-------------|--------|------------------------------|---------------------------|
+```
+
+指揮者は **行数＝manifest `implement` 行数** と tier=ui をゲートする。
 
 ## Audit（工程10）— 重大 Gap 候補
 
 - sector brief／spec-depth／design-call が無い／一般論のみなのに業務テーマを通している
 - actors・文言・選択肢が brief／depth の帰結と不一致
 - actor-split 破れ、demo-seeded 欠落、surface >3 必須、attention 逆転
-- 権限差・可変境界が depth にあるのに実装／画面に無い
-- usability what／design call／**画面遷移**無視
-- どの領域にも見える汎用フォームだけで、brief の通例 ≥3 が UI に無い
+- **manifest `implement` 行の UI 未到達**（`implement-reachability.md` 欠落・domain のみ・手順不能）→ **重大**（工程9へ戻す）
+- manifest に無い spec-depth 能力の欠落 → **無視**（工程5で `deferred` 化すべきだった）
+- manifest `deferred` なのに実装を要求 → Conform（過剰）
+- usability what／design call／**画面遷移**無視（manifest `implement` 行に紐づくもの）
+- どの領域にも見える汎用フォームだけで、brief の通例 **採用** が UI に無い
 
-軽微: ブランド最終仕上げ（demo-grade 内で領域として認識できれば軽微）
+軽微: ブランド最終仕上げ、認証本番、外部連携本番（manifest で見送り済みの範囲）
