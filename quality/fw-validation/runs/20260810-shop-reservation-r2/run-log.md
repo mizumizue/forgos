@@ -1,6 +1,6 @@
 # 実証ログ — 20260810-shop-reservation-r2
 
-**工程:** 7完了（工程8は未実施・引き継ぎのみ）  
+**工程:** 7完了 → 8実施（ログのみ main 反映・push）  
 **実行手段:** `loop-eng` 型 `EO`  
 **作業ブランチ:** `validation/20260810-shop-reservation-r2`
 
@@ -53,15 +53,17 @@
 | ADR | `adr/0005-audit-closed-weekday-settings-repair.md` |
 | 検証メタ | `quality/fw-validation/runs/20260810-shop-reservation-r2/` |
 
-## 工程8 引き継ぎ（未実施・本工程では触らない）
+## 工程8（ログのみ main 反映・push）
 
-- 作業ブランチ: `validation/20260810-shop-reservation-r2`
-- 想定手順（ログのみ main・validation push）:
-  1. 作業ブランチを remote へ push（force 禁止）
-  2. `main` へは **`quality/fw-validation/` のみ** 反映（アプリ経路 `specs/` / `pbl/` / `issues/` / `product/` / `adr/` は混ぜない）
-  3. `git push origin main`（force 禁止）
-- worktree で `main` 占有時は BL-20260810-01 どおり tip 同期／別 worktree を使う
-
+- 作業ブランチ: alidation/20260810-shop-reservation-r2
+- validation ブランチ push: git push -u origin validation/20260810-shop-reservation-r2（remote: https://github.com/mizumizue/forgos、HEAD ee514f2）済み
+- main への取り込み手順（ログのみ）:
+  1. main worktree（C:/Users/k_miz/Projects/forgos）で git pull origin main
+  2. git checkout validation/20260810-shop-reservation-r2 -- quality/fw-validation/
+  3. 変更が quality/fw-validation/ のみであることを確認してコミット
+  4. git push origin main（force 禁止）
+- main 反映コミット: 92d9fd0 — dd fw-validation log for 20260810-shop-reservation-r2（quality/fw-validation/ のみ）
+- main push: origin/main へ反映済み（eb21318..92d9fd0）
 ## Verifier 自己点検（工程7）
 
 1. `run-log.md` にテーマ・通った工程・詰まり・所見がある: **Yes**
