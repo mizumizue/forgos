@@ -109,7 +109,14 @@
 - Verifier: 重大 Gap なし（Pass A または Stop 内修復）
 - 結果: **Pass (A)** — 重大0。manifest 14/14・visibility 26/26 cold start。軽微2（tsc・CTA文言解釈差）
 
-### 工程11–12 実証ログ／main 反映（v3）
+### 工程11 実証ログ（v3）
 
 - 実行手段: `loop-eng` 型 `EO`
-- 結果: _pending_
+- Verifier: run-log にテーマ・工程・詰まり・所見、backlog 新規なしまたは追記
+- 結果: **Pass** — `run-log.md`（overlay v3）。FW 改善: **改善なし**
+
+### 工程12 ログのみ main へ（v3）
+
+- 実行手段: `loop-eng` 型 `EO`
+- Verifier: validation push、main は `quality/fw-validation/` のみ、run-log に手順
+- 結果: **Pass** — validation `@e82aabe` push 済み。main `@a25cf70` 同期済み（`quality/fw-validation/` のみ）

@@ -63,6 +63,6 @@ git commit -m "chore(fw-validation): sync run log 20260810-lesson-studio overlay
 git push origin main
 ```
 
-**validation ブランチ:** `validation/20260810-lesson-studio`  
-**main 同期:** 工程12 で `quality/fw-validation/` のみ反映（push 結果は `gate-log.md` 工程12 参照）
+**validation ブランチ:** `validation/20260810-lesson-studio`（`e82aabe`、origin push **成功**）  
+**main 同期:** 工程12 で `quality/fw-validation/` のみ反映（`main` @ `a25cf70`）
 
