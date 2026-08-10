@@ -28,7 +28,7 @@ disable-model-invocation: true
 4. 成果物の置き場  
 5. 戻ってよいか（既定: 提案＋一言承認）  
 6. ペルソナ（既定空。視点の指定が明示されたときだけ）  
-7. スキル名・配置（既定 personal）
+7. スキル名・配置（ForgOS 向け既定: `.cursor/skills/loop/<name>/`。個人汎用は `~/.cursor/skills/<name>/`）
 
 実行手段のメニュー（スキルか loop-eng か）は出さない。指揮者が実作業しないことを確認する。
 

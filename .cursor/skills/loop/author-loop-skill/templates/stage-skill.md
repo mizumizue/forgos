@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 {{purpose}}
 
-型: **{{pattern_id}}**（詳細: `.cursor/skills/author-loop-skill/patterns/{{pattern_id}}.md`）
+型: **{{pattern_id}}**（詳細: `.cursor/skills/loop/author-loop-skill/patterns/{{pattern_id}}.md`）
 
 ## ペルソナ
 

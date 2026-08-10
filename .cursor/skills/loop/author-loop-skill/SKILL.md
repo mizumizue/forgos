@@ -26,7 +26,7 @@ disable-model-invocation: true
 5. Stop 条件（上限つき）  
 6. Leash（触ってよい／いけない範囲）  
 7. ペルソナ（既定は空。付けるなら注意の向きだけ）  
-8. 配置（既定: `~/.cursor/skills/<name>/`）
+8. 配置（ForgOS 向け既定: `.cursor/skills/loop/<name>/`。個人汎用は `~/.cursor/skills/<name>/`）
 
 並行して `patterns/SELECTING.md` で型を内定する。
 
