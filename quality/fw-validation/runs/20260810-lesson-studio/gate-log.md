@@ -119,4 +119,4 @@
 
 - 実行手段: `loop-eng` 型 `EO`
 - Verifier: validation push、main は `quality/fw-validation/` のみ、run-log に手順
-- 結果: **Pass** — validation `@e82aabe` push 済み。main 同期コミット本手順で反映
+- 結果: **Pass** — validation `@e82aabe` push 済み。main `@a25cf70` 同期済み（`quality/fw-validation/` のみ）

@@ -64,5 +64,5 @@ git push origin main
 ```
 
 **validation ブランチ:** `validation/20260810-lesson-studio`（`e82aabe`、origin push **成功**）  
-**main 同期:** 工程12 で `quality/fw-validation/` のみ反映（本コミット）
+**main 同期:** 工程12 で `quality/fw-validation/` のみ反映（`main` @ `a25cf70`）
 
