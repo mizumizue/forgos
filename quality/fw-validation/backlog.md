@@ -24,3 +24,4 @@
 
 - **BL-20260810-03** — overlay v2（manifest D・I10・Audit）。`DEMO-UX.md`／`SKILL.md`
 - **BL-20260810-04** — overlay v2（manifest A/C・I8–I9・implement-reachability・Map/Cut M）。`DEMO-UX.md`／`SKILL.md`
+- **BL-20260810-05** — overlay v3（demo-seeded visibility・`demo-seeded-check.md`・cold_start 列・Audit 拡張）。発見: `20260810-lesson-studio`。`DEMO-UX.md`／`SKILL.md`
