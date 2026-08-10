@@ -1,17 +1,25 @@
-# FW 検証バックログ
+# ForgOS 実証ループ — 改善バックログ
 
-ForgOS 実証ループから拾った、フレームワーク／パイプライン改善候補。アプリ固有の修正は各 run の `run-log.md` 所見を参照。
+シリーズ累積。各項目は検証 FW／運用の改善候補。テーマ固有の一時メモは各 `runs/*/run-log.md` に残す。
 
 ## 未着手
 
-### BL-20260810-01 — Assure catalog が空のまま Audit 通過できる
+### BL-20260810-01 — worktree 占有時の `main` 起点手順
 
-- **由来:** `runs/20260810-shop-reservation`（工程6 Audit A1 / Coverage）
-- **事象:** Implement で単体テストはあるが、`quality/unit`・`quality/integration` の catalog active が 0 のまま工程6を通過できる。Coverage 欠落は軽微扱いのみ。
-- **候補:** 検証ループ上で Assure／catalog 載せをどの工程で必須または推奨にするか（工程5後・工程6・任意のまま）を playbook／ゲート定義で明確化する。
+- 発見 run: `20260810-kakeibo`
+- 種別: 運用／オーケストレーション
+- 内容: Cursor worktree では他 worktree が `main` を占有していると `main` checkout 不可。本 run では tip コミットから `validation/<run-id>` を新規作成して回避した。工程8（ログのみ main 反映）でも同様の摩擦が出うる。
+- 提案: 検証ループ手順（指揮者／工程1・8）に「`main` 占有時は tip から validation ブランチ作成／ログ反映は別 worktree または tip 同期」を明示する。`agents/` 本体へ検証概念を書き戻さない（オーバーレイ／スキル側）。
+- 優先: 中
 
-### BL-20260810-02 — Cursor adapter に promote スキルが無い
+### BL-20260810-02 — draft デモ run での quality catalog Coverage
 
-- **由来:** `runs/20260810-shop-reservation`（工程3 Promote / `gate-log.md`・`promote-check.md`）
-- **事象:** `.cursor/skills/` に promote がなく、`agents/pipeline/promote/playbook.md` 直実行で通過した。正本はあるが adapter 誘導が欠ける。
-- **候補:** Cursor 向け promote スキル（正本への薄い誘導）を追加するか、スキル無しを正式な導線として文書化する。
+- 発見 run: `20260810-kakeibo`（Audit 参考・Assure）
+- 種別: 検証 FW／Assure 運用
+- 内容: Implement 後も `quality/unit`・`quality/integration` の active が 0 のまま。ドメイン単体テストは `product/` 内にあるが catalog／`related_specs` 未紐づけ（Coverage 欠落・構造的孤児）。Audit では非重大・draft デモとして無視候補。
+- 提案: 実証ループの工程5–6 オーバーレイで、(a) draft デモは catalog 未整備を許容し run-log に理由を残す、または (b) 最低 1 件の unit catalog 紐づけをゲートに含める、のどちらかを決める。
+- 優先: 低〜中
+
+## 完了
+
+（なし）
