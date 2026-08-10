@@ -1,0 +1,13 @@
+{
+  "name": "solo-salon-reservation",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "pnpm -r --filter @solo-salon/domain test",
+    "typecheck": "pnpm -r --filter @solo-salon/domain --filter @solo-salon/web typecheck",
+    "dev": "pnpm --filter @solo-salon/web dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
