@@ -43,6 +43,7 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 - 発表会・コンクール・検定イベントの本格運営（エントリー・会場・審査員割当など）
 - 楽器レンタル在庫・販売管理
 - SMS／メール／LINE によるリマインド配信の本実装
+- 週次クラス枠・定員段・レベル帯・在籍割当・振替規約束の **講師向け編集 UI**（本デモはシード固定。変更は将来 issue）
 
 ## feature-slug
 
@@ -73,7 +74,7 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 2. **OP-2: 振替枠の空き確認と同レベルクラスへの振替手配** — 定員空き・同レベル・再振替不可が通例（石橋 [S1]、ピアノ田中 [S2]）。
 3. **OP-4: 欠席によるグループ枠時間の短縮運用** — 1名→20分、2名→45分、3名→60分（田中 [S2]）。
 
-※ OP-3（月謝回収）は brief 通例 T1 として参照するが、`scope.md` §スコープ外のため **在籍維持の状態表示のみ**。
+※ OP-3（月謝回収）は brief 通例 T1 として参照するが、本ファイル §スコープ外のため **在籍維持の状態表示のみ**。
 
 ### 差別化しない通例（table stakes・≥3）
 
@@ -158,6 +159,14 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 
 - `WEB_FORM`（デモ既定）／`LINE`／`PHONE` — 申告記録用。配信 UI は作らない
 
+### demo-seeded ペルソナ（manifest A 参照）
+
+| ペルソナ ID | 役 | 表示名 | 世帯／本人 |
+|-------------|-----|--------|------------|
+| `persona-teacher` | 講師 | 講師 山田 | — |
+| `persona-parent-suzuki` | 保護者 | 保護者（鈴木家） | `household-suzuki`（児童2名） |
+| `persona-student-nakamura` | 受講生（本人） | 受講生（中村涼） | `household-nakamura` |
+
 ## attention stack（S5）
 
 | 主表面 | 視線優先（先頭＝現場の主タスク） |
@@ -219,6 +228,54 @@ ForgOS の正規パイプライン（Source → Promote → map／cut → Implem
 
 ---
 
+## implementation manifest
+
+工程2–4＋採用 L3 から機械的に抽出。工程8–9・Audit の翻訳契約。`status` は `implement` または `deferred` のみ。
+
+### A — Actor 到達
+
+| ID | actor | demo-seeded ペルソナ | 主表面 | 到達方法 | status | 見送り根拠パス |
+|----|-------|----------------------|--------|----------|--------|----------------|
+| A-teacher | 講師（オーナー） | `persona-teacher`（講師 山田） | S1, S2 | ヘッダ「講師」タブ → S1/S2 表面ナビ | implement | — |
+| A-parent | 保護者（代理申立者） | `persona-parent-suzuki`（鈴木家） | S3 | ヘッダ「保護者（鈴木家）」タブ | implement | — |
+| A-student | 受講生（本人申立者） | `persona-student-nakamura`（中村涼） | S3 | ヘッダ「受講生（中村涼）」タブ | implement | — |
+
+### B — UC／WF
+
+| ID | L3 UC / WF | ジャーニー ID | 完結表面 | 操作1文 | status | 見送り根拠パス |
+|----|------------|---------------|----------|---------|--------|----------------|
+| B-uc-view-enrollment | `usecases/view-my-enrollment` | J1, J2 | S3 | マイ枠で在籍固定枠と今週の回次ステータスを確認する | implement | — |
+| B-uc-report-absence | `usecases/report-absence` | J1 | S3 | 「欠席を連絡する」→シート送信で WF-1 を完了する | implement | — |
+| B-uc-request-makeup | `usecases/request-makeup` | J2 | S3 | 「振替を希望する」→空き枠チップ選択→申請する | implement | — |
+| B-uc-process-makeup | `usecases/process-makeup-queue` | J2, J4 | S2 | 振替キューで申請カードを確定／却下／override する | implement | — |
+| B-uc-confirm-attendance | `usecases/confirm-lesson-attendance` | J3 | S1 | 座席リングで出欠トグル→「レッスンを確定」で WF-3 をロックする | implement | — |
+
+### C — 例外フロー
+
+| ID | 決め事 ID | 状態／分岐 | 操作する役 | 主表面 | 操作1文 | status | 見送り根拠パス |
+|----|-----------|------------|------------|--------|---------|--------|----------------|
+| C-late-absence | D4 | `pending_teacher_review` | 講師 | S2 | 期限後欠席ブロックで override 受理／却下する | implement | — |
+| C-makeup-reject | D6 | `rejected` | 講師 | S2 | 申請カード「却下」で振替不可とする | implement | — |
+| C-override-makeup | D8 | override 特例 | 講師 | S2 | 申請カード「override 受理」で理由入力後に確定する | implement | — |
+| C-all-absent | D12 | `cancelled_no_show` | 講師 | S1 | 全員欠席で「レッスンを確定」し休講扱いを記録する | implement | — |
+
+### D — 可変境界
+
+| ID | 境界名 | 変更する役 | 主表面 | 操作1文 | status | 見送り根拠パス |
+|----|--------|------------|--------|---------|--------|----------------|
+| D-weekly-slot | `WeeklyClassSlot` | 講師 | — | （編集 UI なし） | deferred | seed-fixed（`scope.md` §demo-seeded 週次クラス枠） |
+| D-capacity-tier | `CapacityTier` | 講師 | — | （編集 UI なし） | deferred | seed-fixed（`scope.md` §demo-seeded 週次クラス枠） |
+| D-level-band | `LevelBand` | 講師 | — | （編集 UI なし） | deferred | seed-fixed（`scope.md` §demo-seeded 週次クラス枠） |
+| D-enrollment | `EnrollmentAssignment` | 講師 | — | （編集 UI なし） | deferred | seed-fixed（`scope.md` §demo-seeded 在籍・回次シード） |
+| D-makeup-policy | `MakeupPolicyBundle` | 講師 | — | （編集 UI なし・規約タグ表示のみ） | deferred | seed-fixed（`scope.md` §demo-seeded 教室設定） |
+| D-lesson-occurrence | `LessonOccurrence` | システム | — | （生成のみ・日付固定） | deferred | seed-fixed（`spec-depth.md` D3 固定行） |
+| D-runtime-duration | `RuntimeDurationRule` | 講師 | S1 | 座席トグルで出席人数→実施時間バッジが連動更新される | implement | — |
+| D-contact-channel | `ContactChannel` | 保護者／受講生 | S3 | 欠席連絡シートで連絡チャネルを選択する | implement | — |
+
+**manifest 集計:** `implement` 行 **14**（A×3 + B×5 + C×4 + D×2）。`deferred` 行 6（D のシード固定境界）。
+
+---
+
 ## 工程5統合メモ
 
-本ファイルは工程2 [`sector-brief.md`](./sector-brief.md)、工程3 [`spec-depth.md`](./spec-depth.md)、工程4 [`design-call.md`](./design-call.md) を統合した **工程5 正本** である。テーマ・ブランチ・feature-slug は工程1を維持。矛盾解消: 月謝は在籍状態のみ、振替確定は S2 集約、保護者面プライバシーは空き席数のみ共有。
+本ファイルは工程2 [`sector-brief.md`](./sector-brief.md)、工程3 [`spec-depth.md`](./spec-depth.md)、工程4 [`design-call.md`](./design-call.md) を統合した **工程5 正本** である。テーマ・ブランチ・feature-slug は工程1を維持。矛盾解消: 月謝は在籍状態のみ、振替確定は S2 集約、保護者面プライバシーは空き席数のみ共有。可変境界の編集 UI は本デモではシード固定とし manifest `deferred` で明示。

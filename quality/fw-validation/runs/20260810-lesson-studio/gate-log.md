@@ -19,61 +19,60 @@
 
 ## 工程3 仕様深度
 
-- 実行手段: `skill:spec-depth-loop`
-- Verifier: D1–D6 全 Yes（Round 1）
-- 結果: **Pass** — `spec-depth.md`
+- 実行手段: `skill:spec-depth-loop`（フォールバック `EO`）
+- Verifier: D1–D6 全 Yes
+- 結果: **Pass** — `spec-depth.md`（役3・可変境界8・WF3・概念8採用）
 
-## 工程4 モックデザイン
+## 工程4 デザインコール
 
-- 実行手段: `skill:mock-design-loop`
-- Verifier: C1–C9 全 Yes（Round 1）
-- 結果: **Pass** — `design-call.md`（主表面3: 講師レッスン帳／振替キュー／保護者マイ枠）
+- 実行手段: `skill:mock-design-loop`（フォールバック `EO`）
+- Verifier: C1–C9 全 Yes（主表面3・遷移 J1–J4）
+- 結果: **Pass** — `design-call.md`（spec-depth 参照更新済み）
 
 ## 工程5 スコープ統合
 
 - 実行手段: `loop-eng` 型 `EO`
-- Verifier: DEMO-UX S0–S7 全 Yes
-- 結果: **Pass** — `scope.md` 統合版
+- Verifier: S0–S8 全 Yes（`## implementation manifest` A–D 表揃い）
+- 結果: **Pass** — `scope.md` 統合版。manifest `implement` 14 行、`deferred` 6 行
 
-## 工程6 Spike（Source）
+## 工程6 Source
 
-- 実行手段: `skill:spike`
-- Verifier: U0–U6 全 Yes、table stakes、domain skeleton、demo-grade
-- 結果: **Pass** — `specs/source/lesson-studio-scheduling/spec.md`（取り込み後削除）
+- 実行手段: Spike / Source playbook
+- Verifier: U0–U7 全 Yes、table stakes・domain skeleton 整合
+- 結果: **Pass** — `specs/source/lesson-studio-scheduling/spec.md`（工程7 で削除）
 
 ## 工程7 Promote
 
-- 実行手段: `skill:promote`（hands-off 代行）
-- Verifier: promote-check、L3 取り込み、Source 削除、P0–P4
-- 結果: **Pass** — `specs/L3/lesson-studio/`、`RUN/promote-check.md`、Source 削除済み
+- 実行手段: `agents/pipeline/promote/` hands-off
+- Verifier: P0–P5 全 Yes、L3 10 ファイル、Source 削除
+- 結果: **Pass** — `specs/L3/lesson-studio/**`, `promote-check.md`
 
 ## 工程8 map／cut
 
-- 実行手段: `skill:map` + `skill:cut`
-- Verifier: PBI、issue≥2、対応表、sector/actor-split/surface/demo-seeded/design-call/遷移参照
-- 結果: **Pass** — `pbl/items/PBI-0002-lesson-studio-scheduling.md`、`issues/completed/lesson-studio-scheduling-01-parent-enrollment.md`、`issues/completed/lesson-studio-scheduling-02-teacher-surfaces.md`
+- 実行手段: `agents/pipeline/map/` + `cut/` hands-off
+- Verifier: M1–M6 全 Yes（tier 列・Manifest 行・垂直スライス2 issue）
+- 結果: **Pass** — `pbl/items/PBI-0002-lesson-studio-scheduling.md`, issues/completed×2
 
 ## 工程9 Implement
 
-- 実行手段: `skill:implement`（TDD）
-- Verifier: 単体緑、主要UC、DEMO-UX I1–I7
-- 結果: **Pass** — `product/` pnpm monorepo、domain 12 tests green、web S1/S2/S3
+- 実行手段: `skill:implement` + TDD
+- Verifier: I1–I11 全 Yes、`implement-reachability.md` 14 行＝manifest implement 行数
+- 結果: **Pass** — `product/` 復元、domain vitest 14 passed、`implement-reachability.md`
 
 ## 工程10 Audit
 
 - 実行手段: `skill:audit`
-- Verifier: audit 完了。重大 Gap なし、または Stop 内修復 + ADR
-- 結果: **Pass (B)** — 重大 Gap 3件検出・1修復ラウンドで修復。`RUN/audit-findings.md`、`adr/0005-lesson-studio-audit-repairs.md`。修復後単体緑
+- Verifier: 重大 Gap なし（Pass A）。manifest implement 14 行 UI 到達確認
+- 結果: **Pass (A)** — `audit-findings.md`。ADR 不要
 
 ## 工程11 実証ログ
 
 - 実行手段: `loop-eng` 型 `EO`
-- Verifier: run-log 作成、backlog BL-20260810-04 追記
+- Verifier: run-log 作成、backlog 新規なし明記
 - 結果: **Pass** — `run-log.md`
 
 ## 工程12 ログのみ main へ
 
 - 実行手段: `loop-eng` 型 `EO`
 - Verifier: validation ブランチ push、main 変更が `quality/fw-validation/` のみ、run-log に手順記載
-- 結果: **Pass（ローカル）** — validation `@21eb4ba`、main へ `quality/fw-validation/` のみ反映。remote push は認証未設定のため未実施
-- 反映手順: `git checkout main && git checkout validation/20260810-lesson-studio -- quality/fw-validation/ && git commit`
+- 結果: **Pass（ローカル）** — main へ `quality/fw-validation/` のみ反映予定。remote push は認証次第

@@ -12,10 +12,10 @@
 | 入力 | パス | 使い方 |
 |------|------|--------|
 | Sector brief | [`sector-brief.md`](./sector-brief.md) | 業態・通例・ロール・現場オペ OP-1〜4・採用候補 A1〜A5 の正本 |
-| Spec depth | *未作成* | 本稿は sector brief の OP-1（出欠）、OP-2（振替）、OP-4（定員連動時間短縮）とロール表を depth 相当として読み、主表面・遷移・見た目に落とす |
+| Spec depth | [`spec-depth.md`](./spec-depth.md) | D2 役割権限・D3 可変境界・D4 WF-1〜3・D5 概念を主表面・遷移・見た目に落とす |
 | Scope | [`scope.md`](./scope.md) | actor-split・定期枠・demo-grade 画面完遂の境界 |
 
-**推論メモ（spec-depth 待ち）:** 月謝・決済はスコープ外。主ジョブは「欠席連絡 → 振替候補提示 → 講師確定」「講師の当日出欠記録と実施時間確定」に絞る。
+**spec-depth 整合メモ:** 月謝・決済は `scope.md` §スコープ外。主ジョブは WF-1 欠席連絡 → WF-2 振替候補提示・講師確定 → WF-3 当日出欠・実施時間確定（`spec-depth.md` D4）。
 
 ---
 
@@ -210,3 +210,4 @@ S2 処理完了
 | 周 | 内容 |
 |----|------|
 | 1 | 初稿 — sector brief 参照、spec-depth 未作成を明示して推論。主表面 3（S1/S2/S3）、遷移 J1〜J4 |
+| 2 | spec-depth 作成後 — 入力参照を `spec-depth.md` に更新。WF／可変境界と整合 |
